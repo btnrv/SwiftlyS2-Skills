@@ -1,0 +1,14 @@
+{
+  "name": "swiftlys2-skills",
+  "description": "Agent skills for SwiftlyS2 plugin development.",
+  "owner": {
+    "name": "btnrv"
+  },
+  "plugins": [
+    {
+      "name": "swiftlys2-skills",
+      "source": "./",
+      "description": "Skills for building SwiftlyS2 plugins for Counter-Strike 2."
+    }
+  ]
+}

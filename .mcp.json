@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "swiftlys2": {
+      "type": "http",
+      "url": "https://swiftlys2.net/api/mcp"
+    }
+  }
+}

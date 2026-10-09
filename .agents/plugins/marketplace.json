@@ -1,0 +1,20 @@
+{
+  "name": "swiftlys2-skills",
+  "interface": {
+    "displayName": "SwiftlyS2 skills"
+  },
+  "plugins": [
+    {
+      "name": "swiftlys2-skills",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

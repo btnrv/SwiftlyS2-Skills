@@ -1,0 +1,5019 @@
+# SwiftlyS2
+
+> SwiftlyS2 is a C# plugin framework for Counter-Strike 2 (Source 2). This file points AI agents and LLMs at the site's docs, API reference, data viewers, and its MCP server for live lookups.
+
+## Docs
+- [Introduction](https://swiftlys2.net/docs)
+- [Installation](https://swiftlys2.net/docs/installation)
+- [Getting Started](https://swiftlys2.net/docs/development/getting-started)
+- [Swiftly Core](https://swiftlys2.net/docs/development/swiftly-core)
+- [Using Attributes](https://swiftlys2.net/docs/development/using-attributes)
+- [Thread Safety](https://swiftlys2.net/docs/development/thread-safety)
+- [Commands](https://swiftlys2.net/docs/development/commands)
+- [Configuration](https://swiftlys2.net/docs/development/configuration)
+- [Translations](https://swiftlys2.net/docs/development/translations)
+- [Entity](https://swiftlys2.net/docs/development/entity)
+- [Entity Key Values](https://swiftlys2.net/docs/development/entitykeyvalues)
+- [Game Events](https://swiftlys2.net/docs/development/game-events)
+- [Core Events](https://swiftlys2.net/docs/development/core-events)
+- [Network Messages](https://swiftlys2.net/docs/development/netmessages)
+- [Menus](https://swiftlys2.net/docs/development/menus)
+- [Convars](https://swiftlys2.net/docs/development/convars)
+- [Native Functions and Hooks](https://swiftlys2.net/docs/development/native-functions-and-hooks)
+- [Scheduler](https://swiftlys2.net/docs/development/scheduler)
+- [Shared API](https://swiftlys2.net/docs/development/shared-api)
+- [Permissions](https://swiftlys2.net/docs/development/permissions)
+- [Profiler](https://swiftlys2.net/docs/development/profiler)
+- [Database](https://swiftlys2.net/docs/development/database)
+- [Sound Events](https://swiftlys2.net/docs/development/soundevents)
+- [Custom HUD](https://swiftlys2.net/docs/development/custom-hud)
+- [Steamworks](https://swiftlys2.net/docs/development/steamworks)
+- [Dependency Injection](https://swiftlys2.net/docs/guides/dependency-injection)
+- [Terminologies](https://swiftlys2.net/docs/guides/terminologies)
+- [Chat & CenterHTML Styling](https://swiftlys2.net/docs/guides/chat-and-html-styling)
+- [Porting from CounterStrikeSharp](https://swiftlys2.net/docs/guides/porting-from-css)
+- [CLI Options](https://swiftlys2.net/docs/resources/cli-options)
+- [Command Overrides](https://swiftlys2.net/docs/resources/command-overrides)
+- [Console Filter](https://swiftlys2.net/docs/resources/console-filter)
+- [Core Configuration](https://swiftlys2.net/docs/resources/core-config)
+
+## API reference
+- [C# API docs](https://swiftlys2.net/api-docs/stable)
+
+## Data viewers
+- [Schema viewer](https://swiftlys2.net/schema-viewer)
+- [Entity viewer](https://swiftlys2.net/entity-viewer)
+- [Protobuf viewer](https://swiftlys2.net/protobuf-viewer)
+- [Game events viewer](https://swiftlys2.net/gameevents-viewer)
+- [ConVars & ConCommands viewer](https://swiftlys2.net/convars-viewer)
+- [Panorama property viewer](https://swiftlys2.net/panorama-viewer)
+
+## AI tools
+- [AI tools overview](https://swiftlys2.net/ai) - how to connect an MCP client
+- MCP server endpoint: `https://swiftlys2.net/api/mcp` (Streamable HTTP) - tools: site_search, schema_lookup, schema_list, schema_search, entity_lookup, entity_list, entity_search, protobuf_lookup, protobuf_list, protobuf_search, gameevent_lookup, gameevent_list, gameevent_search, convar_lookup, convar_list, convar_search, panorama_lookup, panorama_list, panorama_search, apidocs_lookup, apidocs_list, apidocs_search, docs_list, docs_search
+- [Full docs dump](https://swiftlys2.net/llms-full.txt)
+
+## Project
+- [GitHub](https://github.com/swiftly-solution/swiftlys2)
+- [Discord](https://swiftlys2.net/discord)
+
+
+---
+
+
+## https://swiftlys2.net/docs
+
+---
+title: Introduction
+---
+
+SwifltyS2 is a server modification plugin for Counter Strike 2.
+
+This server modification platform allows plugins to be created easily, providing lightning-fast speed for your source code.
+
+# Why should you choose SwifltyS2?
+
+SwifltyS2 is built with developers in mind, providing an extensive suite of scripting features that make plugin development faster and more efficient.
+
+We're preventing memory leaks when working with the game's SDK and functions, having active maintenance and faster execution speeds through natives which are calling directly Native (core) code.
+
+A list of features:
+- **Commands**: Handles custom console commands or chat-based commands in the game.
+- **Convars**: Manages console variables (cvars) to control game behavior and configuration.
+- **Database**: Provides access to a centralized space to store your database credentials.
+- **Entity System**: Handles creation, management, and interaction of game entities.
+- **Events**: Manages event hooks, allowing scripts to react to in-game occurrences.
+- **Game Events**: Handles triggering and listening for in-game events. All fields are typed.
+- **Memory**: Provides low-level memory manipulation tools for advanced scripting.
+- **Menus**: Provides a easy Menu API with tons of customization, from colors to options and much more.
+- **Hooks**: A hooking system to hook functions, net messages, entity outputs and more.
+- **Net Messages**: Facilitates sending and receiving network messages via protobuf to clients.
+- **Profiler**: Tools for performance analysis and debugging of scripts.
+- **Protobuf Definitions**: Types for NetMessages received or sent by the server.
+- **Scheduler**: Provides timers and scheduling functionality for deferred or repeated tasks.
+- **Schema Definitions**: Defines the SDK Schema classes and enums.
+- **Sounds**: Provides tools for playing and managing audio within the game.
+- *and much more...*
+
+Swiftly is an Open-Source project licensed under the GNU GPLv3 License, allowing developers to modify and extend it as they see fit.
+
+
+## https://swiftlys2.net/docs/installation
+
+---
+title: Installation
+---
+
+This guide will walk you through installing **SwiftlyS2** on your **Counter-Strike: 2 server**.
+
+## Installing SwiftlyS2
+
+1. Download the latest release for your operating system.
+
+<Box class="grid grid-cols-2">
+    <Download version="latest-runtimes-stable" os="windows" />
+    <Download version="latest-runtimes-stable" os="linux" />
+    <Download version="latest-runtimes-beta" os="windows" />
+    <Download version="latest-runtimes-beta" os="linux" />
+    <Download version="latest-stable" os="windows" />
+    <Download version="latest-stable" os="linux" />
+    <Download version="latest-beta" os="windows" />
+    <Download version="latest-beta" os="linux" />
+</Box>
+
+2. Extract the archive. In it you'll find an `addons/` directory. Copy the directory into your server's `game/csgo`.
+
+<Callout type="warning">
+    If this is your first time installing SwiftlyS2, make sure to download the release with the Runtimes.
+</Callout>
+
+The **Loader** is the simplest and the only way to run SwiftlyS2.
+
+## Make SwiftlyS2 Load
+
+1. Locate your `gameinfo.gi` file inside `game/csgo` and open it.
+2. Find the line:  
+   ```
+   Game_LowViolence csgo_lv
+   ```
+   and add the following line **below** it:
+   ```
+   Game csgo/addons/swiftlys2
+   ```
+3. Save the file and restart your server.
+4. Run the command `sw` in your server console to verify the installation.
+
+<Callout type="warning">
+If you also have MetaMod:Source installed, add it after it's entry inside `gameinfo.gi`. See below for the example.
+</Callout>
+
+```
+    ...
+    Game csgo/addons/metamod
+    Game csgo/addons/swiftlys2
+    ...
+```
+
+**You’re done!** 
+SwiftlyS2 is now installed and ready to enhance your server!
+
+
+## https://swiftlys2.net/docs/development/getting-started
+
+---
+title: Getting Started
+---
+
+## Install the Plugin Template
+
+With the .NET 10.0 SDK installed and `dotnet` on your `PATH`, install the plugin template, then run it with your plugin's details:
+
+```bash
+dotnet new install SwiftlyS2.CS2.PluginTemplate
+dotnet new swplugin -n MyPlugin --PluginName "My Plugin" --PluginVersion "1.0.0" --PluginAuthor "Author" --PluginDescription "My first SwiftlyS2 plugin"
+```
+
+<Callout type="info">
+    `-n` becomes the plugin's `Id`, namespace, class name, assembly name and
+    output folder. The other flags only fill in <ApiRef name="PluginMetadata" />{" "}
+    and can be edited afterwards.
+</Callout>
+
+Generated project layout:
+
+```
+MyPlugin/
+├── examples/
+│   ├── Commands.example.cs
+│   ├── Events.example.cs
+│   ├── GameEvents.example.cs
+│   ├── HookAndCallNativeFunctions.example.cs
+│   ├── NetMessage.example.cs
+│   └── SoundEvent.example.cs
+├── resources/
+│   ├── gamedata/
+│   │   ├── offsets.jsonc
+│   │   ├── patches.jsonc
+│   │   └── signatures.jsonc
+│   ├── templates/
+│   └── translations/
+│       └── en.jsonc
+├── MyPlugin.cs
+├── MyPlugin.csproj
+└── README.md
+```
+
+`examples/` is excluded from compilation by default (`<Compile Remove="examples\**\*.cs" />`) - it's reference material, not part of your plugin.
+
+Main plugin class:
+
+```csharp
+using SwiftlyS2.Shared.Plugins;
+using SwiftlyS2.Shared;
+
+namespace MyPlugin;
+
+[PluginMetadata(Id = "MyPlugin", Version = "1.0.0", Name = "My Plugin", Author = "Author", Description = "My first SwiftlyS2 plugin")]
+public partial class MyPlugin : BasePlugin
+{
+    public MyPlugin(ISwiftlyCore core) : base(core)
+    {
+    }
+
+    public override void Load(bool hotReload)
+    {
+    }
+
+    public override void Unload()
+    {
+    }
+}
+```
+
+`ConfigureSharedInterface`/`UseSharedInterface` on <ApiRef name="BasePlugin" /> (see [Shared API](/docs/development/shared-api)) can be overridden the same way once you need them.
+
+<Callout type="info">
+    `resources/gamedata`, `resources/templates` and `resources/translations`
+    copy to the output directory on build. Each plugin manages its own
+    `resources/gamedata`, independently from others.
+</Callout>
+
+A freshly generated project may not reference the latest release - bump it in your `.csproj` if needed: `<PackageReference Include="SwiftlyS2.CS2" Version="*" ExcludeAssets="runtime" PrivateAssets="all" />`. `*` tracks latest stable; pin a version (e.g. `1.0.3`) for reproducible builds, or use `*-*` for preview releases.
+
+## Publishing
+
+```bash
+dotnet publish
+```
+
+This outputs the packaged plugin to `build/publish/<PluginId>/` and a ready-to-share `build/<AssemblyName>.zip` alongside it.
+
+To test locally, copy `build/publish/<PluginId>/` into your server's `addons/swiftlys2/plugins/<PluginId>/`. Use the `.zip` for releases.
+
+## Next Steps
+
+The template's `examples/` folder covers commands, core events, game events, native function hooking, net messages and sound events - the rest of this Development section covers each system in more depth. Read the [Dependency Injection](/docs/guides/dependency-injection) guide before writing logic, since SwiftlyS2 plugins favor constructor-based DI over static/global state.
+
+
+
+## https://swiftlys2.net/docs/development/swiftly-core
+
+---
+title: Swiftly Core
+---
+
+<ApiRef name="ISwiftlyCore" /> is the central entry point for all plugin
+services in SwiftlyS2. `Core` refers to the `ISwiftlyCore` instance every plugin
+receives.
+
+## How Core Is Provided
+
+<ApiRef name="BasePlugin" /> takes `ISwiftlyCore` in its constructor and exposes
+it as the protected `Core` property:
+
+```csharp
+public sealed class MyPlugin : BasePlugin
+{
+    public MyPlugin(ISwiftlyCore core) : base(core)
+    {
+    }
+
+    public override void Load(bool hotReload)
+    {
+        Core.Logger.LogInformation("Plugin loaded. Hot reload: {HotReload}", hotReload);
+    }
+
+    public override void Unload()
+    {
+        Core.Logger.LogInformation("Plugin unloaded.");
+    }
+}
+```
+
+<Callout type="info">
+    Pass `ISwiftlyCore` (or the specific services you need) into helper classes
+    rather than reaching for a static/global reference.
+</Callout>
+
+## Core Services at a Glance
+
+| Property                             | Service                                                                                                  |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------------- |
+| `Core.Event`                         | <ApiRef name="IEventSubscriber" /> - framework event subscription (client/map/entity lifecycle)          |
+| `Core.GameEvent`                     | <ApiRef name="IGameEventService" /> - game event (`EventPlayerDeath`, etc.) hook/fire APIs               |
+| `Core.NetMessage`                    | <ApiRef name="INetMessageService" /> - net message send/hook APIs                                        |
+| `Core.GameHooks`                     | <ApiRef name="IGameHooks" /> - virtual-function style hooks grouped by category                          |
+| `Core.Engine`                        | <ApiRef name="IEngineService" /> - console commands, particle effects                                    |
+| `Core.Game`                          | <ApiRef name="IGameService" /> - game-specific actions, e.g. grenade projectiles                         |
+| `Core.Helpers`                       | <ApiRef name="IHelpers" /> - misc helper utilities                                                       |
+| `Core.Command`                       | <ApiRef name="ICommandService" /> - command registration and aliasing                                    |
+| `Core.ConsoleOutput`                 | <ApiRef name="IConsoleOutputService" /> - console output access                                          |
+| `Core.EntitySystem`                  | <ApiRef name="IEntitySystemService" /> - entity creation and querying                                    |
+| `Core.ConVar`                        | <ApiRef name="IConVarService" /> - ConVar creation, lookup and value access                              |
+| `Core.Configuration`                 | <ApiRef name="IPluginConfigurationService" /> - plugin configuration file initialization/binding         |
+| `Core.GameData`                      | <ApiRef name="IGameDataService" /> - per-plugin signature/offset lookup                                  |
+| `Core.PlayerManager`                 | <ApiRef name="IPlayerManagerService" /> - player lookup and server-wide player actions                   |
+| `Core.Memory`                        | <ApiRef name="IMemoryService" /> - unmanaged function resolution and hooking                             |
+| `Core.Scheduler`                     | <ApiRef name="ISchedulerService" /> - main-thread dispatch, delayed and repeating tasks                  |
+| `Core.Database`                      | <ApiRef name="IDatabaseService" /> - database connection access                                          |
+| `Core.Translation`, `Core.Localizer` | <ApiRef name="ITranslationService" />, <ApiRef name="ILocalizer" /> - player and server localization     |
+| `Core.Permission`                    | <ApiRef name="IPermissionManager" /> - permission checks and assignment                                  |
+| `Core.Registrator`                   | <ApiRef name="IRegistratorService" /> - registers attribute-decorated instances beyond the plugin itself |
+| `Core.MenusAPI`                      | <ApiRef name="IMenuManagerAPI" /> - menu building and display                                            |
+| `Core.CommandLine`                   | <ApiRef name="ICommandLine" /> - server command-line argument access                                     |
+| `Core.GameFileSystem`                | <ApiRef name="IGameFileSystem" /> - game virtual file system access                                      |
+| `Core.PluginManager`                 | <ApiRef name="IPluginManager" /> - plugin discovery/metadata lookup                                      |
+| `Core.StringTable`                   | <ApiRef name="IStringTableService" /> - string table access                                              |
+| `Core.Profiler`                      | <ApiRef name="IContextedProfilerService" /> - profiling scopes and timers                                |
+| `Core.Trace`                         | <ApiRef name="ITraceManager" /> - trace/diagnostics manager                                              |
+| `Core.Logger`, `Core.LoggerFactory`  | Standard `Microsoft.Extensions.Logging` logger                                                           |
+
+Full member list for any of these: <ApiRef name="ISwiftlyCore" />.
+
+Runtime paths follow the same pattern: `Core.PluginPath` (current plugin's directory), `Core.PluginDataDirectory` (per-plugin data directory), `Core.CSGODirectory` (`game/csgo`), `Core.GameFilesDirectory` and `Core.GameDirectory` (game root).
+
+## Thread Awareness
+
+`Core.IsGameThread` reports whether the current call is on the game thread:
+
+```csharp
+public void EnsureMainThreadAction(Action action)
+{
+    if (Core.IsGameThread)
+    {
+        action();
+        return;
+    }
+
+    Core.Scheduler.NextTick(action);
+}
+```
+
+<Callout type="warning">
+    Many game-facing APIs are thread-unsafe (`[ThreadUnsafe]`). Off the game
+    thread, use their `Async` counterpart or hand the call to `Core.Scheduler`
+    first. See [Thread Safety](/docs/development/thread-safety).
+</Callout>
+
+## Registering Attribute Handlers on Other Classes
+
+Your plugin class is registered for attribute discovery automatically. Any other class needs `Core.Registrator.Register(instance)` - see [Using Attributes](/docs/development/using-attributes) for a full worked example and the complete attribute list.
+
+
+
+## https://swiftlys2.net/docs/development/using-attributes
+
+---
+title: Using Attributes
+---
+
+SwiftlyS2 lets you register commands, events, and hooks by decorating methods with attributes, instead of wiring every handler manually.
+
+## Registration Scope
+
+Attribute discovery runs on registered object instances:
+
+- Your plugin class (the one inheriting `BasePlugin`) is registered automatically.
+- Any other class must be registered explicitly with `Core.Registrator.Register(instance)`.
+
+```csharp
+public sealed class ModerationHandlers
+{
+    [ClientChatHookHandler]
+    public HookResult OnClientChat(int playerId, string text, bool teamOnly)
+    {
+        if (text.Contains("badword", StringComparison.OrdinalIgnoreCase))
+        {
+            return HookResult.Stop;
+        }
+
+        return HookResult.Continue;
+    }
+}
+
+public override void Load(bool hotReload)
+{
+    Core.Registrator.Register(new ModerationHandlers());
+}
+```
+
+<Callout type="warning">
+    Register each handler instance once - registering the same instance
+    repeatedly duplicates callbacks.
+</Callout>
+
+## Signature Rules
+
+Attribute-decorated methods must match the expected delegate: same parameter order/types, same return type (`void` vs `HookResult`), and same generic event/message type where the attribute is generic. Otherwise the handler won't be picked up.
+
+## Attribute Reference
+
+### <ApiRef name="PluginMetadata" />
+
+On your plugin class. `Id` and `Version` are required; the rest optional:
+
+```csharp
+[PluginMetadata(Id = "my.plugin", Version = "1.0.0", Name = "My Plugin", Author = "Author", Description = "...", Website = "...")]
+public partial class MyPlugin : BasePlugin
+{
+}
+```
+
+### <ApiRef name="Command" />
+
+Registers a chat/console command; `permission` gates it via [Permissions](/docs/development/permissions). Full registration/lookup API on <ApiRef name="ICommandService" /> - see [Commands](/docs/development/commands).
+
+```csharp
+[Command("heal", permission: "myplugin.heal", helpText: "Heals yourself")]
+public void OnHealCommand(ICommandContext context)
+{
+    var player = context.Sender;
+}
+```
+
+### <ApiRef name="CommandAlias" />
+
+Adds an alternate name for a command registered elsewhere (attribute or <ApiRef name="ICommandService" member="RegisterCommand" />):
+
+```csharp
+[CommandAlias("heal", "h")]
+private void HealAlias() { } // body is unused, only the attribute matters
+```
+
+### <ApiRef name="GameEventHandler" />
+
+Hooks a generated game event (`EventPlayerDeath`, `EventRoundStart`, ...) - see <ApiRef name="IGameEventService" /> and [Game Events](/docs/development/game-events) for the full hook/fire API. `HookMode.Pre` runs before the game processes it, `Post` runs after:
+
+```csharp
+[GameEventHandler(HookMode.Post)]
+private HookResult OnPlayerDeath(EventPlayerDeath @event)
+{
+    return HookResult.Continue;
+}
+```
+
+### <ApiRef name="EventListener`1" /> (`[EventListener<T>]`)
+
+Subscribes a method to one of the framework's own events, via delegates on <ApiRef name="EventDelegates" /> mirroring <ApiRef name="IEventSubscriber" /> (e.g. `EventDelegates.OnEntityCreated`):
+
+```csharp
+[EventListener<EventDelegates.OnEntityCreated>]
+public void OnEntityCreated(IOnEntityCreatedEvent @event)
+{
+}
+```
+
+This is the attribute-based equivalent of `Core.Event.OnEntityCreated += OnEntityCreated;`.
+
+### <ApiRef name="GameHookHandler" />
+
+Hooks a category under <ApiRef name="IGameHooks" /> (e.g. entity take-damage):
+
+```csharp
+[GameHookHandler(HookMode.Pre)]
+private void OnTakeDamagePre(ref TakeDamageEntityPreContext ctx)
+{
+}
+```
+
+### <ApiRef name="ClientCommandHookHandler" />
+
+Intercepts a raw client console command before the server processes it - see <ApiRef name="ICommandService" member="HookClientCommand" />:
+
+```csharp
+[ClientCommandHookHandler]
+public HookResult OnClientCommand(int playerId, string commandLine)
+{
+    return HookResult.Continue;
+}
+```
+
+### <ApiRef name="ClientChatHookHandler" />
+
+Intercepts a chat message before it's broadcast - same shape as above, with chat-specific parameters, see <ApiRef name="ICommandService" member="HookClientChat" /> (and the `ModerationHandlers` example at the top of this page):
+
+```csharp
+[ClientChatHookHandler]
+public HookResult OnClientChat(int playerId, string text, bool teamOnly)
+{
+    return HookResult.Continue;
+}
+```
+
+### <ApiRef name="EntityOutputHandlerAttribute" /> / <ApiRef name="EntityOutputHandlerAttribute`1" />
+
+Hooks an entity I/O output by designer name, or generically by schema class (`<T>` resolves `T.ClassName` for you):
+
+```csharp
+[EntityOutputHandler("func_door", "OnOpen")]
+public void OnDoorOpened(IOnEntityFireOutputHookEvent @event)
+{
+    Console.WriteLine($"Output '{@event.OutputName}' fired by '{@event.DesignerName}'");
+}
+
+[EntityOutputHandler<CBaseDoor>("OnOpen")]
+public void OnDoorOpenedGeneric(IOnEntityFireOutputHookEvent @event)
+{
+}
+```
+
+Set `@event.Result = HookResult.Stop` to block the output from firing.
+
+### <ApiRef name="EntityInputHandlerAttribute" /> / <ApiRef name="EntityInputHandlerAttribute`1" />
+
+Same shape as the output handler, for entity I/O inputs instead:
+
+```csharp
+[EntityInputHandler("func_door", "Open")]
+public void OnDoorOpenInput(IOnEntityIdentityAcceptInputHookEvent @event)
+{
+    Console.WriteLine($"Input '{@event.InputName}' accepted by '{@event.DesignerName}'");
+}
+
+[EntityInputHandler<CBaseDoor>("Open")]
+public void OnDoorOpenInputGeneric(IOnEntityIdentityAcceptInputHookEvent @event)
+{
+}
+```
+
+Set `@event.Result = HookResult.Stop` to block the input from being accepted.
+
+### <ApiRef name="ServerNetMessageHandler" />
+
+Hooks a net message the server sends to clients - see <ApiRef name="INetMessageService" /> and [Net Messages](/docs/development/netmessages):
+
+```csharp
+[ServerNetMessageHandler]
+public HookResult OnServerSound(CMsgSosStartSoundEvent msg)
+{
+    Console.WriteLine($"sound hash={msg.SoundeventHash}");
+    return HookResult.Continue;
+}
+```
+
+### <ApiRef name="ServerNetMessageInternalHandler" />
+
+Same as <ApiRef name="ServerNetMessageHandler" />, but for internal server messages, which carry a target `playerId`:
+
+```csharp
+[ServerNetMessageInternalHandler]
+public HookResult OnServerSoundInternal(CMsgSosStartSoundEvent msg, int playerId)
+{
+    Console.WriteLine($"player={playerId}, sound hash={msg.SoundeventHash}");
+    return HookResult.Continue;
+}
+```
+
+### <ApiRef name="ClientNetMessageHandler" />
+
+Hooks a net message a client sends to the server:
+
+```csharp
+[ClientNetMessageHandler]
+public HookResult OnClientMove(CCLCMsg_Move msg, int playerId)
+{
+    Console.WriteLine($"player={playerId}, lastCmd={msg.LastCommandNumber}");
+    return HookResult.Continue;
+}
+```
+
+<Callout type="info">
+    See [Net Messages](/docs/development/netmessages) and
+    [Entity](/docs/development/entity) for the programmatic
+    (`Core.NetMessage`/`Core.EntitySystem`) equivalents of the attributes above.
+</Callout>
+
+
+
+## https://swiftlys2.net/docs/development/thread-safety
+
+---
+title: Thread Safety
+---
+
+Some framework APIs are thread-unsafe. Calling them from a non-main-thread context (e.g. inside `Task.Run`, or after `await`-ing a database call) can cause undefined behavior or crashes.
+
+<Callout type="warning">
+    If an API is marked thread-unsafe, don't call it directly from a background
+    thread. Use its `Async` counterpart, or schedule the call back onto the main
+    thread first.
+</Callout>
+
+## Core Rule
+
+Thread-unsafe methods are annotated with <ApiRef name="ThreadUnsafeAttribute" /> in source and must run on the game thread. Prefer their `Async` variant when one exists - it marshals the call for you; otherwise hand it to `Core.Scheduler` yourself. Check `Core.IsGameThread` at runtime to branch explicitly:
+
+```csharp
+if (!Core.IsGameThread)
+{
+    Core.Scheduler.NextTick(() => player.SendChat("Hello!"));
+}
+else
+{
+    player.SendChat("Hello!");
+}
+```
+
+## Safe Usage Patterns
+
+Prefer `Async` counterparts in any `async` flow (e.g. after a database call):
+
+```csharp
+public async Task NotifyPlayerAsync(IPlayer player)
+{
+    await player.SendChatAsync("Hello from an async flow.");
+
+    using var sound = new SoundEvent("UI.CounterBeep", volume: 1.0f, pitch: 1.0f);
+    sound.Recipients.AddAllPlayers();
+    await sound.EmitAsync();
+}
+```
+
+For a sync-only API with no `Async` variant, schedule it explicitly instead:
+
+```csharp
+await Core.Scheduler.NextTickAsync(() => player.SendChat("Executed on the main thread via the scheduler."));
+```
+
+## Common Thread-Unsafe APIs
+
+| Thread-Unsafe API                                                 | Async Alternative                                                                                         |
+| ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| <ApiRef name="IPlayer" member="SendChat" />                       | `SendChatAsync`                                                                                           |
+| <ApiRef name="IPlayer" member="SendMessage" />                    | `SendMessageAsync`                                                                                        |
+| <ApiRef name="IPlayer" member="SendConsole" />                    | `SendConsoleAsync`                                                                                        |
+| <ApiRef name="IPlayer" member="SendCenter" />                     | `SendCenterAsync`                                                                                         |
+| <ApiRef name="IPlayer" member="SendAlert" />                      | `SendAlertAsync`                                                                                          |
+| <ApiRef name="IPlayer" member="SendCenterHTML" />                 | `SendCenterHTMLAsync`                                                                                     |
+| <ApiRef name="IPlayer" member="SendChatEOT" />                    | `SendChatEOTAsync`                                                                                        |
+| <ApiRef name="IPlayer" member="SendNotify" />                     | `SendNotifyAsync`                                                                                         |
+| <ApiRef name="IPlayer" member="Kick" />                           | `KickAsync`                                                                                               |
+| <ApiRef name="IPlayer" member="ExecuteCommand" />                 | `ExecuteCommandAsync`                                                                                     |
+| <ApiRef name="IPlayer" member="Teleport" />                       | `TeleportAsync`                                                                                           |
+| <ApiRef name="IPlayer" member="TakeDamage" />                     | `TakeDamageAsync`                                                                                         |
+| <ApiRef name="IPlayer" member="SwitchTeam" /> / `ChangeTeam`      | `SwitchTeamAsync` / `ChangeTeamAsync`                                                                     |
+| <ApiRef name="SoundEvent" member="Emit" />                        | `EmitAsync`                                                                                               |
+| <ApiRef name="IGameEventService" member="Fire" /> and friends     | `FireAsync`, `FireToPlayerAsync`, `FireToServerAsync`                                                     |
+| <ApiRef name="IGameService" member="EmitHEGrenade" /> and friends | `EmitHEGrenadeAsync`, `EmitFlashbangAsync`, `EmitSmokeGrenadeAsync`, `EmitMolotovAsync`, `EmitDecoyAsync` |
+
+<Callout type="info">
+    <ApiRef name="IEngineService" member="ExecuteCommand" />,
+    `ExecuteCommandWithBuffer` and `DispatchParticleEffect` also have `Async`
+    counterparts - use those from a background flow even if you're unsure the
+    sync overload is unsafe.
+</Callout>
+
+## Checklist
+
+Find sync calls to thread-unsafe APIs running after an `await` (outside `Load`/event handlers), replace with the `Async` variant, or wrap with `Core.Scheduler.NextTick`/`NextWorldUpdate` if no `Async` variant exists. Don't fire-and-forget gameplay-critical calls - `await` them or handle failures explicitly.
+
+## Reference
+
+See [Swiftly Core](/docs/development/swiftly-core) for `Core.IsGameThread` and `Core.Scheduler`.
+
+See [Scheduler](/docs/development/scheduler) for the full scheduling API.
+
+
+
+## https://swiftlys2.net/docs/development/commands
+
+---
+title: Commands
+---
+
+SwiftlyS2's command system lets you register commands, hook client commands and chat, and manage permissions - via attributes or programmatically.
+
+## Registering Commands
+
+### With Attributes
+
+Attach `[Command]` to a method matching `void CommandListenerFunction(ICommandContext context)`.
+
+```csharp
+[Command("heal", registerRaw: false, permission: "admins.commands.heal")]
+public void OnHealCommand(ICommandContext context)
+{
+    if (!context.IsSentByPlayer)
+    {
+        context.Reply("This command can only be used by players!");
+        return;
+    }
+    var player = context.Sender!;
+}
+```
+
+See <ApiRef name="Command" /> for the full attribute reference - `registerRaw` skips the `sw_` prefix; `permission` is checked before the handler runs (`heal` above registers as `sw_heal`, gated by `admins.commands.heal`).
+
+### Programmatically
+
+Same signature, registered via <ApiRef name="ICommandService" member="RegisterCommand" /> - the returned `Guid` is for later unregistration.
+
+```csharp
+public override void Load(bool hotReload)
+{
+    var commandGuid = Core.Command.RegisterCommand("heal", OnHealCommand);
+}
+```
+
+## Command Context
+
+Every handler receives an <ApiRef name="ICommandContext" /> - `Sender` (<ApiRef name="IPlayer" />), `IsSentByPlayer`, `Prefix`, `IsSlient`, `CommandName`, `Args`, plus `Reply`/`ReplyAsync`.
+
+<Callout type="info">
+    `Sender` is `null` when the command is executed from server console. Always
+    check `IsSentByPlayer` before dereferencing `Sender`.
+</Callout>
+
+## Unregistering Commands
+
+Plugins auto-unregister their commands on unload. To do it manually, see <ApiRef name="ICommandService" member="UnregisterCommand" /> (by `Guid` or by name) and <ApiRef name="ICommandService" member="IsCommandRegistered" /> to check if a name is taken.
+
+## Command Aliases
+
+Aliases register the same handler under extra command names.
+
+### With Attributes
+
+Stack <ApiRef name="CommandAlias" /> on an already-`[Command]`-registered method - it allows multiple attributes per method, so `heal` can gain both `hp` and `h`:
+
+```csharp
+[Command("heal")]
+[CommandAlias("hp")]
+[CommandAlias("h")]
+public void OnHealCommand(ICommandContext context)
+{
+    // reachable as sw_heal, sw_hp, sw_h
+}
+```
+
+### Programmatically
+
+```csharp
+// e.g. in Load():
+Core.Command.RegisterCommandAlias("heal", "hp");
+```
+
+See <ApiRef name="ICommandService" member="RegisterCommandAlias" /> for the full signature.
+
+## Introspection
+
+`Core.Command` can enumerate what's registered, e.g. for a `/plugins commands` admin command - see <ApiRef name="ICommandService" member="GetAllCommands" />, <ApiRef name="ICommandService" member="GetCommandsByPlugin" />, <ApiRef name="ICommandService" member="GetAllCommandsByPlugin" /> and <ApiRef name="ICommandService" member="GetAllCommandsInfo" /> (the latter three return <ApiRef name="CommandInfo" /> entries).
+
+## Client Command Hooks
+
+Intercept every console command a player sends (`~` console), not just ones you registered - via <ApiRef name="ClientCommandHookHandler" /> or programmatically with <ApiRef name="ICommandService" member="HookClientCommand" />/<ApiRef name="ICommandService" member="UnhookClientCommand" />:
+
+```csharp
+[ClientCommandHookHandler]
+public HookResult OnClientCommand(int playerId, string commandLine)
+{
+    if (commandLine.StartsWith("say"))
+        Console.WriteLine($"Player #{playerId} is using the say command");
+
+    return HookResult.Continue;
+}
+```
+
+## Client Chat Hooks
+
+Block or inspect chat messages before they reach other players - word filters, private chats, etc. Same shape, via <ApiRef name="ClientChatHookHandler" /> or <ApiRef name="ICommandService" member="HookClientChat" />/<ApiRef name="ICommandService" member="UnhookClientChat" />:
+
+```csharp
+[ClientChatHookHandler]
+public HookResult OnClientChat(int playerId, string text, bool teamonly)
+{
+    return text.Contains("badword") ? HookResult.Stop : HookResult.Continue;
+}
+```
+
+<Callout type="warning">
+    `HookResult.Stop` silently drops the command/message from the player's
+    perspective - use deliberately.
+</Callout>
+
+
+
+## https://swiftlys2.net/docs/development/configuration
+
+---
+title: Configuration
+---
+
+SwiftlyS2's configuration system lets your plugin create config files, bind typed models, and reload settings at runtime, through <ApiRef name="ISwiftlyCore" member="Configuration" /> (<ApiRef name="IPluginConfigurationService" />).
+
+## Paths
+
+```csharp
+string basePath = Core.Configuration.BasePath;
+bool exists = Core.Configuration.BasePathExists;
+string configPath = Core.Configuration.GetConfigPath("config.jsonc"); // needs the extension
+```
+
+See <ApiRef name="IPluginConfigurationService" member="BasePath" />, <ApiRef name="IPluginConfigurationService" member="BasePathExists" /> and <ApiRef name="IPluginConfigurationService" member="GetConfigPath" />.
+
+## Initializing Config Files
+
+```csharp
+// From a packaged templates/ folder
+Core.Configuration.InitializeWithTemplate("config.jsonc", "config.template.jsonc");
+
+// From a typed model - creates the file with defaults if it doesn't exist yet
+Core.Configuration.InitializeJsonWithModel<MainConfig>("config.jsonc", "Main");
+Core.Configuration.InitializeTomlWithModel<DatabaseConfig>("database.toml", "Database");
+```
+
+See <ApiRef name="IPluginConfigurationService" member="InitializeWithTemplate" />, <ApiRef name="IPluginConfigurationService" member="InitializeJsonWithModel" /> and <ApiRef name="IPluginConfigurationService" member="InitializeTomlWithModel" /> - all three return <ApiRef name="IPluginConfigurationService" />, so they chain, followed by <ApiRef name="IPluginConfigurationService" member="Configure" /> to register the file as a live, reloadable source:
+
+```csharp
+Core.Configuration
+    .InitializeJsonWithModel<MainConfig>("config.jsonc", "Main")
+    .InitializeTomlWithModel<DatabaseConfig>("database.toml", "Database")
+    .Configure(builder =>
+    {
+        builder.AddJsonFile(Core.Configuration.GetConfigPath("config.jsonc"), optional: false, reloadOnChange: true);
+        builder.AddTomlFile(Core.Configuration.GetConfigPath("database.toml"), optional: false, reloadOnChange: true);
+    });
+```
+
+<Callout type="info">
+    `AddJsonFile`/`AddTomlFile` resolve relative to the process's working
+    directory, not your plugin folder - pass the full path from `GetConfigPath`,
+    not a bare file name.
+</Callout>
+
+Use <ApiRef name="IPluginConfigurationService" member="Manager" /> to reach the raw `IConfigurationManager` directly.
+
+## Complete Example
+
+```csharp
+namespace MyPlugin;
+
+public class MainConfig
+{
+    public bool Enabled { get; set; } = true;
+    public bool Debug { get; set; } = false;
+    public int MaxPlayers { get; set; } = 32;
+}
+
+public class DatabaseConfig
+{
+    public string Host { get; set; } = "127.0.0.1";
+    public int Port { get; set; } = 3306;
+}
+
+public override void Load(bool hotReload)
+{
+    Core.Configuration
+        .InitializeJsonWithModel<MainConfig>("config.jsonc", "Main")
+        .InitializeTomlWithModel<DatabaseConfig>("database.toml", "Database")
+        .Configure(builder =>
+        {
+            builder.AddJsonFile(Core.Configuration.GetConfigPath("config.jsonc"), optional: false, reloadOnChange: true);
+            builder.AddTomlFile(Core.Configuration.GetConfigPath("database.toml"), optional: false, reloadOnChange: true);
+        });
+
+    var services = new ServiceCollection();
+    services.AddSwiftly(Core);
+    services.AddOptionsWithValidateOnStart<MainConfig>().BindConfiguration("Main");
+    services.AddOptionsWithValidateOnStart<DatabaseConfig>().BindConfiguration("Database");
+}
+```
+
+See [Dependency Injection](/docs/guides/dependency-injection) for more on `services.AddSwiftly(Core)`. Consume with `IOptionsMonitor<T>` to react to reloads:
+
+```csharp
+public class ExampleService
+{
+    public ExampleService(IOptionsMonitor<MainConfig> main)
+    {
+        main.OnChange(cfg => Console.WriteLine($"Main config reloaded. Enabled: {cfg.Enabled}"));
+    }
+}
+```
+
+
+
+## https://swiftlys2.net/docs/development/translations
+
+---
+title: Translations
+---
+
+SwiftlyS2's translation APIs localize plugin text by key and automatically resolve player-specific language.
+
+## Translation File Layout
+
+Place `.jsonc` files named by language code under `resources/translations/` (for example `en.jsonc`, `fr.jsonc`, `pt-BR.jsonc`, `es-419.jsonc`). At least one must exist for the plugin's translations to load.
+
+<Callout type="warning">
+    Custom language codes work for direct lookups through `Core.Localizer`, but
+    `Core.Translation.GetPlayerLocalizer(player)` only resolves the codes listed
+    below.
+</Callout>
+
+<Callout type="info">
+    Keep an `en.jsonc` baseline with all keys so unsupported or incomplete
+    languages still have usable text.
+</Callout>
+
+### Language Codes
+
+| Language                | Code              | File Name                     |
+| ----------------------- | ----------------- | ----------------------------- |
+| Arabic                  | `ar`              | `ar.jsonc`                    |
+| Bulgarian               | `bg`              | `bg.jsonc`                    |
+| Chinese (CN & TW)       | `zh-CN` / `zh-TW` | `zh-CN.jsonc` / `zh-TW.jsonc` |
+| Czech                   | `cs`              | `cs.jsonc`                    |
+| Danish                  | `da`              | `da.jsonc`                    |
+| Dutch                   | `nl`              | `nl.jsonc`                    |
+| English                 | `en`              | `en.jsonc`                    |
+| Finnish                 | `fi`              | `fi.jsonc`                    |
+| French                  | `fr`              | `fr.jsonc`                    |
+| German                  | `de`              | `de.jsonc`                    |
+| Greek                   | `el`              | `el.jsonc`                    |
+| Hungarian               | `hu`              | `hu.jsonc`                    |
+| Indonesian              | `id`              | `id.jsonc`                    |
+| Italian                 | `it`              | `it.jsonc`                    |
+| Japanese                | `ja`              | `ja.jsonc`                    |
+| Korean                  | `ko`              | `ko.jsonc`                    |
+| Norwegian               | `no`              | `no.jsonc`                    |
+| Polish                  | `pl`              | `pl.jsonc`                    |
+| Portuguese              | `pt`              | `pt.jsonc`                    |
+| Portuguese (Brazilian)  | `pt-BR`           | `pt-BR.jsonc`                 |
+| Romanian                | `ro`              | `ro.jsonc`                    |
+| Russian                 | `ru`              | `ru.jsonc`                    |
+| Spanish                 | `es`              | `es.jsonc`                    |
+| Spanish (Latin America) | `es-419`          | `es-419.jsonc`                |
+| Swedish                 | `sv`              | `sv.jsonc`                    |
+| Thai                    | `th`              | `th.jsonc`                    |
+| Turkish                 | `tr`              | `tr.jsonc`                    |
+| Ukrainian               | `uk`              | `uk.jsonc`                    |
+| Vietnamese              | `vn`              | `vn.jsonc`                    |
+
+## Example Translation File
+
+```jsonc
+{
+    // General
+    "plugin.name": "My Plugin",
+    "plugin.ready": "Plugin is ready.",
+
+    // Command feedback
+    "command.heal.success": "You have been healed.",
+    "command.heal.other": "{0} healed {1}",
+    "command.heal.no_permission": "You do not have permission.",
+
+    // Errors
+    "error.player_not_found": "Player '{0}' was not found."
+}
+```
+
+<Callout type="info">
+    Values are chat-color-processed automatically, so `[red]`/`[green]`/etc.
+    bracket syntax works directly inside translation strings. See [Chat &
+    CenterHTML Styling](/docs/guides/chat-and-html-styling) for the full color
+    list.
+</Callout>
+
+## Server-Side Localization
+
+<ApiRef name="ISwiftlyCore" member="Localizer" /> (<ApiRef name="ILocalizer" />)
+is for messages that aren't player-specific. It supports `["key"]` and `["key",
+arg0, arg1, ...]` - keep placeholder order stable across languages:
+
+```csharp
+string readyMessage = Core.Localizer["plugin.ready"];
+string versionMessage = Core.Localizer["plugin.version", "1.2.0"];
+```
+
+## Player-Specific Localization
+
+Use <ApiRef name="ITranslationService" member="GetPlayerLocalizer" /> when output should match the player's language. <ApiRef name="IPlayer" member="PlayerLanguage" /> (a <ApiRef name="Language" /> value) is available for diagnostics or conditional flows:
+
+```csharp
+public async Task GreetAsync(IPlayer player)
+{
+    var localizer = Core.Translation.GetPlayerLocalizer(player);
+    string message = localizer["welcome.message", player.Name];
+
+    await player.SendChatAsync(message);
+    Core.Logger.LogInformation("Greeted {SteamId} in {Language}", player.SteamID, player.PlayerLanguage);
+}
+```
+
+## Key Design Best Practices
+
+- Use stable dot-separated keys (for example `command.heal.success`).
+- Keep the same key set across all language files.
+- Add JSONC comments for translator context when placeholders are involved.
+- Avoid string concatenation in code for translatable sentences.
+
+
+
+## https://swiftlys2.net/docs/development/entity
+
+---
+title: Entity
+---
+
+SwiftlyS2's entity system creates entities, queries existing ones, tracks them safely with handles, and hooks entity inputs/outputs.
+
+## Accessing Entity System Service
+
+Available through `Core.EntitySystem`.
+
+```csharp
+public override void Load(bool hotReload)
+{
+    var entitySystem = Core.EntitySystem;
+}
+```
+
+## Creating Entities
+
+By schema class via <ApiRef name="IEntitySystemService" member="CreateEntity" />, or by designer name via <ApiRef name="IEntitySystemService" member="CreateEntityByDesignerName" /> - each also has an overload to force a specific entity index:
+
+```csharp
+CPointWorldText worldText = Core.EntitySystem.CreateEntity<CPointWorldText>();
+CBaseEntity relay = Core.EntitySystem.CreateEntityByDesignerName<CBaseEntity>("logic_relay");
+```
+
+<Callout type="warning">
+    Every entity-system method here throws `InvalidOperationException` if called
+    too early, before the entity system is available.
+</Callout>
+
+## Spawning Entities
+
+Creating an entity doesn't spawn it - call `DispatchSpawn`/`DispatchSpawnAsync` (the latter for non-main-thread contexts) after creating, optionally with a [`CEntityKeyValues`](/docs/development/entitykeyvalues):
+
+```csharp
+CPointWorldText worldText = Core.EntitySystem.CreateEntity<CPointWorldText>();
+worldText.DispatchSpawn();
+
+CBaseEntity relay = Core.EntitySystem.CreateEntityByDesignerName<CBaseEntity>("logic_relay");
+
+using var keyValues = new CEntityKeyValues();
+keyValues.SetString("targetname", "sw_relay_01");
+keyValues.SetBool("StartDisabled", false);
+
+relay.DispatchSpawn(keyValues);
+await relay.DispatchSpawnAsync(keyValues); // non-main-thread
+```
+
+## Querying Existing Entities
+
+Every query method returns `IEnumerable<T>` - filter as early as possible. See <ApiRef name="IEntitySystemService" member="GetAllEntities" />, <ApiRef name="IEntitySystemService" member="GetAllEntitiesByClass" />, <ApiRef name="IEntitySystemService" member="GetAllEntitiesByDesignerName" />.
+
+```csharp
+IEnumerable<CEntityInstance> allEntities = Core.EntitySystem.GetAllEntities();
+IEnumerable<CPointWorldText> worldTexts = Core.EntitySystem.GetAllEntitiesByClass<CPointWorldText>();
+IEnumerable<CBaseEntity> relays = Core.EntitySystem.GetAllEntitiesByDesignerName<CBaseEntity>("logic_relay");
+```
+
+### Get by Index or Address
+
+<ApiRef name="IEntitySystemService" member="GetEntityByIndex" /> takes a `uint`
+index; <ApiRef name="IEntitySystemService" member="GetEntityByAddress" /> takes
+a pointer:
+
+```csharp
+CEntityInstance? byIndex = Core.EntitySystem.GetEntityByIndex(100u);
+CBaseEntity? typedByIndex = Core.EntitySystem.GetEntityByIndex<CBaseEntity>(100u);
+
+CEntityInstance? byAddress = Core.EntitySystem.GetEntityByAddress((nint)0x12345678);
+CBaseEntity? typedByAddress = Core.EntitySystem.GetEntityByAddress<CBaseEntity>((nint)0x12345678);
+```
+
+<Callout type="warning">
+The generic `GetEntityByIndex<T>`/`GetEntityByAddress<T>` overloads throw `InvalidOperationException` if the resolved entity isn't type `T`. Use the non-generic overload to check the type yourself.
+</Callout>
+
+## Getting Game Rules
+
+<ApiRef name="IEntitySystemService" member="GetGameRules" />:
+
+```csharp
+CCSGameRules? gameRules = Core.EntitySystem.GetGameRules();
+```
+
+## Entity Handles and Safety
+
+Check `IsValid` before using a direct entity reference - it's only a point-in-time check, so for tracking across frames/ticks store a <ApiRef name="CHandle`1" /> (via <ApiRef name="IEntitySystemService" member="GetRefEHandle" />) instead, and check `handle.IsValid` before reading `handle.Value`:
+
+```csharp
+List<CHandle<CBaseEntity>> trackedEntities = new();
+
+CBaseEntity entity = Core.EntitySystem.CreateEntity<CBaseEntity>();
+trackedEntities.Add(Core.EntitySystem.GetRefEHandle(entity));
+
+entity.Despawn(); // also has a DespawnAsync() counterpart
+
+Core.Scheduler.DelayBySeconds(10, () =>
+{
+    foreach (var tracked in trackedEntities)
+    {
+        if (tracked.IsValid)
+        {
+            CBaseEntity current = tracked.Value!;
+            Console.WriteLine("Tracked entity is still valid.");
+        }
+    }
+});
+```
+
+## Hooking Entity Outputs and Inputs
+
+Register by designer name via <ApiRef name="IEntitySystemService" member="HookEntityOutput" />, or with <ApiRef name="EntityOutputHandlerAttribute" /> (also available as <ApiRef name="EntityOutputHandlerAttribute`1" /> - `[EntityOutputHandler<T>("OutputName")]` resolves the designer name from the schema class). Inputs work identically via <ApiRef name="IEntitySystemService" member="HookEntityInput" /> and <ApiRef name="EntityInputHandlerAttribute" />/<ApiRef name="EntityInputHandlerAttribute`1" />, just swap `Output`→`Input`, `OutputName`→`InputName`, and the event type.
+
+<Tabs>
+  <Tab label="Programmatically">
+    ```csharp
+    private Guid _outputHookGuid;
+
+    public override void Load(bool hotReload)
+    {
+        _outputHookGuid = Core.EntitySystem.HookEntityOutput("func_door", "OnOpen", OnDoorOpened);
+    }
+
+    public override void Unload()
+    {
+        Core.EntitySystem.UnhookEntityOutput(_outputHookGuid);
+    }
+
+    private void OnDoorOpened(IOnEntityFireOutputHookEvent @event)
+    {
+        Console.WriteLine($"Output '{@event.OutputName}' fired by '{@event.DesignerName}'");
+    }
+    ```
+
+  </Tab>
+  <Tab label="With attribute">
+    ```csharp
+    [EntityOutputHandler("func_door", "OnOpen")]
+    public void OnDoorOpened(IOnEntityFireOutputHookEvent @event)
+    {
+        Console.WriteLine($"Output '{@event.OutputName}' fired by '{@event.DesignerName}'");
+    }
+    ```
+  </Tab>
+</Tabs>
+
+Input hooking mirrors this exactly, callback taking an <ApiRef name="IOnEntityIdentityAcceptInputHookEvent" /> with `@event.InputName` (output callbacks take <ApiRef name="IOnEntityFireOutputHookEvent" /> with `@event.OutputName`). Set `@event.Result = HookResult.Stop` in either callback to block the flow. Unhook with <ApiRef name="IEntitySystemService" member="UnhookEntityOutput" />/<ApiRef name="IEntitySystemService" member="UnhookEntityInput" />.
+
+
+
+## https://swiftlys2.net/docs/development/entitykeyvalues
+
+---
+title: Entity Key Values
+---
+
+SwiftlyS2 provides <ApiRef name="CEntityKeyValues" /> as a typed key-value container for entity spawn/configuration values.
+
+## Creating and Disposing
+
+Default constructor. Implements `IDisposable`, so prefer `using`.
+
+```csharp
+using var keyValues = new CEntityKeyValues();
+```
+
+## Address Property
+
+Exposes its native address through `Address`.
+
+```csharp
+nint address = keyValues.Address;
+```
+
+## Setting and Getting Values
+
+A type-specific `SetX`/`GetX` pair exists for every supported type - `GetX` mirrors `SetX` 1:1, taking the same key and returning what was stored:
+
+```csharp
+keyValues.SetBool("is_enabled", true);
+keyValues.SetInt32("health", 100);
+keyValues.SetUInt32("flags", 1u);
+keyValues.SetInt64("large_value", 9223372036854775807);
+keyValues.SetUInt64("ularge_value", 18446744073709551615UL);
+keyValues.SetFloat("speed", 250.5f);
+keyValues.SetDouble("precise_value", 3.14159265359);
+keyValues.SetString("name", "example");
+keyValues.SetPtr("pointer", nint.Zero);
+keyValues.SetStringToken("token", stringToken);
+keyValues.SetColor("color", new Color(255, 0, 0, 255));
+keyValues.SetVector("position", new Vector(0, 0, 100));
+keyValues.SetVector2D("position_2d", new Vector2D(10, 20));
+keyValues.SetVector4D("position_4d", new Vector4D(1, 2, 3, 4));
+keyValues.SetQAngle("angle", new QAngle(0, 90, 0));
+
+int health = keyValues.GetInt32("health");
+bool hasHealth = keyValues.Has("health"); // check a key exists
+```
+
+Or the generic `Set<T>`/`Get<T>` form for the same types:
+
+```csharp
+keyValues.Set<int>("health", 100);
+keyValues.Set<Vector>("position", new Vector(0, 0, 100));
+
+int health = keyValues.Get<int>("health");
+Vector position = keyValues.Get<Vector>("position");
+```
+
+## Supported Generic Types
+
+`Set<T>`/`Get<T>` support `bool`, `int`, `uint`, `long`, `ulong`, `float`, `double`, `string`, `nint`, `CUtlStringToken`, `Color`, `Vector`, `Vector2D`, `Vector4D`, `QAngle`.
+
+<Callout type="warning">
+Using an unsupported type with `Set<T>` or `Get<T>` throws `InvalidOperationException`.
+</Callout>
+
+## Using with Entity DispatchSpawn
+
+Commonly passed into `DispatchSpawn`/`DispatchSpawnAsync` (async for non-main-thread contexts) on a `CEntityInstance`. See [Entity](/docs/development/entity) for creating entities.
+
+```csharp
+CBaseEntity relay = Core.EntitySystem.CreateEntityByDesignerName<CBaseEntity>("logic_relay");
+
+using var keyValues = new CEntityKeyValues();
+keyValues.SetString("targetname", "sw_relay_01");
+keyValues.SetBool("StartDisabled", false);
+
+relay.DispatchSpawn(keyValues);
+await relay.DispatchSpawnAsync(keyValues); // non-main-thread
+```
+
+
+
+## https://swiftlys2.net/docs/development/game-events
+
+---
+title: Game Events
+---
+
+<Callout type="warning">
+    Game events are a legacy Source 2 mechanism and Valve has been retiring them
+    over time - some events no longer fire in current CS2 builds. Prefer [Game
+    Hooks](/docs/development/native-functions-and-hooks) or [Core
+    Events](/docs/development/core-events) when an equivalent exists.
+</Callout>
+
+SwiftlyS2 generates a strongly-typed interface for every CS2 game event, exposed through the plugin-scoped `Core.GameEvent` service (<ApiRef name="IGameEventService" />).
+
+## Firing Events
+
+`Fire` broadcasts to every player, `FireToPlayer` targets a slot, `FireToServer` stays server-side. Each has an async counterpart (`FireAsync`, `FireToPlayerAsync`, `FireToServerAsync`) for off-main-thread use - the sync overloads are thread-unsafe.
+
+```csharp
+// To everyone, with an optional configure callback
+Core.GameEvent.Fire<EventShowSurvivalRespawnStatus>(@event =>
+{
+    @event.LocToken = "survival_respawn_status";
+    @event.Duration = 5;
+});
+
+// To one player slot
+Core.GameEvent.FireToPlayer<EventShowSurvivalRespawnStatus>(0, @event =>
+{
+    @event.LocToken = "private_status";
+});
+
+// Server-side only
+Core.GameEvent.FireToServer<EventShowSurvivalRespawnStatus>();
+
+// Off the main thread
+await Core.GameEvent.FireAsync<EventShowSurvivalRespawnStatus>();
+```
+
+<Callout type="warning">
+    The event instance passed to a configure callback is only valid for that
+    callback's duration - don't stash and read it later.
+</Callout>
+
+## Hooking Events
+
+Register hooks by attribute or manually through the service, in `Pre` or `Post` mode. Returning `HookResult.Stop` from a pre-hook cancels the event.
+
+<Tabs>
+  <Tab label="With attribute">
+    ```csharp
+    [GameEventHandler(HookMode.Pre)]
+    public HookResult OnPlayerDeathPre(EventPlayerDeath @event)
+    {
+        Console.WriteLine($"victim={@event.UserId}, attacker={@event.Attacker}");
+        return HookResult.Continue;
+    }
+
+    [GameEventHandler(HookMode.Post)]
+    public HookResult OnPlayerDeathPost(EventPlayerDeath @event)
+    {
+        Console.WriteLine($"headshot={@event.Headshot}, weapon={@event.Weapon}");
+        return HookResult.Continue;
+    }
+    ```
+
+  </Tab>
+  <Tab label="Programmatically">
+    ```csharp
+    private Guid _preHookId;
+
+    public override void Load(bool hotReload)
+    {
+        _preHookId = Core.GameEvent.HookPre<EventPlayerDeath>(OnPlayerDeathPre);
+    }
+
+    public override void Unload()
+    {
+        Core.GameEvent.Unhook(_preHookId);
+    }
+
+    private HookResult OnPlayerDeathPre(EventPlayerDeath @event)
+    {
+        return HookResult.Continue;
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+Drop every hook registered for an event type at once:
+
+```csharp
+Core.GameEvent.UnhookPre<EventPlayerDeath>();
+Core.GameEvent.UnhookPost<EventPlayerDeath>();
+```
+
+## Reading Event Data
+
+Every generated event implements <ApiRef name="IGameEvent`1" />, giving you `Accessor` (<ApiRef name="IGameEventAccessor" />) and a settable `DontBroadcast` flag. Recognized fields get typed properties directly on the event - for `EventPlayerDeath`: `int UserId`/`Attacker`/`Assister`, `string Weapon`, `bool Headshot`, `float Distance`, `int ActualDmgHealth`, plus `IPlayer?` convenience wrappers (`UserIdPlayer`, `AttackerPlayer`, `AssisterPlayer`) resolved through the player manager:
+
+```csharp
+[GameEventHandler(HookMode.Post)]
+private HookResult OnPlayerDeath(EventPlayerDeath @event)
+{
+    if (@event.AttackerPlayer is { } attacker && @event.UserIdPlayer is { } victim)
+    {
+        Console.WriteLine($"{attacker.Name} killed {victim.Name} with {@event.Weapon}");
+    }
+
+    return HookResult.Continue;
+}
+```
+
+Fall back to `Accessor` for fields without a generated property:
+
+```csharp
+string weapon = @event.Accessor.GetString("weapon");
+int attackerSlot = @event.Accessor.GetPlayerSlot("attacker");
+```
+
+See <ApiRef name="IGameEventAccessor" /> for the full set of typed getters/setters (bool, int32, uint64, float, string, entity, entity index, player slot) plus read-only `GetPlayer`/`GetPlayerController`/`GetPlayerPawn`/`IsReliable()`/`IsLocal()`.
+
+Check whether a slot is listening for an event with <ApiRef name="IGameEventService" member="IsListeningToEvent" /> - by event name (`"player_death"`) or the typed `IsListeningToEvent<EventPlayerDeath>(playerId)` overload.
+
+
+
+## https://swiftlys2.net/docs/development/core-events
+
+---
+title: Core Events
+---
+
+Core events are SwiftlyS2's own engine/framework callbacks - client lifecycle, entity lifecycle, convar changes, server startup, tick/world update - separate from the CS2 [game events](/docs/development/game-events) system. They're exposed through `Core.Event` (<ApiRef name="IEventSubscriber" />), a set of plain C# events.
+
+## Subscribing
+
+Subscribe with a plain `+=`, or with `[EventListener<T>]` where `T` is the matching delegate from `EventDelegates`.
+
+<Tabs>
+  <Tab label="Programmatically">
+    ```csharp
+    public override void Load(bool hotReload)
+    {
+        Core.Event.OnClientConnected += OnClientConnected;
+    }
+
+    private void OnClientConnected(IOnClientConnectedEvent @event)
+    {
+        Console.WriteLine($"Client connected: {@event.PlayerId}");
+    }
+    ```
+
+  </Tab>
+  <Tab label="With attribute">
+    ```csharp
+    [EventListener<EventDelegates.OnClientConnected>]
+    public void OnClientConnected(IOnClientConnectedEvent @event)
+    {
+        Console.WriteLine($"Client connected: {@event.PlayerId}");
+    }
+    ```
+  </Tab>
+</Tabs>
+
+Match the delegate signature exactly - `EventDelegates.OnClientConnected` is `void(IOnClientConnectedEvent @event)`; `OnTick`/`OnWorldUpdate` take no parameters.
+
+## Blocking a Client from Joining
+
+Some client-lifecycle events expose a settable `Result` to reject the action, e.g. <ApiRef name="IOnClientConnectedEvent" />:
+
+```csharp
+[EventListener<EventDelegates.OnClientConnected>]
+public void OnClientConnected(IOnClientConnectedEvent @event)
+{
+    if (IsBanned(@event.PlayerId))
+    {
+        @event.Result = HookResult.Stop;
+    }
+}
+```
+
+## Unsubscribing
+
+`-=` only removes a subscription added with `+=` - keep a reference to the exact delegate instance:
+
+```csharp
+private EventDelegates.OnClientConnected? _onClientConnected;
+
+public override void Load(bool hotReload)
+{
+    _onClientConnected = OnClientConnected;
+    Core.Event.OnClientConnected += _onClientConnected;
+}
+
+public override void Unload()
+{
+    if (_onClientConnected != null)
+        Core.Event.OnClientConnected -= _onClientConnected;
+}
+```
+
+<Callout type="info">
+    The framework tears down every listener a plugin registered on hot reload or
+    unload automatically - unsubscribe manually only to stop listening earlier.
+</Callout>
+
+## Hot Path Events
+
+`OnTick`, `OnWorldUpdate`, and the obsolete `OnClientProcessUsercmds` fire every tick/frame - keep handlers allocation-free and cheap; push anything heavier to a scheduled task or a flag.
+
+## Deprecated Hook-Style Events
+
+Several `Core.Event` members that used to be the only way to intercept a native call are `[Obsolete]` in favor of the more structured [`Core.GameHooks`](/docs/development/native-functions-and-hooks) categories - separate pre/post delegates and a richer context object instead of one generic event:
+
+| Obsolete event                                                  | Use instead                                           |
+| --------------------------------------------------------------- | ----------------------------------------------------- |
+| `OnClientProcessUsercmds`                                       | `Core.GameHooks.Controller`/`Movement`                |
+| `OnEntityTakeDamage`                                            | `Core.GameHooks.Entities.TakeDamage`                  |
+| `OnItemServicesCanAcquireHook`                                  | `Core.GameHooks.Items.CanAcquire`                     |
+| `OnWeaponServicesCanUseHook` / `OnWeaponServicesDropWeaponHook` | `Core.GameHooks.Weapons.*`                            |
+| `OnEntityStartTouch` / `OnEntityTouch` / `OnEntityEndTouch`     | `Core.GameHooks.Entities.{StartTouch,Touch,EndTouch}` |
+| `OnMovementServicesRunCommandHook`                              | `Core.GameHooks.Movement.RunCommand`                  |
+| `OnPlayerPawnPostThink`                                         | `Core.GameHooks.Pawn.PostThink`                       |
+| `OnEntityIdentityAcceptInputHook`                               | `Core.GameHooks.Entities.AcceptInput`                 |
+| `OnEntityFireOutputHook`                                        | `Core.GameHooks.Entities.FireOutput`                  |
+
+## Event Reference
+
+| Category          | Events                                                                                                                                                                 |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Client lifecycle  | `OnClientConnected`, `OnClientDisconnected`, `OnClientPutInServer`, `OnClientKeyStateChanged`, `OnClientSteamAuthorize`, `OnClientSteamAuthorizeFail`, `OnClientVoice` |
+| Entity lifecycle  | `OnEntityCreated`, `OnEntitySpawned`, `OnEntityDeleted`, `OnEntityParentChanged`                                                                                       |
+| ConVar / commands | `OnConVarCreated`, `OnConVarValueChanged`, `OnConCommandCreated`, `OnCommandExecuteHook`, `OnConsoleOutput`                                                            |
+| Server / world    | `OnStartupServer`, `OnMapLoad`, `OnMapUnload`, `OnTick`, `OnWorldUpdate`, `OnSteamAPIActivated`, `OnPrecacheResource`                                                  |
+| UI                | `OnCustomHudClicked`                                                                                                                                                   |
+
+Each parameter interface lives under `SwiftlyS2.Shared.Events` (e.g. <ApiRef name="IOnClientConnectedEvent" />, <ApiRef name="IOnMapLoadEvent" />) and exposes only the fields relevant to that callback - open the type's page for the full field list instead of guessing from the event name.
+
+
+
+## https://swiftlys2.net/docs/development/netmessages
+
+---
+title: Network Messages
+---
+
+SwiftlyS2's typed net-message API sends generated protobuf messages and intercepts them in both client-to-server and server-to-client directions, through <ApiRef name="ISwiftlyCore" member="NetMessage" /> (<ApiRef name="INetMessageService" />).
+
+<Callout type="warning">
+    Net-message objects passed to callbacks are temporary wrappers. Read or copy
+    values inside the callback and don't store those objects for later use.
+</Callout>
+
+## Sending Net Messages
+
+<ApiRef name="INetMessageService" member="Send" /> builds the message, runs your
+configure callback, and sends it via the configured recipient filter - use it
+for one-off sends:
+
+```csharp
+Core.NetMessage.Send<CUserMessageShake>(msg =>
+{
+    msg.Duration = 1.0f;
+    msg.Frequency = 2.0f;
+    msg.Amplitude = 0.5f;
+    msg.Command = 0;
+
+    msg.Recipients.AddAllPlayers();
+});
+```
+
+Use <ApiRef name="INetMessageService" member="Create" /> instead to build the same message shape repeatedly, tweak recipients directly through <ApiRef name="INetMessage`1" member="Recipients" /> (a <ApiRef name="CRecipientFilter" />), and send with `Send()`/`SendToPlayer`/`SendToAllPlayers`:
+
+```csharp
+using var msg = Core.NetMessage.Create<CUserMessageShake>();
+
+msg.Duration = 1.0f;
+msg.Frequency = 2.0f;
+msg.Amplitude = 0.5f;
+msg.Command = 0;
+
+msg.Recipients.RemoveAllPlayers();
+msg.Recipients.AddRecipient(0);
+msg.Recipients.AddRecipient(1);
+
+msg.Send(); // or msg.SendToPlayer(0) / msg.SendToAllPlayers()
+```
+
+## Hooking Net Messages
+
+Three hook pipelines: client messages (<ApiRef name="INetMessageService" member="HookClientMessage" />, client-to-server), server messages (<ApiRef name="INetMessageService" member="HookServerMessage" />, server-to-client), and internal server messages (<ApiRef name="INetMessageService" member="HookServerMessageInternal" />, server-to-client with a target `playerId` - only a small subset of server-to-client messages use this pipeline). Each can be registered programmatically or via an attribute discovered on any registered class (your `BasePlugin` is registered by default).
+
+### Client Hooks
+
+<Tabs>
+  <Tab label="Programmatically">
+    ```csharp
+    private Guid _clientMoveHook;
+
+    public override void Load(bool hotReload)
+    {
+        _clientMoveHook = Core.NetMessage.HookClientMessage<CCLCMsg_Move>(OnClientMove);
+    }
+
+    public override void Unload()
+    {
+        if (_clientMoveHook != Guid.Empty)
+            Core.NetMessage.Unhook(_clientMoveHook);
+    }
+
+    private HookResult OnClientMove(CCLCMsg_Move msg, int playerId)
+    {
+        Console.WriteLine($"player={playerId}, lastCmd={msg.LastCommandNumber}");
+        return HookResult.Continue;
+    }
+    ```
+
+  </Tab>
+  <Tab label="With attribute">
+    ```csharp
+    [ClientNetMessageHandler]
+    public HookResult OnClientMove(CCLCMsg_Move msg, int playerId)
+    {
+        Console.WriteLine($"player={playerId}, lastCmd={msg.LastCommandNumber}");
+        return HookResult.Continue;
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Server and Internal Server Hooks
+
+Same shape, different attribute and delegate signature - <ApiRef name="ServerNetMessageHandler" /> has no `playerId`, <ApiRef name="ServerNetMessageInternalHandler" /> does:
+
+```csharp
+[ServerNetMessageHandler]
+public HookResult OnServerSound(CMsgSosStartSoundEvent msg)
+{
+    Console.WriteLine($"sound hash={msg.SoundeventHash}");
+    return HookResult.Continue;
+}
+
+[ServerNetMessageInternalHandler]
+public HookResult OnServerSoundInternal(CMsgSosStartSoundEvent msg, int playerId)
+{
+    Console.WriteLine($"player={playerId}, sound hash={msg.SoundeventHash}");
+    return HookResult.Continue;
+}
+```
+
+Register the programmatic equivalents with <ApiRef name="INetMessageService" member="HookServerMessage" />/<ApiRef name="INetMessageService" member="HookServerMessageInternal" />, same `Load`/`Unload`/`Guid` pattern as the client hook above.
+
+## HookResult Behavior
+
+Net-message hooks return `HookResult.Continue` (allow) or `HookResult.Stop` (block) - in client hooks that blocks delivery to the server, in server/internal hooks it blocks delivery to clients.
+
+## Unhooking
+
+Unhook by `Guid` via <ApiRef name="INetMessageService" member="Unhook" />, or clear all hooks for a specific net-message type:
+
+```csharp
+Core.NetMessage.Unhook(hookGuid);
+
+Core.NetMessage.UnhookClientMessage<CCLCMsg_Move>();
+Core.NetMessage.UnhookServerMessage<CMsgSosStartSoundEvent>();
+Core.NetMessage.UnhookServerMessageInternal<CMsgSosStartSoundEvent>();
+```
+
+See <ApiRef name="INetMessageService" member="UnhookClientMessage" />, <ApiRef name="INetMessageService" member="UnhookServerMessage" /> and <ApiRef name="INetMessageService" member="UnhookServerMessageInternal" />. Their handler delegates are generic over `T` constrained to <ApiRef name="ITypedProtobuf`1" />, <ApiRef name="INetMessage`1" /> and `IDisposable`.
+
+## Working with the Raw Payload Accessor
+
+Generated message interfaces expose typed properties, plus `Accessor` (<ApiRef name="IProtobufAccessor" />) for field-based access when needed:
+
+```csharp
+private HookResult OnServerSound(CMsgSosStartSoundEvent msg)
+{
+    uint hash = msg.Accessor.HasField("soundevent_hash")
+        ? msg.Accessor.GetUInt32("soundevent_hash")
+        : msg.SoundeventHash;
+
+    Console.WriteLine($"sound hash={hash}");
+    return HookResult.Continue;
+}
+```
+
+
+
+## https://swiftlys2.net/docs/development/menus
+
+---
+title: Menus
+---
+
+SwiftlyS2 menus provide an interactive, per-player UI layer for settings, selections, and action flows, through `Core.MenusAPI` (<ApiRef name="IMenuManagerAPI" />).
+
+## Recommended Workflow
+
+1. Create a builder with `Core.MenusAPI.CreateBuilder()`.
+2. Configure behavior (sound, freeze, auto-close, keybind overrides) and appearance (`builder.Design`).
+3. Add options and call `Build()`.
+4. Open and close through `Core.MenusAPI`.
+
+## Builder Configuration
+
+Every call under `.Design` returns back to the builder, so chain `.Design.` again for each design call:
+
+```csharp
+var menu = Core.MenusAPI.CreateBuilder()
+    .EnableSound()
+    .SetPlayerFrozen(false)
+    .SetAutoCloseDelay(0f)
+    .SetSelectButton(KeyBind.E | KeyBind.Mouse1) // KeyBind is a [Flags] enum
+    .SetMoveForwardButton(KeyBind.W)
+    .SetMoveBackwardButton(KeyBind.S)
+    .SetExitButton(KeyBind.Esc)
+    .AddExtraButton(KeyBind.R, "Reset", (p, m) =>
+    {
+        p.SendChat("Reset action executed.");
+    })
+    .Design.SetMenuTitle("Gameplay Settings")
+    .Design.SetMenuTitleItemCountVisible(true)
+    .Design.SetMenuFooterVisible(true)
+    .Design.SetCommentVisible(true)
+    .Design.SetDefaultComment("Use W/S to move and E to select")
+    .Design.SetMaxVisibleItems(5)
+    .Design.SetGlobalScrollStyle(MenuOptionScrollStyle.WaitingCenter)
+    .Build();
+
+Core.MenusAPI.OpenMenuForPlayer(player, menu);
+```
+
+<Callout type="info">
+    `MaxVisibleItems` only accepts `[1, 5]` or `-1` (falls back to
+    `ItemsPerPage` in `configs/core.jsonc`, see [Core
+    Configuration](/docs/resources/core-config)) - out-of-range values log an
+    error and reset to `-1`.
+</Callout>
+
+## Option Types
+
+Built-in options live under `SwiftlyS2.Core.Menus.OptionsBase`:
+
+- <ApiRef name="TextMenuOption" />: non-interactive informational line.
+- <ApiRef name="ButtonMenuOption" />: clickable action.
+- <ApiRef name="ToggleMenuOption" />: per-player on/off value.
+- <ApiRef name="SliderMenuOption" />: numeric range with step.
+- <ApiRef name="ChoiceMenuOption" />: per-player value from a string list.
+- <ApiRef name="InputMenuOption" />: chat input with validation.
+- <ApiRef name="ProgressBarMenuOption" />: dynamic progress display.
+- <ApiRef name="SubmenuMenuOption" />: opens another menu.
+- <ApiRef name="SelectorMenuOption`1" />: typed selector with previous/next
+  behavior.
+
+```csharp
+var slider = new SliderMenuOption(
+    text: "Round Time",
+    min: 60f,
+    max: 300f,
+    defaultValue: 120f,
+    step: 30f,
+    totalBars: 8
+);
+
+slider.ValueChanged += (sender, args) =>
+{
+    args.Player.SendChat($"Round time: {args.NewValue:0}s");
+};
+
+var menu = Core.MenusAPI.CreateBuilder()
+    .Design.SetMenuTitle("Player Preferences")
+    .AddOption(slider)
+    .Build();
+```
+
+The other value-holding options (<ApiRef name="ToggleMenuOption" />, <ApiRef name="InputMenuOption" />, <ApiRef name="ChoiceMenuOption" />, <ApiRef name="SelectorMenuOption`1" />) follow the same constructor-plus-`ValueChanged`-handler pattern, just with their own value type (`bool`, `string`, etc. - see <ApiRef name="MenuOptionValueChangedEventArgs`1" member="OldValue" />/<ApiRef name="MenuOptionValueChangedEventArgs`1" member="NewValue" />).
+
+## Submenus
+
+Provide a pre-built submenu, or build it lazily when selected.
+
+```csharp
+var advancedMenu = Core.MenusAPI.CreateBuilder()
+    .Design.SetMenuTitle("Advanced")
+    .AddOption(new ButtonMenuOption("Do advanced action"))
+    .Build();
+
+var openAdvanced = new SubmenuMenuOption("Advanced", advancedMenu);
+
+var lazyAdvanced = new SubmenuMenuOption("Lazy Advanced", () =>
+{
+    return Core.MenusAPI.CreateBuilder()
+        .Design.SetMenuTitle("Loaded On Demand")
+        .AddOption(new TextMenuOption("This submenu was built on click"))
+        .Build();
+});
+```
+
+## Open and Close Menus
+
+```csharp
+Core.MenusAPI.OpenMenuForPlayer(player, menu);
+Core.MenusAPI.CloseActiveMenu(player);
+
+Core.MenusAPI.OpenMenu(menu);
+Core.MenusAPI.CloseMenu(menu);
+
+Core.MenusAPI.CloseAllMenus();
+
+var current = Core.MenusAPI.GetCurrentMenu(player);
+```
+
+<ApiRef name="IMenuAPI" member="ShowForPlayer" />/
+<ApiRef name="IMenuAPI" member="HideForPlayer" /> only affect visual display -
+prefer the manager methods above for full state handling and events.
+
+## Events
+
+### Global manager events
+
+```csharp
+public override void Load(bool hotReload)
+{
+    Core.MenusAPI.MenuOpened += OnMenuOpened;
+    Core.MenusAPI.MenuClosed += OnMenuClosed;
+}
+
+public override void Unload()
+{
+    Core.MenusAPI.MenuOpened -= OnMenuOpened;
+    Core.MenusAPI.MenuClosed -= OnMenuClosed;
+}
+
+private void OnMenuOpened(object? sender, MenuManagerEventArgs args)
+{
+    if (args.Player != null)
+        Core.Logger.LogInformation("Menu opened for {SteamId}", args.Player.SteamID);
+}
+
+private void OnMenuClosed(object? sender, MenuManagerEventArgs args) { /* same shape */ }
+```
+
+Both handlers receive <ApiRef name="MenuManagerEventArgs" />.
+
+### Per-menu and per-option events
+
+```csharp
+var adminOnly = new ButtonMenuOption("Admin Action");
+
+adminOnly.Validating += (sender, args) =>
+{
+    // args.Player, args.Option are also available here
+    if (!Core.Permission.PlayerHasPermission(args.Player.SteamID, "admin"))
+        args.Cancel = true;
+};
+
+adminOnly.Click += (sender, args) =>
+{
+    args.Player.SendChat("Admin action executed.");
+    return ValueTask.CompletedTask;
+};
+
+adminOnly.BeforeFormat += (sender, args) => args.CustomText = $"[SECURE] {args.Option.Text}";
+adminOnly.AfterFormat += (sender, args) => args.CustomText = $"<font color='#FFD700'>{args.CustomText}</font>";
+
+var menu = Core.MenusAPI.CreateBuilder().Design.SetMenuTitle("Admin").AddOption(adminOnly).Build();
+
+// menu.OptionHovering: fired every render frame while hovering - keep this cheap.
+// menu.OptionHovered: fired only when the hovered option changes.
+// menu.OptionSelected: fired when a selection is activated.
+```
+
+<Callout type="warning">
+    <ApiRef name="MenuOptionValidatingEventArgs" /> only exposes `Player`,
+    `Option`, and a settable `Cancel` bool - there is no `CancelReason`. Send a
+    chat message from the `Validating` handler yourself before setting `Cancel =
+    true` if the player needs to know why.
+</Callout>
+
+## Runtime Updates
+
+```csharp
+var option = new ButtonMenuOption("Dynamic Option");
+var menu = Core.MenusAPI.CreateBuilder().AddOption(option).Build();
+
+menu.AddOption(new TextMenuOption("Added later"));
+menu.MoveToOptionIndex(player, 0);
+
+option.SetVisible(player, false);
+option.SetEnabled(player, false);
+```
+
+<ApiRef name="IMenuOption" member="Visible" />/
+<ApiRef name="IMenuOption" member="Enabled" /> are the global states;
+`SetVisible`/`SetEnabled(player, ...)` are per-player overrides on top of them.
+
+## Direct `CreateMenu` Usage
+
+<ApiRef name="IMenuManagerAPI" member="CreateMenu" /> is a lower-level
+alternative to the builder, taking explicit <ApiRef name="MenuConfiguration" />/
+<ApiRef name="MenuKeybindOverrides" /> objects (the same settings the builder's
+`.Design`/`Set*Button` calls configure) instead of a fluent chain:
+
+```csharp
+var menu = Core.MenusAPI.CreateMenu(
+    new MenuConfiguration { Title = "Raw Menu", MaxVisibleItems = 5 },
+    new MenuKeybindOverrides { Select = KeyBind.E, Move = KeyBind.W, MoveBack = KeyBind.S, Exit = KeyBind.Esc },
+    parent: null,
+    optionScrollStyle: MenuOptionScrollStyle.CenterFixed,
+    optionTextStyle: MenuOptionTextStyle.TruncateEnd
+);
+```
+
+## Common Pitfalls
+
+- Open and close menus through `Core.MenusAPI` manager methods, not only `ShowForPlayer`/`HideForPlayer`.
+- Keep heavy logic out of `OptionHovering` - it runs every render frame while hovering.
+- Unsubscribe manager-level events (`MenuOpened`/`MenuClosed`) during plugin `Unload()`.
+
+
+
+## https://swiftlys2.net/docs/development/convars
+
+---
+title: Convars
+---
+
+SwiftlyS2's convar system covers creating convars, finding existing ones, replicating values to clients, and querying client-side values.
+
+Access it through `Core.ConVar` (<ApiRef name="ISwiftlyCore" member="ConVar" />, type <ApiRef name="IConVarService" />).
+
+## Supported Generic Types
+
+The generic parameter `T` used by <ApiRef name="IConVar`1" />, `Create<T>`, `CreateOrFind<T>`, and `Find<T>` supports:
+
+`bool`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `float`, `double`, `Color`, `QAngle`, `Vector`, `Vector2D`, `Vector4D`, `string`
+
+## Creating Convars
+
+<ApiRef name="IConVarService" member="Create" />
+`(name, helpMessage, defaultValue, flags = ConvarFlags.NONE)`, plus a `where T :
+unmanaged` overload taking `minValue, maxValue` before `flags` for
+numeric/struct types like `Vector`.
+<ApiRef name="IConVarService" member="CreateOrFind" /> has the same two
+overloads but returns the existing convar instead of throwing if `name` is
+already registered - prefer it unless you specifically want the
+duplicate-registration error.
+
+```csharp
+IConVar<bool> enabled = Core.ConVar.Create("sw_plugin_enabled", "Enable or disable the plugin.", true);
+IConVar<int> maxBots = Core.ConVar.Create("sw_plugin_max_bots", "Maximum amount of bots allowed.", 6, 0, 20);
+IConVar<bool> feature = Core.ConVar.CreateOrFind("sw_plugin_feature", "Enable feature X.", true);
+```
+
+## Finding Existing Convars
+
+### Typed Find
+
+Looking up an existing engine convar like <ConvarRef name="sv_cheats" />:
+
+```csharp
+IConVar<bool>? cheats = Core.ConVar.Find<bool>("sv_cheats");
+
+if (cheats == null)
+{
+    Console.WriteLine("sv_cheats was not found.");
+}
+```
+
+### Find as String
+
+Use <ApiRef name="IConVarService" member="FindAsString" /> for string-level access, or when the convar's type is unknown.
+
+```csharp
+IConVar? hostname = Core.ConVar.FindAsString("hostname");
+
+if (hostname != null)
+{
+    Console.WriteLine($"hostname = {hostname.ValueAsString}");
+}
+```
+
+## Working with <ApiRef name="IConVar`1" />
+
+Setting `Value` queues the change and auto-replicates if the convar is replicated; use <ApiRef name="IConVar`1" member="SetInternal" /> instead for an immediate, non-replicated change (e.g. inside a hook for that same convar, where the queued set won't apply in time). <ApiRef name="IConVar`1" member="ReplicateToClient" />/<ApiRef name="IConVar`1" member="QueryClient" /> push/pull a single client's value, and `TryGetMinValue`/`TryGetMaxValue`/`TryGetDefaultValue` read the bounds safely.
+
+```csharp
+enabled.Value = false;
+enabled.SetInternal(true);
+enabled.ReplicateToClient(0, true);
+enabled.QueryClient(0, valueAsString => Console.WriteLine($"Client replied with: {valueAsString}"));
+
+if (maxBots.TryGetMinValue(out var min)) Console.WriteLine($"Min value: {min}");
+if (maxBots.TryGetMaxValue(out var max)) Console.WriteLine($"Max value: {max}");
+if (maxBots.TryGetDefaultValue(out var def)) Console.WriteLine($"Default value: {def}");
+```
+
+## Working with <ApiRef name="IConVar" /> (String API)
+
+Without a generic type, use the non-generic members: `ValueAsString`, `SetInternalAsString`, `ReplicateToClientAsString`, `TryGetMinValueAsString`, `TryGetMaxValueAsString`, `TryGetDefaultValueAsString` - see <ApiRef name="IConVar" /> for the full list.
+
+```csharp
+IConVar? anyConvar = Core.ConVar.FindAsString("sv_cheats");
+
+if (anyConvar != null)
+{
+    anyConvar.SetInternalAsString("1");
+    anyConvar.ReplicateToClientAsString(0, "1");
+}
+```
+
+## Service-Level Replication
+
+Replicate a value by name to a client, even for convars that don't exist on the server:
+
+```csharp
+Core.ConVar.ReplicateToClient(0, "cl_showfps", "1");
+Core.ConVar.ReplicateToAll("cl_teamid_overhead_mode", "2");
+```
+
+## Tracking ConVar Changes
+
+```csharp
+public override void Load(bool hotReload)
+{
+    Core.Event.OnConVarValueChanged += OnConVarValueChanged;
+}
+
+private void OnConVarValueChanged(IOnConVarValueChanged @event) // see <ApiRef name="IOnConVarValueChanged" />
+{
+    if (!@event.ConVarName.StartsWith("sw_"))
+        return;
+
+    Console.WriteLine($"ConVar '{@event.ConVarName}' changed by player #{@event.PlayerId}: '{@event.OldValue}' -> '{@event.NewValue}'");
+}
+```
+
+Useful for audit logging, debugging, and reacting to config changes without polling `Value` on a hot path.
+
+<Callout type="info">
+    Unhook in `Unload()` (`Core.Event.OnConVarValueChanged -=
+    OnConVarValueChanged;`) to avoid leaking a delegate across hot reloads.
+</Callout>
+
+## Reference
+
+<ApiRef name="ConvarFlags" /> is a `[Flags] enum : ulong` mirroring the engine's
+`FCVAR_*` flags (`NONE`, `ARCHIVE`, `NOTIFY`, `REPLICATED`, `CHEAT`, `HIDDEN`,
+`PROTECTED`, and more).
+
+
+
+## https://swiftlys2.net/docs/development/native-functions-and-hooks
+
+---
+title: Native Functions and Hooks
+---
+
+<Callout type="warning">
+    This is low-level, unsafe territory. A wrong calling convention, a
+    mismatched delegate signature, or a bad register edit in a mid-hook can
+    crash the game server. Test on a disposable server first.
+</Callout>
+
+Native interop splits across two services: `Core.GameData` (<ApiRef name="IGameDataService" />) resolves named signatures/offsets shipped with your plugin, `Core.Memory` (<ApiRef name="IMemoryService" />) turns raw addresses into callable, hookable functions (or raw memory to mid-hook directly).
+
+## Resolving Addresses
+
+### From Your Plugin's GameData
+
+Each plugin ships its own `resources/gamedata/*.jsonc` with signatures/offsets per platform, keyed by name. Look them up with `TryGetSignature`/`TryGetOffset`:
+
+```csharp
+if (!Core.GameData.TryGetSignature("CBaseEntity::DispatchSpawn", out nint dispatchSpawnAddress))
+{
+    Core.Logger.LogWarning("Signature not found");
+    return;
+}
+
+if (!Core.GameData.TryGetOffset("CCSPlayer_ItemServices::GiveNamedItem", out nint giveNamedItemOffset))
+{
+    return;
+}
+```
+
+### From a Raw Pattern or VTable Name
+
+`Core.Memory` can also scan a library directly, skipping gamedata entirely:
+
+```csharp
+nint? patternAddress = Core.Memory.GetAddressBySignature(Library.Server, "55 8B EC 83 EC 08 8B 45 08 5D C3");
+nint? vtableAddress = Core.Memory.GetVTableAddress(Library.Server, "CCSPlayer_ItemServices");
+nint? interfaceAddress = Core.Memory.GetInterfaceByName("VEngineServer");
+```
+
+<ApiRef name="Library" /> exposes the module names used by these lookups:
+`Library.Engine`, `Library.Tier0`, `Library.Server`, `Library.NetworkSystem`.
+
+## Declaring a Delegate
+
+Wrapping a native function needs a delegate matching its exact signature and calling convention:
+
+```csharp
+[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+private delegate nint DispatchSpawnDelegate(nint pEntity, nint pKeyValues);
+```
+
+## Wrapping and Calling It
+
+Wrap by address or by vtable + index; the resulting <ApiRef name="IUnmanagedFunction`1" /> exposes two delegate-typed members: `Call` (goes through any installed hooks) and `CallOriginal` (skips the hook chain).
+
+```csharp
+IUnmanagedFunction<DispatchSpawnDelegate> func =
+    Core.Memory.GetUnmanagedFunctionByAddress<DispatchSpawnDelegate>(dispatchSpawnAddress);
+// or: Core.Memory.GetUnmanagedFunctionByVTable<DispatchSpawnDelegate>(vtableAddress.Value, 15);
+```
+
+```csharp
+nint result = func.Call(pEntity, pKeyValues);
+nint resultUnhooked = func.CallOriginal(pEntity, pKeyValues);
+```
+
+## Hooking It
+
+`AddHook` takes a builder that receives "the next function in the chain" and must return your replacement delegate. Skipping `next()` skips the original call entirely.
+
+```csharp
+Guid hookId = func.AddHook(next =>
+{
+    return (pEntity, pKeyValues) =>
+    {
+        // pre logic
+        nint result = next()(pEntity, pKeyValues);
+        // post logic
+        return result;
+    };
+});
+
+// later
+func.RemoveHook(hookId);
+```
+
+<Callout type="info">
+    Hooks are cleaned up automatically on unload, but removing them yourself
+    once done is still good practice.
+</Callout>
+
+## Mid-Function Hooks
+
+When hooking function entry/exit isn't precise enough, `Core.Memory.GetUnmanagedMemoryByAddress` wraps an arbitrary address in an <ApiRef name="IUnmanagedMemory" /> so you can hook mid-function, with read/write access to the CPU registers at that point:
+
+```csharp
+IUnmanagedMemory mem = Core.Memory.GetUnmanagedMemoryByAddress(dispatchSpawnAddress);
+
+Guid midHookId = mem.AddHook((ref MidHookContext ctx) =>
+{
+    Console.WriteLine($"RIP=0x{ctx.RIP:X}, RAX=0x{ctx.RAX:X}");
+    ctx.RAX = 0x1337; // example register edit
+});
+
+// later
+mem.RemoveHook(midHookId);
+```
+
+See <ApiRef name="MidHookContext" /> for the full register list - every general-purpose register (`RAX`-`R15`, `RSP`, `RBP`, `RIP`, `RFLAGS`, plus the internal `TRAMPOLINE_RSP`) and `XMM0`-`XMM15` as `Xmm` structs (`.U32`/`.U64`/`.F32`/`.F64`).
+
+## Higher-Level Alternative: Game Hooks
+
+For common engine callbacks, `Core.GameHooks` (<ApiRef name="IGameHooks" />) wraps the vtable-hook plumbing above into typed categories with separate `Pre`/`Post` delegates - no manual delegate/signature bookkeeping. Example, hooking entity damage via <ApiRef name="ITakeDamageEntityHook" />:
+
+```csharp
+private void OnTakeDamagePre(ref TakeDamageEntityPreContext ctx)
+{
+    var entity = ctx.Params.Entity;
+    ref var info = ref ctx.Params.Info;
+
+    // ctx.SetHookResult(HookResult.Stop); // to block the damage
+}
+
+// Register in Load():
+Core.GameHooks.Entities.TakeDamage.Pre += OnTakeDamagePre;
+```
+
+Check `Core.GameHooks`'s categories (`Controller`, `Movement`, `Entities`, `Items`, `Weapons`, `Pawn`, and more) before reaching for a raw vtable hook.
+
+
+
+## https://swiftlys2.net/docs/development/scheduler
+
+---
+title: Scheduler
+---
+
+SwiftlyS2 provides a scheduler service for main-thread dispatching and timer-based execution, available through <ApiRef name="ISwiftlyCore" member="Scheduler" /> (<ApiRef name="ISchedulerService" />).
+
+## Scheduling on the Main Loop
+
+<ApiRef name="ISchedulerService" member="NextTick" /> runs a callback on the
+next server tick; <ApiRef name="ISchedulerService" member="NextWorldUpdate" />
+runs on the next world update phase instead:
+
+```csharp
+Core.Scheduler.NextTick(() => Console.WriteLine("Runs on next tick."));
+Core.Scheduler.NextWorldUpdate(() => Console.WriteLine("Runs on next world update."));
+```
+
+### Awaitable Variants
+
+The `*Async` methods take the same `Action`/`Func<T>` overloads and can be awaited:
+
+```csharp
+await Core.Scheduler.NextTickAsync(() => Console.WriteLine("Executed on next tick, awaited."));
+
+int computedValue = await Core.Scheduler.NextWorldUpdateAsync(() => 42);
+```
+
+<Callout type="warning">
+Don't pass an async callback (`Func<Task>`/`Func<Task<T>>`) to `NextTick`, `NextTickAsync`, `NextWorldUpdate`, or `NextWorldUpdateAsync` - those overloads are `[Obsolete]` and throw `InvalidOperationException`, since an async callback can resume on a different thread and break the main-thread guarantee these methods exist for. Use the plain `Action`/`Func<T>` overloads instead.
+</Callout>
+
+## Timer APIs
+
+### Tick-Based Timers
+
+```csharp
+var delayCts = Core.Scheduler.Delay(128, () => Console.WriteLine("Executed once after 128 ticks."));
+var repeatCts = Core.Scheduler.Repeat(64, () => Console.WriteLine("Runs immediately, then every 64 ticks."));
+var delayRepeatCts = Core.Scheduler.DelayAndRepeat(32, 64, () => Console.WriteLine("Starts after 32 ticks, then repeats every 64 ticks."));
+```
+
+See <ApiRef name="ISchedulerService" member="Delay" />, <ApiRef name="ISchedulerService" member="Repeat" />, and <ApiRef name="ISchedulerService" member="DelayAndRepeat" />.
+
+### Second-Based Timers
+
+<ApiRef name="ISchedulerService" member="DelayBySeconds" />,
+<ApiRef name="ISchedulerService" member="RepeatBySeconds" />, and
+<ApiRef name="ISchedulerService" member="DelayAndRepeatBySeconds" /> mirror the
+tick-based methods above with human-readable intervals instead of raw ticks:
+
+```csharp
+Core.Scheduler.DelayBySeconds(2.0f, () => Console.WriteLine("Executed after 2 seconds."));
+```
+
+<Callout type="info">
+    Second-based timers are still driven by game ticks, so timing gets
+    inaccurate as intervals approach a single tick (~15ms).
+</Callout>
+
+## Canceling Timers
+
+`Delay`, `Repeat`, `DelayAndRepeat`, `DelayBySeconds`, `RepeatBySeconds`, and `DelayAndRepeatBySeconds` all return a `CancellationTokenSource`:
+
+```csharp
+var token = Core.Scheduler.Repeat(64, () => Console.WriteLine("Tick"));
+
+token.Cancel(); // manual cancel
+Core.Scheduler.StopOnMapChange(token); // auto-cancel on map change
+```
+
+See <ApiRef name="ISchedulerService" member="StopOnMapChange" />.
+
+## Advanced Timers with AddTimer
+
+<ApiRef name="ISchedulerService" member="AddTimer" /> supports dynamic
+per-execution behavior - e.g. changing the delay between runs or stopping on a
+condition:
+
+```csharp
+var cts = Core.Scheduler.AddTimer(ctx =>
+{
+    Console.WriteLine($"Run #{ctx.ExecutionCount}");
+    return ctx.ExecutionCount >= 4 ? TimerStep.Stop() : TimerStep.WaitForSeconds(1.0f);
+});
+```
+
+<ApiRef name="ITimerContext" member="ExecutionCount" /> is a `ulong` starting at
+`0`. <ApiRef name="TimerStep" /> helpers:
+
+| Method                                             | Behavior                                                                                    |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `TimerStep.Spin()`                                 | Run again on the very next tick                                                             |
+| `TimerStep.WaitForTicks(long ticks)`               | Wait the given number of ticks before the next run                                          |
+| `TimerStep.WaitForMilliseconds(long milliseconds)` | Wait the given number of milliseconds before the next run                                   |
+| `TimerStep.WaitForSeconds(float seconds)`          | Wait the given number of seconds before the next run (converted to milliseconds internally) |
+| `TimerStep.Stop()`                                 | Stop the timer, no further runs                                                             |
+
+
+
+## https://swiftlys2.net/docs/development/shared-api
+
+---
+title: Shared API
+---
+
+Shared API lets plugins expose typed interfaces that other plugins can consume at runtime, via <ApiRef name="IInterfaceManager" />.
+
+## Shared Interface Lifecycle
+
+Shared API integration happens through three <ApiRef name="BasePlugin" /> callbacks, called in this order across every loaded plugin:
+
+- <ApiRef name="BasePlugin" member="ConfigureSharedInterface" />: register the
+  interfaces your plugin provides. Runs for every plugin first.
+- <ApiRef name="BasePlugin" member="UseSharedInterface" />: retrieve interfaces
+  from other plugins. Runs for every plugin only after all have finished
+  registering.
+- <ApiRef name="BasePlugin" member="OnSharedInterfaceInjected" />: react once
+  shared interfaces are resolved. Runs last, again across every plugin.
+
+```csharp
+public override void ConfigureSharedInterface(IInterfaceManager interfaceManager) { /* register provider interfaces */ }
+public override void UseSharedInterface(IInterfaceManager interfaceManager) { /* resolve dependencies from other plugins */ }
+public override void OnSharedInterfaceInjected(IInterfaceManager interfaceManager) { /* optional: react once everyone has resolved */ }
+```
+
+<Callout type="info">
+    This sequence re-runs whenever the plugin set changes (e.g. hot reload
+    adds/removes a plugin) - don't assume
+    `ConfigureSharedInterface`/`UseSharedInterface` only fire once at startup.
+</Callout>
+
+## Providing Shared Interfaces
+
+Use <ApiRef name="IInterfaceManager" member="AddSharedInterface" /> in `ConfigureSharedInterface`:
+
+```csharp
+public override void ConfigureSharedInterface(IInterfaceManager interfaceManager)
+{
+    interfaceManager.AddSharedInterface<IEconomyApi, EconomyApi>("Economy.Api.v1", new EconomyApi());
+}
+```
+
+<Callout type="info">
+    The interface type (`IEconomyApi` here) needs to live somewhere both plugins
+    can reference - typically a small contracts-only assembly the provider ships
+    alongside itself, referenced by consumers like a regular package.
+</Callout>
+
+## Consuming Shared Interfaces
+
+<ApiRef name="IInterfaceManager" member="TryGetSharedInterface" /> is preferred
+for optional dependencies (returns `false` instead of throwing);
+<ApiRef name="IInterfaceManager" member="GetSharedInterface" /> throws if the
+key isn't registered, for mandatory dependencies;
+<ApiRef name="IInterfaceManager" member="HasSharedInterface" /> is a quick
+presence check.
+
+```csharp
+private IEconomyApi? _economyApi;
+
+public override void UseSharedInterface(IInterfaceManager interfaceManager)
+{
+    if (!interfaceManager.TryGetSharedInterface<IEconomyApi>("Economy.Api.v1", out _economyApi))
+        Core.Logger.LogWarning("Economy API not available. Economy features disabled.");
+}
+
+// Mandatory dependency: IEconomyApi economyApi = interfaceManager.GetSharedInterface<IEconomyApi>("Economy.Api.v1");
+// Presence check: bool hasEconomy = interfaceManager.HasSharedInterface("Economy.Api.v1");
+```
+
+## Complete Example
+
+A contracts-only interface, referenced by both the provider and consumer plugin:
+
+```csharp
+namespace MyPlugin.Contracts;
+
+public interface IEconomyApi
+{
+    int GetBalance(ulong steamId);
+    bool TrySpend(ulong steamId, int amount);
+}
+```
+
+Provider registers its implementation; consumer resolves it and uses it (`Load`/`Unload` omitted for brevity):
+
+```csharp
+// Provider plugin
+public sealed class EconomyApi : IEconomyApi
+{
+    private readonly Dictionary<ulong, int> _balances = new();
+    public int GetBalance(ulong steamId) => _balances.TryGetValue(steamId, out int balance) ? balance : 0;
+    public bool TrySpend(ulong steamId, int amount)
+    {
+        int current = GetBalance(steamId);
+        if (current < amount) return false;
+        _balances[steamId] = current - amount;
+        return true;
+    }
+}
+
+public sealed class EconomyPlugin(ISwiftlyCore core) : BasePlugin(core)
+{
+    private readonly EconomyApi _api = new();
+    public override void ConfigureSharedInterface(IInterfaceManager interfaceManager) =>
+        interfaceManager.AddSharedInterface<IEconomyApi, EconomyApi>("Economy.Api.v1", _api);
+}
+
+// Consumer plugin
+public sealed class ShopPlugin(ISwiftlyCore core) : BasePlugin(core)
+{
+    private IEconomyApi? _economyApi;
+
+    public override void UseSharedInterface(IInterfaceManager interfaceManager) =>
+        interfaceManager.TryGetSharedInterface<IEconomyApi>("Economy.Api.v1", out _economyApi);
+
+    public void TryBuy(IPlayer player, int cost)
+    {
+        if (_economyApi == null) { player.SendChat("Economy service is unavailable."); return; }
+        player.SendChat(_economyApi.TrySpend(player.SteamID, cost) ? "Purchase successful." : "Not enough balance.");
+    }
+}
+```
+
+## Best Practices
+
+- Use stable, descriptive keys such as `PluginName.ServiceName.v1`, and version them on breaking changes (`.v1` -> `.v2`).
+- Prefer `TryGetSharedInterface` for optional dependencies so a missing provider doesn't crash yours.
+- Keep shared contracts small and implementation-agnostic - the contract assembly is the only thing both plugins should share.
+- Since registration can re-run on hot reload, unsubscribe before re-subscribing to provider events in `UseSharedInterface`, or you'll get duplicate handlers.
+
+
+
+## https://swiftlys2.net/docs/development/permissions
+
+---
+title: Permissions
+---
+
+SwiftlyS2's permission service handles access checks, grant/revoke, and permission hierarchies.
+
+## Accessing the Permission Service
+
+Available through `Core.Permission` (<ApiRef name="ISwiftlyCore" member="Permission" />, type <ApiRef name="IPermissionManager" />). All checks and mutations key off SteamID64 (`ulong`) - use `player.SteamID`.
+
+## Checking Permissions
+
+<ApiRef name="IPermissionManager" member="PlayerHasPermission" /> checks one
+key; <ApiRef name="IPermissionManager" member="PlayerHasPermissions" /> requires
+every key in a list; both support wildcard keys like `myplugin.admin.*`.
+
+```csharp
+if (Core.Permission.PlayerHasPermission(player.SteamID, "myplugin.admin"))
+    player.SendChat("You have admin access.");
+
+bool canUseRestrictedAction = Core.Permission.PlayerHasPermissions(
+    player.SteamID,
+    ["myplugin.admin.kick", "myplugin.admin.ban"]
+);
+
+Core.Permission.AddPermission(player.SteamID, "myplugin.admin.*"); // grants both .kick and .ban
+```
+
+## Granting and Revoking Permissions
+
+<ApiRef name="IPermissionManager" member="AddPermission" />,
+<ApiRef name="IPermissionManager" member="RemovePermission" />, and
+<ApiRef name="IPermissionManager" member="ClearPermissions" />:
+
+```csharp
+Core.Permission.AddPermission(player.SteamID, "myplugin.vip");
+Core.Permission.RemovePermission(player.SteamID, "myplugin.vip");
+Core.Permission.ClearPermissions(player.SteamID); // removes every directly-granted permission
+```
+
+<Callout type="warning">
+    `ClearPermission` (singular) is obsolete, forwarding to `ClearPermissions` -
+    use the plural in new code.
+</Callout>
+
+## Listing a Player's Permissions
+
+<ApiRef name="IPermissionManager" member="GetPlayerPermissions" /> returns
+everything a player effectively has, including inherited sub-permissions.
+
+```csharp
+IEnumerable<string> permissions = Core.Permission.GetPlayerPermissions(player.SteamID);
+```
+
+## Sub-Permissions (Hierarchy)
+
+One permission key can imply others.
+
+```csharp
+Core.Permission.AddSubPermission("myplugin.admin", "myplugin.moderator");
+Core.Permission.AddSubPermission("myplugin.moderator", "myplugin.helper");
+
+Core.Permission.AddPermission(player.SteamID, "myplugin.admin");
+
+bool isModerator = Core.Permission.PlayerHasPermission(player.SteamID, "myplugin.moderator"); // true
+bool isHelper = Core.Permission.PlayerHasPermission(player.SteamID, "myplugin.helper"); // true, transitively
+```
+
+Remove an edge with <ApiRef name="IPermissionManager" member="RemoveSubPermission" />:
+
+```csharp
+Core.Permission.RemoveSubPermission("myplugin.admin", "myplugin.moderator");
+```
+
+## Permission Naming Convention
+
+A consistent `plugin.scope.action` scheme keeps wildcards and hierarchies predictable, e.g. `myplugin.admin.kick`, `myplugin.admin.ban`, `myplugin.vip.access`, `myplugin.commands.reload`.
+
+## Using Permissions with Commands
+
+<ApiRef name="Command" />
+'s `permission` parameter checks this same store, so you rarely need
+<ApiRef name="IPermissionManager" member="PlayerHasPermission" /> directly
+inside a handler:
+
+```csharp
+[Command("ban", permission: "myplugin.admin.ban")]
+public void OnBanCommand(ICommandContext context)
+{
+    // Only reached if context.Sender has "myplugin.admin.ban"
+}
+```
+
+See the [Commands](/docs/development/commands) page for the full attribute reference.
+
+
+
+## https://swiftlys2.net/docs/development/profiler
+
+---
+title: Profiler
+---
+
+SwiftlyS2's profiler service measures execution time in plugin code and records custom duration metrics.
+
+Access it through `Core.Profiler` (<ApiRef name="ISwiftlyCore" member="Profiler" />).
+
+## Measuring Code Blocks
+
+Pair <ApiRef name="IContextedProfilerService" member="StartRecording" />/<ApiRef name="IContextedProfilerService" member="StopRecording" /> around the code, wrapped in `try`/`finally` so an exception doesn't leave a recording open.
+
+```csharp
+Core.Profiler.StartRecording("Database.PlayerStats.Load");
+try
+{
+    LoadPlayerStats();
+}
+finally
+{
+    Core.Profiler.StopRecording("Database.PlayerStats.Load");
+}
+```
+
+## Recording Precomputed Durations
+
+Use <ApiRef name="IContextedProfilerService" member="RecordTime" /> for a duration you already measured (`double`, microseconds).
+
+```csharp
+var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+
+BuildLargeMenu();
+
+stopwatch.Stop();
+double durationUs = stopwatch.ElapsedTicks * (1_000_000.0 / System.Diagnostics.Stopwatch.Frequency);
+Core.Profiler.RecordTime("Menu.Build", durationUs);
+```
+
+<Callout type="info">
+    Use microseconds consistently so profiler entries stay comparable across the
+    codebase.
+</Callout>
+
+## Profiling Sub-Operations
+
+Nest start/stop pairs to profile major flow steps separately and find hot spots faster:
+
+```csharp
+Core.Profiler.StartRecording("PlayerData.Process");
+try
+{
+    Core.Profiler.StartRecording("PlayerData.Load");
+    try { LoadPlayerData(player.SteamID); } finally { Core.Profiler.StopRecording("PlayerData.Load"); }
+
+    Core.Profiler.StartRecording("PlayerData.Apply");
+    try { ApplyPlayerData(player); } finally { Core.Profiler.StopRecording("PlayerData.Apply"); }
+}
+finally { Core.Profiler.StopRecording("PlayerData.Process"); }
+```
+
+## Naming Strategy
+
+Use clear, hierarchical names so related entries group together:
+
+```text
+category.operation.detail
+```
+
+Examples: `Database.Players.Load`, `Database.Players.Save`, `Menu.Main.Build`, `Menu.Main.Open`, `Commands.Teleport.Execute`, `Events.PlayerSpawn.Process`.
+
+Avoid generic names like `Operation` or `Process` - they make hot spots hard to trace back to real code.
+
+## Reference
+
+See <ApiRef name="IContextedProfilerService" /> (<ApiRef name="ISwiftlyCore" member="Profiler" />) for the full member list - `StartRecording`, `StopRecording`, `RecordTime`.
+
+
+
+## https://swiftlys2.net/docs/development/database
+
+---
+title: Database
+---
+
+SwiftlyS2's database service lets plugins fetch named connections from one global configuration, through <ApiRef name="ISwiftlyCore" member="Database" /> (<ApiRef name="IDatabaseService" />).
+
+## Global Database Configuration
+
+Connections are defined in `configs/database.jsonc` and referenced by name from plugins:
+
+```jsonc
+{
+    "default_connection": "host",
+    "connections": {
+        "host": "mysql://username:password@localhost:3306/database",
+        "analytics": "postgresql://username:password@localhost:5432/database",
+        "local": "sqlite://data/local.db"
+    }
+}
+```
+
+Supported URI formats: `mysql://user:pass@host:3306/database`, `postgresql://user:pass@host:5432/database`, `sqlite://path/to/database.db`.
+
+### Object format and options
+
+A connection can also be an object. Besides `driver`, `host`, `port`, `database`, `user`, `pass` and `timeout`, it takes an `options` field with the connection string keywords of the driver:
+
+```jsonc
+{
+    "connections": {
+        "host": {
+            "driver": "mysql",
+            "host": "localhost",
+            "database": "swiftlys2",
+            "user": "root",
+            "pass": "",
+            "options": {
+                "SslMode": "Required",
+                "CharacterSet": "utf8mb4",
+                "MaximumPoolSize": 50
+            }
+        },
+        "analytics": {
+            "driver": "postgresql",
+            "host": "localhost",
+            "database": "swiftlys2",
+            "user": "postgres",
+            "options": {
+                "SSL Mode": "Require",
+                "Maximum Pool Size": 50,
+                "Search Path": "public"
+            }
+        },
+        "local": {
+            "driver": "sqlite",
+            "database": "data/local.db",
+            "options": {
+                "Journal Mode": "Wal",
+                "Foreign Keys": true,
+                "Cache Size": 4000
+            }
+        }
+    }
+}
+```
+
+Every keyword that the driver supports works, with the same names and synonyms as in its own connection string:
+
+| Driver | Library | Keywords |
+|---|---|---|
+| `mysql` | MySqlConnector | [Connection options](https://mysqlconnector.net/connection-options/) |
+| `postgresql` | Npgsql | [Connection string parameters](https://www.npgsql.org/doc/connection-string-parameters.html) |
+| `sqlite` | System.Data.SQLite | The properties of `SQLiteConnectionStringBuilder`, such as `Journal Mode`, `Foreign Keys`, `Cache Size`, `Default Timeout` and `Pooling` |
+
+Values can be strings, numbers or booleans. Nested objects and arrays are skipped. Options are applied after the other fields, so an option can override one of them, for example `Server`.
+
+<Callout type="warning">
+    A keyword or a value that the driver doesn't accept throws an `ArgumentException` that names the option when the connection is requested, for example `Invalid option 'NoSuchOption' = '1' for the mysql driver`. For SQLite the keyword is matched ignoring case, spaces and underscores, so `journal_mode`, `JournalMode` and `Journal Mode` are the same option.
+</Callout>
+
+The parsed options are available as `DatabaseConnectionInfo.Options`, and they are included in `GetConnectionString`.
+
+## Getting a Connection
+
+<ApiRef name="IDatabaseService" member="GetConnection" /> returns an
+`IDbConnection` for the named connection, falling back to the default connection
+if the name isn't found.
+<ApiRef name="IDatabaseService" member="GetConnectionString" /> and
+<ApiRef name="IDatabaseService" member="GetConnectionInfo" /> share the same
+fallback and expose the raw string / parsed metadata instead (see
+<ApiRef name="DatabaseConnectionInfo" /> for the full field list - driver, host,
+database, user, pass, timeout, port, raw URI, options):
+
+```csharp
+using var connection = Core.Database.GetConnection("host");
+connection.Open();
+
+string connectionString = Core.Database.GetConnectionString("host");
+DatabaseConnectionInfo info = Core.Database.GetConnectionInfo("host");
+Console.WriteLine($"{info.Driver} -> {info.Host}:{info.Port}/{info.Database}");
+```
+
+<Callout type="warning">
+    Avoid logging secrets like `Pass` in production.
+</Callout>
+
+## Using ADO.NET or an ORM
+
+`GetConnection` returns `IDbConnection`, so plain ADO.NET or any compatible ORM works - Dapper, Dommel, FreeSql, Entity Framework Core:
+
+```csharp
+using var connection = Core.Database.GetConnection("host");
+
+var players = await connection.QueryAsync<PlayerRow>(
+    "SELECT steam_id, name FROM players WHERE is_active = @IsActive",
+    new { IsActive = true }
+);
+```
+
+
+
+## https://swiftlys2.net/docs/development/soundevents
+
+---
+title: Sound Events
+---
+
+<ApiRef name="SoundEvent" /> lets plugins emit game sound events with custom
+parameters and recipient filters.
+
+## Creating Sound Events
+
+```csharp
+using var soundEvent = new SoundEvent();
+soundEvent.Name = "Weapon_AK47.Single";
+
+// or initialize name, volume, and pitch directly
+using var soundEvent2 = new SoundEvent("Weapon_AK47.Single", volume: 0.8f, pitch: 1.0f);
+```
+
+## Configuring Core Properties
+
+```csharp
+soundEvent.Name = "Weapon_AK47.Single";
+soundEvent.Volume = 0.6f;               // volume scalar
+soundEvent.Pitch = 1.15f;               // pitch scalar
+soundEvent.SourceEntityIndex = -1;      // source entity index; -1 (default) = recipient location
+
+soundEvent.SetSourceEntity(sourceEntity); // helper instead of setting SourceEntityIndex by hand
+```
+
+## Setting Custom Sound Fields
+
+`GetX` mirrors every `SetX` 1:1. `SetFloat3` also has a `Vector` overload.
+
+```csharp
+soundEvent.SetBool("public.some_flag", true);
+soundEvent.SetInt32("public.team", 2);
+soundEvent.SetUInt32("public.seed", 123u);
+soundEvent.SetFloat("public.volume_override", 0.7f);
+soundEvent.SetFloat3("public.position", 100.0f, 200.0f, 300.0f);
+soundEvent.SetFloat3("public.position", position); // Vector overload
+
+bool someFlag = soundEvent.GetBool("public.some_flag");
+Vector pos = soundEvent.GetFloat3("public.position");
+```
+
+## Configuring Recipients
+
+Managed through <ApiRef name="CRecipientFilter" /> on `soundEvent.Recipients`.
+
+```csharp
+// Broadcast to everyone
+soundEvent.Recipients.AddAllPlayers();
+
+// Or target specific players
+soundEvent.Recipients.RemoveAllPlayers();
+soundEvent.Recipients.AddRecipient(0);
+soundEvent.Recipients.AddRecipient(1);
+
+// Remove one player again
+soundEvent.Recipients.RemoveRecipient(1);
+```
+
+## Emitting Sound Events
+
+```csharp
+uint guid = soundEvent.Emit(); // main thread
+uint guid = await soundEvent.EmitAsync(); // non-main-thread
+```
+
+<Callout type="warning">
+    `Emit()` is thread-unsafe. Use `EmitAsync()` when you're not sure execution
+    is on the main thread.
+</Callout>
+
+## Disposing
+
+`SoundEvent` implements `IDisposable` - wrap it in `using` so its native handle is released once you're done emitting.
+
+
+
+## https://swiftlys2.net/docs/development/custom-hud
+
+---
+title: Custom HUD
+---
+
+A `custom_hud_layout` entity builds a custom HUD for players. The interface is Panorama XML/CSS; the server updates its state through `CCSCustomHudLayout` methods.
+
+<Callout type="warning">
+    Custom HUD is still a new and unstable feature - Valve may make breaking
+    changes that cause incompatible API in the future. If actual behavior
+    differs from what's described here, contact the development team so the docs
+    can be corrected.
+</Callout>
+
+## Example XML
+
+```xml
+<!-- example.vxml -->
+<root>
+    <styles>
+        <include src="s2r://panorama/styles/custom_game/example.vcss_c" />
+    </styles>
+    <Panel class="example_class">
+        <Panel id="main_panel">
+            <Label class="example_label" id="text1" text="{s:dynamic}" />
+            <Button class="example_button" id="action_button">
+                <Label text="Click me" />
+            </Button>
+        </Panel>
+    </Panel>
+</root>
+```
+
+`id` identifies the HUD element to update - `text1` is the `panelId` in the methods below. `{s:dynamic}` is a dynamic string the server can update, where `dynamic` is the `variableName`.
+
+## Creating a custom_hud_layout Entity
+
+Create with the [Entity API](/docs/development/entity), set the layout path, notify the engine, then spawn:
+
+```csharp
+var hud = Core.EntitySystem.CreateEntity<CCSCustomHudLayout>();
+hud.StrLayout = "panorama/layout/custom_game/example.xml";
+hud.StrLayoutUpdated();
+hud.DispatchSpawn();
+```
+
+## Dynamic Strings
+
+`text1` is the XML element's `id`, `dynamic` is the variable name in `{s:dynamic}`. Getters return `null` if unset; a per-player override never falls back to the global value, and removing it reverts the player to the global value.
+
+```csharp
+hud.SetDialogVariableString("text1", "dynamic", "Global text");
+string? globalValue = hud.GetDialogVariableString("text1", "dynamic");
+
+const int playerId = 0;
+hud.SetDialogVariableStringForPlayer(playerId, "text1", "dynamic", "Text shown only to this player");
+string? playerValue = hud.GetDialogVariableStringForPlayer(playerId, "text1", "dynamic");
+hud.RemoveDialogVariableStringForPlayer(playerId, "text1", "dynamic");
+```
+
+## Dynamic CSS Classes
+
+Control whether a HUD element has a CSS class. `panelId` is the element's `id`; `className` is a class defined in the Panorama CSS.
+
+`EHudPanelClassStatus_t` states:
+
+| State                                     | Meaning                                                                                     |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `k_eHudPanelClassStatus_HasClass`         | The element has the class                                                                   |
+| `k_eHudPanelClassStatus_DoesNotHaveClass` | The element does not have the class                                                         |
+| `k_eHudPanelClassStatus_Undefined`        | Doesn't override the existing status; also returned when reading a state that doesn't exist |
+
+Both getters return `k_eHudPanelClassStatus_Undefined` if the `panelId`/`className`/state doesn't exist.
+
+```csharp
+hud.SetHasClass("main_panel", "highlight", EHudPanelClassStatus_t.k_eHudPanelClassStatus_HasClass);
+EHudPanelClassStatus_t globalClassStatus = hud.GetHasClass("main_panel", "highlight");
+
+const int playerId = 0;
+hud.SetHasClassForPlayer(playerId, "main_panel", "highlight", EHudPanelClassStatus_t.k_eHudPanelClassStatus_DoesNotHaveClass);
+EHudPanelClassStatus_t playerClassStatus = hud.GetHasClassForPlayer(playerId, "main_panel", "highlight");
+```
+
+## Input Capture
+
+Controls whether the Custom HUD receives player input (mouse cursor to click buttons), globally or per-player:
+
+```csharp
+hud.SetInputCaptureEnabled(true);
+bool globallyEnabled = hud.IsInputCaptureEnabled();
+
+const int playerId = 0;
+hud.SetInputCaptureEnabledForPlayer(playerId, true);
+bool enabledForPlayer = hud.IsInputCaptureEnabledForPlayer(playerId);
+hud.SetInputCaptureEnabledForPlayer(playerId, false); // disable once the interaction is complete
+```
+
+## Handling Button Clicks
+
+With input capture enabled, clicking a button fires <ApiRef name="IEventSubscriber" member="OnCustomHudClicked" /> (`Core.Event.OnCustomHudClicked`). Subscribe on load, unsubscribe on unload:
+
+```csharp
+public override void Load(bool hotReload)
+{
+    Core.Event.OnCustomHudClicked += OnCustomHudClicked;
+}
+
+public override void Unload()
+{
+    Core.Event.OnCustomHudClicked -= OnCustomHudClicked;
+}
+
+private void OnCustomHudClicked(<ApiRef name="IOnCustomHudClickedEvent" /> @event)
+{
+    if (@event.ButtonId != "action_button")
+    {
+        return;
+    }
+
+    Console.WriteLine($"Player {@event.PlayerId} clicked {@event.ButtonId}");
+}
+```
+
+| Property          | Description                                                      |
+| ----------------- | ---------------------------------------------------------------- |
+| `PlayerId`        | The ID of the player who clicked the button                      |
+| `ButtonId`        | The clicked button's `id` from the Panorama XML layout           |
+| `CustomHudLayout` | The `CCSCustomHudLayout` entity that contains the clicked button |
+
+`OnCustomHudClicked` fires for clicks from every Custom HUD layout - if a plugin creates multiple layouts, compare against the layout entity you stored.
+
+See [Core Events](/docs/development/core-events) for attribute-based listeners and general event subscription behavior.
+
+## Async Variants
+
+Each thread-unsafe `CCSCustomHudLayout` extension method has an `Async` counterpart returning a `Task`, for use from background tasks or async code - it runs immediately on the game thread, or schedules onto it otherwise.
+
+```csharp
+await hud.SetDialogVariableStringAsync("text1", "dynamic", "Global text");
+
+await hud.SetHasClassForPlayerAsync(playerId, "main_panel", "highlight", EHudPanelClassStatus_t.k_eHudPanelClassStatus_HasClass);
+
+await hud.SetInputCaptureEnabledForPlayerAsync(playerId, true);
+```
+
+Same parameters/behavior as the sync counterparts: `SetDialogVariableStringAsync`, `SetDialogVariableStringForPlayerAsync`, `RemoveDialogVariableStringForPlayerAsync`, `SetHasClassAsync`, `SetHasClassForPlayerAsync`, `SetInputCaptureEnabledAsync`, `SetInputCaptureEnabledForPlayerAsync`. Getters stay synchronous - no async variant for reads.
+
+<Callout type="info">
+    Synchronous methods that change HUD state are thread-unsafe. From a
+    background task, `await` the async variant instead. See [Thread
+    Safety](/docs/development/thread-safety).
+</Callout>
+
+
+
+## https://swiftlys2.net/docs/development/steamworks
+
+---
+title: Steamworks
+---
+
+SwiftlyS2 ships generated server-side Steamworks bindings under `SwiftlyS2.Shared.SteamAPI` (`using SwiftlyS2.Shared.SteamAPI;`), covering identity, authorization, server metadata, license/Workshop checks, and Steam's async callback patterns, as static classes mirroring the native `ISteamGameServer*` interfaces - see <ApiRef name="SteamGameServer" />, <ApiRef name="SteamGameServerUtils" />, <ApiRef name="SteamGameServerUGC" /> and <ApiRef name="SteamGameServerStats" /> for the full member lists (or the Quick Reference table at the end for the class overview).
+
+## Waiting for the Steam API
+
+Steam callbacks aren't usable until the Steam API finishes activating - subscribe to `Core.Event.OnSteamAPIActivated` before touching any class above:
+
+```csharp
+public override void Load(bool hotReload)
+{
+    Core.Event.OnSteamAPIActivated += OnSteamApiActivated;
+}
+
+private void OnSteamApiActivated()
+{
+    var appId = SteamGameServerUtils.GetAppID();
+    Core.Logger.LogInformation("Steam API ready, AppId={AppId}", appId.m_AppId);
+}
+```
+
+## Converting Player IDs to Steam IDs
+
+`IPlayer.SteamID` is a plain `ulong` - wrap it in <ApiRef name="CSteamID" /> before passing it to a Steam API call:
+
+```csharp
+IPlayer? player = Core.PlayerManager.GetPlayer(playerId);
+if (player == null) return;
+
+var steamId = new CSteamID(player.SteamID);
+if (!steamId.IsValid() || !steamId.BIndividualAccount())
+{
+    Core.Logger.LogWarning("Invalid SteamID for slot {PlayerId}", playerId);
+    return;
+}
+```
+
+## Authorization Signals
+
+`Core.Event.OnClientSteamAuthorize`/`OnClientSteamAuthorizeFail` fire once Steam confirms or rejects a connecting client:
+
+```csharp
+Core.Event.OnClientSteamAuthorize += @event =>
+    Core.Logger.LogInformation("Steam auth OK for slot {PlayerId}", @event.PlayerId);
+
+Core.Event.OnClientSteamAuthorizeFail += @event =>
+    Core.Logger.LogWarning("Steam auth failed for slot {PlayerId}", @event.PlayerId);
+```
+
+## Server Metadata
+
+```csharp
+SteamGameServer.SetServerName("My Swiftly Server");
+SteamGameServer.SetMapName("de_dust2");
+SteamGameServer.SetMaxPlayerCount(32);
+SteamGameServer.SetPasswordProtected(false);
+
+bool loggedOn = SteamGameServer.BLoggedOn();
+bool secure = SteamGameServer.BSecure();
+CSteamID serverSteamId = SteamGameServer.GetSteamID();
+```
+
+## License / Ownership Checks
+
+```csharp
+var appId = new AppId_t(730); // see ApiRef: AppId_t
+var result = SteamGameServer.UserHasLicenseForApp(steamId, appId);
+
+if (result == EUserHasLicenseForAppResult.k_EUserHasLicenseResultHasLicense)
+{
+    Core.Logger.LogInformation("Player owns app {AppId}", appId.m_AppId);
+}
+```
+
+## Workshop Items
+
+Use `SteamGameServerUGC` - not the client-side `SteamUGC` - for server-side Workshop queries:
+
+```csharp
+var fileId = new PublishedFileId_t(3070212801);
+var state = (EItemState)SteamGameServerUGC.GetItemState(fileId);
+
+if ((state & EItemState.k_EItemStateInstalled) == 0)
+{
+    SteamGameServerUGC.DownloadItem(fileId, bHighPriority: true);
+}
+```
+
+Downloads complete asynchronously through a Steam callback struct - see below.
+
+## Steam Callbacks and Call Results
+
+Steam surfaces two async patterns: <ApiRef name="Callback`1" /> fires whenever a matching struct is posted; <ApiRef name="CallResult`1" /> is a one-shot result tied to a `SteamAPICall_t` from a request method. Both are `IDisposable` - dispose them, typically in `Unload`.
+
+<Tabs>
+  <Tab label="Callback<T>">
+    ```csharp
+    private Callback<DownloadItemResult_t>? _downloadResult;
+
+    public override void Load(bool hotReload)
+    {
+        _downloadResult = Callback<DownloadItemResult_t>.Create(OnDownloadItemResult);
+    }
+
+    public override void Unload()
+    {
+        _downloadResult?.Dispose();
+    }
+
+    private void OnDownloadItemResult(DownloadItemResult_t result)
+    {
+        if (result.m_eResult != EResult.k_EResultOK) return;
+
+        SteamGameServerUGC.GetItemInstallInfo(
+            result.m_nPublishedFileId, out ulong size, out string folder, 1024, out uint timestamp);
+    }
+    ```
+
+  </Tab>
+  <Tab label="CallResult<T>">
+    ```csharp
+    private CallResult<GSStatsReceived_t>? _statsResult;
+
+    public void RequestStats(CSteamID steamId)
+    {
+        SteamAPICall_t call = SteamGameServerStats.RequestUserStats(steamId);
+        _statsResult = CallResult<GSStatsReceived_t>.Create(call.m_SteamAPICall, OnStatsReceived);
+    }
+
+    private void OnStatsReceived(GSStatsReceived_t result, bool ioFailure)
+    {
+        if (ioFailure || result.m_eResult != EResult.k_EResultOK) return;
+
+        if (SteamGameServerStats.GetUserStat(result.m_steamIDUser, "total_kills", out int kills))
+            Core.Logger.LogInformation("kills={Kills}", kills);
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+## Auth Sessions
+
+To validate a client-provided auth ticket manually, use `BeginAuthSession`/`EndAuthSession` rather than the deprecated connect/disconnect variants:
+
+```csharp
+var authResult = SteamGameServer.BeginAuthSession(ticket, ticket.Length, steamId);
+if (authResult != EBeginAuthSessionResult.k_EBeginAuthSessionResultOK)
+{
+    return;
+}
+
+// ... later, once the session ends ...
+SteamGameServer.EndAuthSession(steamId);
+```
+
+## Quick Reference
+
+| Class                                      | Namespace                   | Purpose                                           |
+| ------------------------------------------ | --------------------------- | ------------------------------------------------- |
+| `SteamGameServer`                          | `SwiftlyS2.Shared.SteamAPI` | Identity, auth sessions, metadata, license checks |
+| `SteamGameServerUtils`                     | `SwiftlyS2.Shared.SteamAPI` | Misc utility queries (app ID, etc.)               |
+| `SteamGameServerUGC`                       | `SwiftlyS2.Shared.SteamAPI` | Workshop item state and download                  |
+| `SteamGameServerStats`                     | `SwiftlyS2.Shared.SteamAPI` | Server-managed user stats                         |
+| `CSteamID`, `AppId_t`, `PublishedFileId_t` | `SwiftlyS2.Shared.SteamAPI` | Core Steam identifier value types                 |
+| `Callback<T>` / `CallResult<T>`            | `SwiftlyS2.Shared.SteamAPI` | Async callback / call-result handling             |
+
+
+
+## https://swiftlys2.net/docs/guides/dependency-injection
+
+---
+title: Dependency Injection
+---
+
+`Dependency Injection` is a design pattern of C#.
+
+When developing a SwiftlyS2 plugin, we strongly recommend you to use `Dependency Injection` to manage your plugin design.
+
+## Example
+
+```csharp
+public override void Load(bool hotReload) {
+    ServiceCollection services = new();
+
+    services
+        .AddSwiftly(Core)
+        .AddSingleton<TestService>();
+
+    var provider = services.BuildServiceProvider();
+    provider.GetRequiredService<TestService>(); // This execute TestService constructor with dependencies it needs.
+}
+```
+
+For `TestService`:
+
+```csharp
+// TestService.cs
+public class TestService {
+    private ISwiftlyCore Core { get; init; }
+
+    public TestService(ISwiftlyCore core, ILogger<TestService> logger, IOptionsMonitor<TestConfig> config) {
+        Core = core;
+        logger.LogInformation("TestService created");
+        logger.LogInformation("Config: {Config}", config.CurrentValue.Age);
+
+        core.Registrator.Register(this);
+    }
+
+    [Command("test")]
+    public void TestCommand(ICommandContext context)
+    {
+        Core.NetMessage.Send<CUserMessageShake>(um => {
+            um.Frequency = 1f;
+            um.Recipients.AddAllPlayers();
+        });
+        context.Reply("Test command");
+    }
+}
+```
+
+Notice that `ISwiftlyCore` and `ILogger<TestService>` from core are injected through constructor.
+
+For more information, please see [MSLearn](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection).
+
+You will also need to add `Microsoft.Extensions.DependencyInjection` to your plugin.
+
+
+## https://swiftlys2.net/docs/guides/terminologies
+
+---
+title: Terminologies
+---
+
+## Environments
+
+### Managed
+
+Managed is .NET managed code which is used by C++ core. The memory and lifetime of objects are managed automatically by the runtime (garbage collection, type safety, metadata, etc.). The managed environment hosts and runs the plugins.
+
+### Native
+
+Native is the unmanaged side of SwiftlyS2, to be more exact, the C++ core. Memory management and execution are done manually (new/delete, RAII, etc.). The C++ core is the environment that initialized the managed environment for plugins.
+
+## Players
+
+All players in CS2 are split between a player controller & a player pawn.
+
+### Controllers
+
+The player controller represents the player on the server. It holds informations about the player, such as: name, steamid, etc. Every controller has assigned a pawn. In the entity system, it holds the indexes from 1 to 64. The controller is a virtual entity that represents a player abstraction, so stuff such like: health, positioning, velocity can't be modified from over here.
+
+### Pawn
+
+The player pawn represents the character of the player on the server. It holds informations about the character in game, such as: health, position, velocity, color, weapons and so on. Every pawn has a controller assigned to it.
+
+### Slot/PlayerId
+
+A slot on the server represents the controller's entity index - 1, so for example, if the controller entity index is 7, the player has assigned slot 6. Most of the game events are referring to the slot as `userid` or `playerid`.
+
+### Player Object
+
+The player object is an object created by us to give the possibility to developers to have faster accessing to game elements such as: fetching controller, fetching pawn, teleporting pawn, sending messages and so on. This allows us to give efficient API for a faster development experience.
+
+## Entities
+
+The entity system has a maximum capacity of 16384 indexes. Each entity has assigned a specific index.
+
+Ranges:
+- `1-64`: Player Controllers (controller index = playerid + 1)
+- `65-16383`: Entites
+
+### Handles
+
+An entity handle is a safe container in which an entity is stored. It stores in the container the pointer of the entity and the entity index. Using that, you can ensure that your entity is safely stored and that it can be checked against a list from the entity system to see if the said entity is still valid.
+
+### Kinds
+
+#### Temporary
+
+Temporary entities are spawn every round, at the beginning of the round and are removed at the end of the round.
+
+#### Permanent
+
+Permanent entities are spawned with the map, and those are not removed once the round ends.
+
+
+## https://swiftlys2.net/docs/guides/chat-and-html-styling
+
+---
+title: Chat & CenterHTML Styling
+---
+
+# Chat Colors
+
+Chat colors provide a simple way to colorize text using bracket syntax. This works in chat messages and other text outputs.
+
+## Syntax
+
+Use square brackets with color names to change text color:
+
+```csharp
+var message = "[red]This is red [lime]This is lime [default]Back to default";
+player.SendChat(message);
+```
+
+<Callout type="info">
+    Use `[default]` or `[/]` to reset text back to the default color.
+</Callout>
+
+### Available Chat Colors
+
+<div className="grid grid-cols-2 md:grid-cols-3 gap-2 my-4">
+    <code style={{ color: "#FFFFFF" }}>white</code>
+    <code style={{ color: "#8B0000" }}>darkred</code>
+    <code style={{ color: "#00FF00" }}>green</code>
+    <code style={{ color: "#FFFFE0" }}>lightyellow</code>
+    <code style={{ color: "#ADD8E6" }}>lightblue</code>
+    <code style={{ color: "#808000" }}>olive</code>
+    <code style={{ color: "#00FF00" }}>lime</code>
+    <code style={{ color: "#FF0000" }}>red</code>
+    <code style={{ color: "#DDA0DD" }}>lightpurple</code>
+    <code style={{ color: "#800080" }}>purple</code>
+    <code style={{ color: "#808080" }}>grey</code>
+    <code style={{ color: "#FFFF00" }}>yellow</code>
+    <code style={{ color: "#FFD700" }}>gold</code>
+    <code style={{ color: "#C0C0C0" }}>silver</code>
+    <code style={{ color: "#0000FF" }}>blue</code>
+    <code style={{ color: "#00008B" }}>darkblue</code>
+    <code style={{ color: "#6699CC" }}>bluegrey</code>
+    <code style={{ color: "#FF00FF" }}>magenta</code>
+    <code style={{ color: "#FFB6C1" }}>lightred</code>
+    <code style={{ color: "#FFA500" }}>orange</code>
+</div>
+
+### Chat Color Examples
+
+Using translations with placeholders for dynamic content:
+
+<Tabs>
+  <Tab label="Code">
+    ```csharp
+    // Simple colored message
+    player.SendChat(Core.Localizer["chat.welcome"]);
+
+    // Multiple colors with player name
+    player.SendChat(Core.Localizer["chat.player_joined", player.Name]);
+
+    // Error message with reset
+    player.SendChat(Core.Localizer["chat.error", "Something went wrong"]);
+
+    // Team score announcement
+    Core.PlayerManager.SendChat(Core.Localizer["chat.team_scores", ctScore, tScore]);
+    ```
+
+  </Tab>
+  <Tab label="Translation File">
+    ```json
+    {
+        "chat.welcome": "[green]Welcome to the server!",
+        "chat.player_joined": "[gold]Player [lime]{0}[gold] has joined!",
+        "chat.error": "[red]ERROR: [/]{0}",
+        "chat.team_scores": "[blue]CT Team: [yellow]{0} [default]- [orange]T Team: [yellow]{1}"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+# CenterHTML Styling
+
+## Syntax
+
+Panorama UI uses a different syntax than standard HTML for styling elements.
+
+<Callout type="info">
+    Browse all available Panorama UI stylings in the [CS2 data tracking
+    repository](https://github.com/SteamDatabase/GameTracking-CS2/tree/master/game/core/pak01_dir/panorama/styles)
+    `.css` files.
+</Callout>
+
+## Supported HTML Tags
+
+Panorama UI supports most standard HTML tags:
+
+<div className="grid grid-cols-2 md:grid-cols-4 gap-2 my-4">
+    <code>div</code>
+    <code>span</code>
+    <code>p</code>
+    <code>a</code>
+    <code>img</code>
+    <code>br</code>
+    <code>hr</code>
+    <code>h1-h6</code>
+    <code>strong</code>
+    <code>em</code>
+    <code>b</code>
+    <code>i</code>
+    <code>u</code>
+    <code>pre</code>
+</div>
+
+### Inline Properties
+
+<Tabs>
+  <Tab label="Panorama UI">
+    ```csharp
+    // ✅ Correct - Direct property attributes
+    var element = "<span color=\"red\">Red Text</span>";
+    ```
+  </Tab>
+  <Tab label="Standard HTML">
+    ```html
+    <!-- ❌ Doesn't work in Panorama UI -->
+    <span style="color:red;">Red Text</span>
+    ```
+  </Tab>
+</Tabs>
+
+<Callout type="info">
+    Use property names directly as attributes instead of wrapping them in a
+    `style` attribute.
+</Callout>
+
+### CSS Classes
+
+Apply built-in Panorama UI classes using the standard `class` attribute:
+
+```csharp
+// Single class
+var element = "<span class=\"fontStyle-m\">Medium Font</span>";
+
+// Multiple classes
+var element = "<span class=\"fontStyle-m CriticalText\">Critical text</span>";
+```
+
+## Common Styling Options
+
+### Colors
+
+For HTML elements, use the `color` attribute with color names or hex codes.
+
+<Tabs>
+  <Tab label="Color Names">
+    The same color names from [Chat Colors](#chat-colors) work in HTML:
+    
+    ```csharp
+    var message = "<span color=\"red\">Red Text</span>";
+    ```
+    
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-2 my-4">
+      <code style={{color: '#FFFFFF'}}>white</code>
+      <code style={{color: '#8B0000'}}>darkred</code>
+      <code style={{color: '#00FF00'}}>green</code>
+      <code style={{color: '#FFFFE0'}}>lightyellow</code>
+      <code style={{color: '#ADD8E6'}}>lightblue</code>
+      <code style={{color: '#808000'}}>olive</code>
+      <code style={{color: '#00FF00'}}>lime</code>
+      <code style={{color: '#FF0000'}}>red</code>
+      <code style={{color: '#DDA0DD'}}>lightpurple</code>
+      <code style={{color: '#800080'}}>purple</code>
+      <code style={{color: '#808080'}}>grey</code>
+      <code style={{color: '#FFFF00'}}>yellow</code>
+      <code style={{color: '#FFD700'}}>gold</code>
+      <code style={{color: '#C0C0C0'}}>silver</code>
+      <code style={{color: '#0000FF'}}>blue</code>
+      <code style={{color: '#00008B'}}>darkblue</code>
+      <code style={{color: '#6699CC'}}>bluegrey</code>
+      <code style={{color: '#FF00FF'}}>magenta</code>
+      <code style={{color: '#FFB6C1'}}>lightred</code>
+      <code style={{color: '#FFA500'}}>orange</code>
+    </div>
+  </Tab>
+  <Tab label="Hex Codes">
+    HTML elements also support hex color codes for custom colors:
+    
+    ```csharp
+    var ctBlue = "<span color=\"#5E98D9\">CT Blue</span>";
+    var tOrange = "<span color=\"#FFB800\">T Orange</span>";
+    var custom = "<span color=\"#FF5733\">Custom Color</span>";
+    ```
+  </Tab>
+</Tabs>
+
+### Custom Color Picker
+
+Try out different colors and copy the hex code to use in your HTML:
+
+<ColorPicker />
+
+### Font Size Classes
+
+| Class          | Size              |
+| -------------- | ----------------- |
+| `fontSize-xs`  | Extra Small       |
+| `fontSize-sm`  | Small             |
+| `fontSize-m`   | Medium            |
+| `fontSize-l`   | Large             |
+| `fontSize-xl`  | Extra Large       |
+| `fontSize-xxl` | Extra Extra Large |
+
+### Font Style Classes
+
+| Class             | Effect                   |
+| ----------------- | ------------------------ |
+| `fontStyle-m`     | Medium font style        |
+| `fontWeight-bold` | Bold text                |
+| `CriticalText`    | Critical/warning styling |
+
+## Practical Examples
+
+### Basic Usage
+
+<Steps>
+
+<Step title="Simple Color Text">
+
+```csharp
+var message = "<span color=\"red\">This text is red</span>";
+Core.PlayerManager.SendCenterHTML(message, 5);
+```
+
+</Step>
+
+<Step title="Combining Properties">
+
+```csharp
+var message = "<span color=\"green\" class=\"fontSize-l\">Large Green Text</span>";
+Core.PlayerManager.SendCenterHTML(message, 5);
+```
+
+</Step>
+
+</Steps>
+
+### Player Status Display
+
+Show ready player counts with dynamic colors:
+
+<Tabs>
+  <Tab label="Code">
+    ```csharp
+    var readyPlayers = 5;
+    var playersToStart = 10;
+
+    Core.PlayerManager.SendCenterHTML(
+        Core.Localizer["centerhtml.ready_status", readyPlayers, playersToStart], 10);
+    ```
+
+  </Tab>
+  <Tab label="Translation File">
+    ```json
+    {
+        "centerhtml.ready_status": "[<span color=\"red\">{0}</span>/<span color=\"green\">{1}</span>]<br><span class=\"fontSize-sm\">Match starts when <span color=\"green\">{1}</span> players are ready!</span>"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Multi-line Formatted Messages
+
+Create structured messages with titles and lists:
+
+<Tabs>
+  <Tab label="Code">
+    ```csharp
+    Core.PlayerManager.SendCenterHTML(
+        Core.Localizer["centerhtml.server_rules"], 15);
+    ```
+  </Tab>
+  <Tab label="Translation File">
+    ```json
+    {
+        "centerhtml.server_rules": "<span color=\"yellow\" class=\"fontSize-l\">Server Rules</span><br><br><span>• Be respectful to other players</span><br><span>• No cheating or exploiting</span><br><span>• Have fun!</span>"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Dynamic Status Indicators
+
+<Tabs>
+  <Tab label="Code">
+    ```csharp
+    var player = Core.PlayerManager.GetPlayer(1);
+    var status = "ready";
+    var statusColor = status == "ready" ? "green" : "red";
+
+    player.SendCenterHTML(
+        Core.Localizer["centerhtml.player_status", player.Name, statusColor, status], 5);
+    ```
+
+  </Tab>
+  <Tab label="Translation File">
+    ```json
+    {
+        "centerhtml.player_status": "<span>{0}</span> is <span color=\"{1}\">{2}</span>"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Progress Bar with Characters
+
+<Tabs>
+  <Tab label="Code">
+    ```csharp
+    var progress = 75; // 75%
+    var filled = progress / 10;
+    var empty = 10 - filled;
+    var bar = new string('█', filled) + new string('░', empty);
+
+    Core.PlayerManager.SendCenterHTML(
+        Core.Localizer["centerhtml.loading_bar", bar, progress], 3);
+    ```
+
+  </Tab>
+  <Tab label="Translation File">
+    ```json
+    {
+        "centerhtml.loading_bar": "<span color=\"cyan\">Loading:</span> <span color=\"green\">{0}</span> <span>{1}%</span>"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Countdown Timer
+
+<Tabs>
+  <Tab label="Code">
+    ```csharp
+    var timeLeft = 30;
+    var color = timeLeft <= 5 ? "red" : timeLeft <= 10 ? "yellow" : "green";
+
+    Core.PlayerManager.SendCenterHTML(
+        Core.Localizer["centerhtml.countdown", color, timeLeft], 1);
+    ```
+
+  </Tab>
+  <Tab label="Translation File">
+    ```json
+    {
+        "centerhtml.countdown": "<span class=\"fontSize-xl\">Round starts in</span><br><span color=\"{0}\" class=\"fontSize-xxl\">{1}</span>"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Team Score Display
+
+<Tabs>
+  <Tab label="Code">
+    ```csharp
+    var ctScore = 8;
+    var tScore = 6;
+
+    Core.PlayerManager.SendCenterHTML(
+        Core.Localizer["centerhtml.team_scores", ctScore, tScore], 5);
+    ```
+
+  </Tab>
+  <Tab label="Translation File">
+    ```json
+    {
+        "centerhtml.team_scores": "<span color=\"#5E98D9\" class=\"fontSize-l\">CT: {0}</span> - <span color=\"#FFB800\" class=\"fontSize-l\">T: {1}</span>"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## Best Practices
+
+<Callout type="warning">
+    **Remember:** Panorama UI's HTML parsing has limitations. Always test
+    complex layouts in-game to ensure they render correctly.
+</Callout>
+
+1. **Keep it Simple**: Complex nested structures may not render as expected
+2. **Test Colors**: Verify color visibility against different background themes
+3. **Use Classes**: Prefer built-in classes over inline properties for consistency
+4. **Duration Matters**: Set appropriate display durations for message complexity
+5. **String Interpolation**: Use `$""` for clean, readable message construction
+
+## Reference
+
+### Common Inline Properties
+
+- `color` - Text color (color names or hex codes)
+- `font-size` - Font size (prefer classes)
+- `font-weight` - Font weight (prefer classes)
+
+### Finding More Classes
+
+<Callout type="info">
+    Explore the [CS2 Panorama
+    styles](https://github.com/Swiftly-Tracker/CS2-Dumps/tree/main/install/game/csgo/pak01/panorama/styles)
+    to discover additional classes and styling options. New classes are added
+    with CS2 updates.
+</Callout>
+
+
+
+## https://swiftlys2.net/docs/guides/porting-from-css
+
+---
+title: Porting from CounterStrikeSharp
+---
+
+# Porting from CounterStrikeSharp
+
+This guide will help you migrate your existing CounterStrikeSharp plugins to SwiftlyS2. We'll cover the key differences between the frameworks and provide side-by-side examples to make the transition as smooth as possible.
+
+<Callout type="info">
+    Both frameworks share a lot of the same underlying concepts (game events,
+    schema access, virtual function hooking), so most of the migration work is
+    renaming calls to their SwiftlyS2 equivalent rather than rethinking your
+    plugin's logic.
+</Callout>
+
+## Overview
+
+SwiftlyS2 introduces several key improvements over CounterStrikeSharp:
+
+- **Modern .NET 10** - Takes advantage of the latest .NET features and performance improvements
+- **Improved API Design** - More intuitive and consistent API structure, split into discrete `Core.*` services
+- **Built-in Menu System** - Buttons, sliders and inputs out of the box, no extra dependency needed
+- **Database Abstraction** - Global connection configuration shared across plugins
+- **Per-Plugin GameData** - Each plugin manages its own signatures/offsets instead of relying on a shared gamedata file
+- **Cross-Plugin Interfaces** - A capability-style system for exposing and consuming APIs between plugins
+
+## Migration Checklist
+
+Before starting your migration, ensure you have:
+
+- [ ] .NET 10.0 SDK installed
+- [ ] Your existing CounterStrikeSharp plugin source code
+- [ ] Understanding of your plugin's dependencies
+- [ ] Test environment set up for SwiftlyS2
+
+## Project Setup
+
+### Package Reference
+
+<Tabs>
+    <Tab label="CounterStrikeSharp">
+        ```xml
+        <PackageReference Include="CounterStrikeSharp.API" Version="1.0.3" />
+        ```
+    </Tab>
+    <Tab label="SwiftlyS2">
+        ```xml
+        <PackageReference
+            Include="SwiftlyS2.CS2"
+            Version="1.0.3"
+            ExcludeAssets="runtime"
+            PrivateAssets="all"
+        />
+        ```
+    </Tab>
+</Tabs>
+
+**Version patterns:**
+
+- `1.0.3` - Specific version
+- `*` - Latest stable release
+- `*-*` - Latest preview/pre-release version
+
+### Target Framework
+
+<Tabs>
+    <Tab label="CounterStrikeSharp">
+        ```xml
+        <TargetFramework>net8.0</TargetFramework>
+        ```
+    </Tab>
+    <Tab label="SwiftlyS2">
+        ```xml
+        <TargetFramework>net10.0</TargetFramework>
+        ```
+    </Tab>
+</Tabs>
+
+<Callout type="warning">
+    SwiftlyS2 requires .NET 10.0 or later. Make sure you have the appropriate
+    SDK installed.
+</Callout>
+
+## Plugin Class
+
+### Base Structure
+
+<Tabs>
+  <Tab label="CounterStrikeSharp">
+    ```csharp
+    public class MyPlugin : BasePlugin
+    {
+        public override string ModuleName => "My Plugin";
+        public override string ModuleVersion => "1.0.0";
+
+        public override void Load(bool hotReload)
+        {
+        }
+    }
+    ```
+
+  </Tab>
+  <Tab label="SwiftlyS2">
+    ```csharp
+    [PluginMetadata(Id = "my.plugin", Version = "1.0.0", Name = "My Plugin", Author = "Author")]
+    public sealed class Plugin(ISwiftlyCore core) : BasePlugin(core)
+    {
+        public static new ISwiftlyCore Core { get; private set; } = null!;
+
+        public override void Load(bool hotReload)
+        {
+            Core = base.Core;
+        }
+
+        public override void Unload()
+        {
+        }
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+<Callout type="info">
+    SwiftlyS2 also calls `OnAllPluginsLoaded()` once every plugin has finished
+    loading - useful if you need another plugin's shared interface to already be
+    registered before you use it.
+</Callout>
+
+## Event Handling (Game Events)
+
+### Attribute-Based Registration (Recommended)
+
+<Tabs>
+  <Tab label="CounterStrikeSharp">
+    ```csharp
+    RegisterEventHandler<EventPlayerDeath>(OnPlayerDeath);
+    RegisterEventHandler<EventPlayerDeath>(OnPlayerDeath, HookMode.Pre);
+    ```
+  </Tab>
+  <Tab label="SwiftlyS2">
+    ```csharp
+    [GameEventHandler(HookMode.Post)]
+    private HookResult OnPlayerDeath(EventPlayerDeath @event)
+    {
+        var player = @event.UserIdPlayer;
+        return HookResult.Continue;
+    }
+
+    [GameEventHandler(HookMode.Pre)]
+    private HookResult OnPlayerDeathPre(EventPlayerDeath @event)
+    {
+        return HookResult.Continue;
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Manual Registration
+
+In SwiftlyS2, you can also register event handlers manually, typically in `Load()`:
+
+```csharp
+// SwiftlyS2 - manual registration in Load()
+Guid postHookId = Core.GameEvent.HookPost<EventPlayerDeath>(OnPlayerDeath);
+Guid preHookId = Core.GameEvent.HookPre<EventPlayerDeath>(OnPlayerDeathPre);
+
+// Unhook later, e.g. in Unload()
+Core.GameEvent.Unhook(postHookId);
+```
+
+### Event Handler Signature
+
+<Tabs>
+  <Tab label="CounterStrikeSharp">
+    ```csharp
+    private HookResult OnPlayerDeath(EventPlayerDeath @event, GameEventInfo info)
+    {
+        var player = @event.Userid;
+        return HookResult.Continue;
+    }
+    ```
+  </Tab>
+  <Tab label="SwiftlyS2">
+    ```csharp
+    private HookResult OnPlayerDeath(EventPlayerDeath @event)
+    {
+        var player = @event.UserIdPlayer;
+        return HookResult.Continue;
+    }
+    ```
+  </Tab>
+</Tabs>
+
+<Callout type="info">
+    In SwiftlyS2, the `GameEventInfo` parameter is removed. Event fields are
+    read through typed properties, or through `@event.Accessor` if a typed
+    property is inexistent.
+</Callout>
+
+### Getting Player from Event
+
+<Tabs>
+    <Tab label="CounterStrikeSharp">
+        ```csharp var player = @event.Userid; var attacker = @event.Attacker;
+        ```
+    </Tab>
+    <Tab label="SwiftlyS2">
+        ```csharp var player = @event.Accessor.GetPlayer("userid"); var attacker
+        = @event.Accessor.GetPlayer("attacker"); ```
+    </Tab>
+</Tabs>
+
+## Player Operations
+
+### Getting All Players
+
+<Tabs>
+  <Tab label="CounterStrikeSharp">
+    ```csharp
+    var players = Utilities.GetPlayers();
+    ```
+  </Tab>
+  <Tab label="SwiftlyS2">
+    ```csharp
+    var players = Core.PlayerManager.GetAllPlayers();
+
+    // Get a single player by slot/index
+    var player = Core.PlayerManager.GetPlayer(playerId);
+    ```
+
+  </Tab>
+</Tabs>
+
+### Player Properties
+
+<Tabs>
+    <Tab label="CounterStrikeSharp">
+        ```csharp var isValid = player.IsValid; var name = player.PlayerName;
+        var steamId = player.SteamID; ```
+    </Tab>
+    <Tab label="SwiftlyS2">
+        ```csharp var isValid = player.IsValid; var name = player.Name; //
+        convenience wrapper around player.Controller?.PlayerName var steamId =
+        player.SteamID; ```
+    </Tab>
+</Tabs>
+
+### Sending Messages
+
+<Tabs>
+  <Tab label="CounterStrikeSharp">
+    ```csharp
+    // Send to specific player
+    player.PrintToChat("message");
+
+    // Send to all players
+    Server.PrintToChatAll("message");
+    ```
+
+  </Tab>
+  <Tab label="SwiftlyS2">
+    ```csharp
+    // Send to specific player
+    player.SendChat("message");
+
+    // Send to all players
+    Core.PlayerManager.SendChat("message");
+    ```
+
+  </Tab>
+</Tabs>
+
+### Additional Message Types
+
+SwiftlyS2 provides multiple message methods for enhanced communication:
+
+```csharp
+// Additional message types in SwiftlyS2 (also available per-player on IPlayer)
+Core.PlayerManager.SendCenter("center message");
+Core.PlayerManager.SendAlert("alert message");
+Core.PlayerManager.SendConsole("console message");
+Core.PlayerManager.SendCenterHTML("<b>HTML</b>", duration: 5000); // duration in milliseconds
+```
+
+## Chat Colors
+
+SwiftlyS2 uses square brackets instead of curly braces for colors:
+
+<Tabs>
+    <Tab label="CounterStrikeSharp">
+        ```csharp $"{ChatColors.Red}Red text {ChatColors.Green}Green text" ```
+    </Tab>
+    <Tab label="SwiftlyS2">```csharp "[red]Red text [green]Green text" ```</Tab>
+</Tabs>
+
+See the [Chat & CenterHTML Styling](/docs/guides/chat-and-html-styling) guide for the full color list.
+
+## Timers & Scheduling
+
+<Callout type="warning">
+    SwiftlyS2's tick-based `Delay` overload uses game ticks as the unit. Use the
+    `*BySeconds` variants for time-based delays.
+</Callout>
+
+<Tabs>
+  <Tab label="CounterStrikeSharp">
+    ```csharp
+    AddTimer(5.0f, () => { /* code */ });
+    AddTimer(1.0f, () => { /* code */ }, TimerFlags.REPEAT);
+    Server.NextFrame(() => { /* code */ });
+    Server.NextWorldUpdate(() => { /* code */ });
+    ```
+  </Tab>
+  <Tab label="SwiftlyS2">
+    ```csharp
+    Core.Scheduler.Delay(64, () => { /* code */ }); // delay in ticks
+    Core.Scheduler.DelayBySeconds(5, () => { /* code */ }); // delay in seconds
+    Core.Scheduler.DelayAndRepeatBySeconds(5, 1, () => { /* code */ }); // initial delay + repeat interval
+    Core.Scheduler.NextTick(() => { /* code */ }); // next server tick
+    Core.Scheduler.NextWorldUpdate(() => { /* code */ }); // next world update frame
+    ```
+  </Tab>
+</Tabs>
+
+Both `Delay` and `DelayAndRepeatBySeconds` return a `CancellationTokenSource` you can use to cancel the scheduled task early.
+
+## Commands
+
+### Basic Command Registration
+
+<Tabs>
+  <Tab label="CounterStrikeSharp">
+    ```csharp
+    [ConsoleCommand("css_mycommand", "Description")]
+    public void OnMyCommand(CCSPlayerController? player, CommandInfo command)
+    {
+    }
+    ```
+  </Tab>
+  <Tab label="SwiftlyS2">
+    ```csharp
+    [Command("mycommand")]
+    public void OnMyCommand(ICommandContext context)
+    {
+        var player = context.Sender;
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Admin Commands
+
+In CounterStrikeSharp, permissions are declared with a separate `[RequiresPermissions]` attribute. In SwiftlyS2, permissions are part of the `Command` attribute itself:
+
+```csharp
+[Command("admincommand", permission: "admin.permission")]
+public void OnAdminCommand(ICommandContext context)
+{
+    // Only players with admin.permission can use this command
+}
+```
+
+### Command Aliases
+
+SwiftlyS2 provides a clean way to register command aliases:
+
+```csharp
+// Register primary command with aliases
+Core.Command.RegisterCommand("mycommand", OnMyCommand);
+Core.Command.RegisterCommandAlias("mycommand", "mc");
+Core.Command.RegisterCommandAlias("mycommand", "mycmd");
+```
+
+## Permissions
+
+CounterStrikeSharp ships a full admin framework (`admins.json`, `admin_groups.json`, immunity, overrides). SwiftlyS2's built-in permission manager is intentionally simpler - a flat, wildcard-aware permission store keyed by SteamID that plugins (or an admin plugin built on top of it) can manage.
+
+<Tabs>
+  <Tab label="CounterStrikeSharp">
+    ```csharp
+    bool isAdmin = AdminManager.PlayerHasPermissions(player, "@css/ban");
+    ```
+  </Tab>
+  <Tab label="SwiftlyS2">
+    ```csharp
+    bool isAdmin = Core.Permission.PlayerHasPermission(player.SteamID, "plugin.ban");
+
+    // Supports 'xxx.*' wildcards, multi-permission checks, and grant/revoke:
+    Core.Permission.PlayerHasPermissions(player.SteamID, ["plugin.ban", "plugin.kick"]);
+    Core.Permission.AddPermission(player.SteamID, "plugin.ban");
+    Core.Permission.RemovePermission(player.SteamID, "plugin.ban");
+    ```
+
+  </Tab>
+</Tabs>
+
+<Callout type="info">
+    `Command`'s `permission` parameter checks against this same permission
+    store, so you rarely need to call `Core.Permission` directly inside a
+    command handler.
+</Callout>
+
+## Menus
+
+SwiftlyS2 has a built-in full menu system with support for buttons, inputs, sliders, and more.
+
+### Creating a Menu
+
+<Tabs>
+  <Tab label="CounterStrikeSharp">
+    ```csharp
+    var menu = new ChatMenu("Title");
+    menu.AddMenuOption("Option 1", (p, o) => { });
+    MenuManager.OpenChatMenu(player, menu);
+    ```
+  </Tab>
+  <Tab label="SwiftlyS2">
+    ```csharp
+    var builder = Core.MenusAPI
+        .CreateBuilder()
+        .Design.SetMenuTitle("Title")
+        .Design.SetMenuTitleVisible(true)
+        // All options below are optional
+        .Design.SetMenuFooterVisible(true)
+        .Design.SetGlobalScrollStyle(MenuOptionScrollStyle.LinearScroll) // doesn't wrap when reaching the end
+        .SetAutoCloseDelay(10) // auto close after 10 seconds
+        .SetSelectButton(KeyBind.Space) // button to select option
+        .SetPlayerFrozen(false); // don't freeze player while menu is open
+
+    var button = new ButtonMenuOption("Option 1");
+    button.Click += (sender, args) =>
+    {
+        var clickedBy = args.Player;
+        // handle click
+        return ValueTask.CompletedTask;
+    };
+    builder.AddOption(button);
+
+    var menu = builder.Build();
+    Core.MenusAPI.OpenMenuForPlayer(player, menu);
+    ```
+
+  </Tab>
+</Tabs>
+
+### Closing Menus
+
+<Tabs>
+    <Tab label="CounterStrikeSharp">
+        ```csharp MenuManager.CloseActiveMenu(player); ```
+    </Tab>
+    <Tab label="SwiftlyS2">
+        ```csharp Core.MenusAPI.CloseMenuForPlayer(player, menu); // or, without
+        holding a reference to the built menu:
+        Core.MenusAPI.CloseActiveMenu(player); ```
+    </Tab>
+</Tabs>
+
+## Cross-Plugin Capabilities
+
+CounterStrikeSharp lets plugins expose an API to each other through `PluginCapability<T>`. SwiftlyS2 has the same idea built directly into `BasePlugin`, backed by `IInterfaceManager`.
+
+<Tabs>
+  <Tab label="CounterStrikeSharp">
+    ```csharp
+    // Provider plugin
+    public static readonly PluginCapability<IMyPluginApi> Capability = new("my_plugin:api");
+    Capabilities.RegisterPluginCapability(Capability, () => new MyPluginApi());
+
+    // Consumer plugin
+    var api = MyPluginProvider.Capability.Get();
+    ```
+
+  </Tab>
+  <Tab label="SwiftlyS2">
+    ```csharp
+    // Provider plugin
+    public override void ConfigureSharedInterface(IInterfaceManager interfaceManager)
+    {
+        interfaceManager.AddSharedInterface<IMyPluginApi, MyPluginApi>("my.plugin:api", new MyPluginApi());
+    }
+
+    // Consumer plugin - runs after every plugin's ConfigureSharedInterface has fired
+    public override void UseSharedInterface(IInterfaceManager interfaceManager)
+    {
+        if (interfaceManager.TryGetSharedInterface<IMyPluginApi>("my.plugin:api", out var api))
+        {
+            // use api
+        }
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+<Callout type="info">
+    The shared interface type (`IMyPluginApi` above) must live somewhere both
+    plugins can reference, e.g. a small shared contracts assembly - the same
+    requirement CounterStrikeSharp has for `PluginCapability&lt;T&gt;`
+    interfaces.
+</Callout>
+
+## Entity Operations
+
+### Finding Entities
+
+<Tabs>
+  <Tab label="CounterStrikeSharp">
+    ```csharp
+    Utilities.FindAllEntitiesByDesignerName<CPlantedC4>("planted_c4");
+    ```
+  </Tab>
+  <Tab label="SwiftlyS2">
+    ```csharp
+    Core.EntitySystem.GetAllEntities(); // all entities
+    Core.EntitySystem.GetAllEntitiesByClass<CPlantedC4>(); // by class type
+    Core.EntitySystem.GetAllEntitiesByDesignerName<CPlantedC4>("planted_c4"); // by designer name
+    ```
+  </Tab>
+</Tabs>
+
+### Modifying Schema Values
+
+<Callout type="info">
+In CSS you need to call `SetStateChanged` after modifying networked properties. In SwiftlyS2 every networked schema field gets a generated `<FieldName>Updated()` method instead.
+</Callout>
+
+<Tabs>
+    <Tab label="CounterStrikeSharp">
+        ```csharp player.PlayerPawn.Value.Health = 100;
+        Utilities.SetStateChanged(player.PlayerPawn.Value, "CBaseEntity",
+        "m_iHealth"); ```
+    </Tab>
+    <Tab label="SwiftlyS2">
+        ```csharp var pawn = player.PlayerPawn; pawn.Health = 100;
+        pawn.HealthUpdated(); ```
+    </Tab>
+</Tabs>
+
+## Configuration
+
+SwiftlyS2 uses the .NET Options pattern with support for JSON, JSONC, and TOML files with hot-reload capability.
+
+### Loading Configuration
+
+```csharp
+// SwiftlyS2
+private PluginConfig _config = null!;
+
+private void LoadConfiguration()
+{
+    const string ConfigFileName = "config.json";
+    const string ConfigSection = "MyPlugin";
+
+    // Initialize config file from model (creates file with defaults if not exists)
+    Core.Configuration
+        .InitializeJsonWithModel<PluginConfig>(ConfigFileName, ConfigSection)
+        // Configure the config source with hot-reload support
+        .Configure(cfg => cfg.AddJsonFile(
+            Core.Configuration.GetConfigPath(ConfigFileName),
+            optional: false,
+            reloadOnChange: true)); // auto-reload on file change
+
+    // Build service provider with options pattern
+    ServiceCollection services = new();
+    services.AddSwiftly(Core)
+        .AddOptionsWithValidateOnStart<PluginConfig>()
+        .BindConfiguration(ConfigSection);
+
+    var provider = services.BuildServiceProvider();
+    _config = provider.GetRequiredService<IOptions<PluginConfig>>().Value;
+}
+```
+
+### Config Model Example
+
+```csharp
+public sealed class PluginConfig
+{
+    public string DatabaseConnection { get; set; } = "";
+    public int MaxPlayers { get; set; } = 10;
+    public bool EnableFeature { get; set; } = true;
+}
+```
+
+The generated `config.json` will look like:
+
+```json
+{
+    "MyPlugin": {
+        "DatabaseConnection": "",
+        "MaxPlayers": 10,
+        "EnableFeature": true
+    }
+}
+```
+
+See the [Dependency Injection](/docs/guides/dependency-injection) guide for more on `services.AddSwiftly(Core)`.
+
+## Database
+
+CounterStrikeSharp leaves database access entirely up to the plugin (usually Dapper/MySqlConnector with a connection string in the plugin's own config). SwiftlyS2 has a global database configuration system instead - connections are defined once in `configs/database.jsonc` and referenced by name from any plugin.
+
+**Supported databases:** MySQL, PostgreSQL, SQLite
+
+### Global Configuration
+
+Create a `configs/database.jsonc` file in your SwiftlyS2 installation:
+
+```json
+{
+    "default_connection": "host",
+    "connections": {
+        "host": "mysql://username:password@localhost:3306/database"
+    }
+}
+```
+
+**Connection string formats:**
+
+- MySQL: `mysql://user:pass@host:3306/database`
+- PostgreSQL: `postgresql://user:pass@host:5432/database`
+- SQLite: `sqlite://path/to/database.db`
+
+### Using in Plugins
+
+```csharp
+// Plugin config references connection by name
+public sealed class PluginConfig
+{
+    public string DatabaseConnection { get; set; } = "host"; // name from database.jsonc
+}
+
+// Get connection using the name
+using var connection = Core.Database.GetConnection(_config.DatabaseConnection);
+connection.Open();
+
+// Use with Dapper or any ADO.NET approach
+await connection.ExecuteAsync("SELECT * FROM players WHERE steamid = @SteamId", new { SteamId = steamId });
+```
+
+## Translations
+
+### File Location
+
+<Tabs>
+    <Tab label="CounterStrikeSharp">``` lang/en.json ```</Tab>
+    <Tab label="SwiftlyS2">``` resources/translations/en.jsonc ```</Tab>
+</Tabs>
+
+### Usage
+
+<Tabs>
+  <Tab label="CounterStrikeSharp">
+    ```csharp
+    // Server language
+    Localizer["key"]
+    Localizer["key", arg1, arg2]
+
+    // Player language
+    Localizer.ForPlayer(player, "key")
+    Localizer.ForPlayer(player, "key", arg1, arg2)
+    ```
+
+  </Tab>
+  <Tab label="SwiftlyS2">
+    ```csharp
+    // Server language
+    Core.Localizer["key"]
+    Core.Localizer["key", arg1, arg2]
+
+    // Player language
+    var localizer = Core.Translation.GetPlayerLocalizer(player);
+    localizer["key"]
+    localizer["key", arg1, arg2]
+    ```
+
+  </Tab>
+</Tabs>
+
+## Logging
+
+<Tabs>
+    <Tab label="CounterStrikeSharp">
+        ```csharp Logger.LogInformation("Loaded {Plugin}", ModuleName); ```
+    </Tab>
+    <Tab label="SwiftlyS2">
+        ```csharp Core.Logger.LogInformation("Loaded {Plugin}", "my.plugin");
+        ```
+    </Tab>
+</Tabs>
+
+`Core.Logger` is a standard `Microsoft.Extensions.Logging.ILogger`, and `Core.LoggerFactory` is available if you need to create scoped loggers for other classes.
+
+## Project File (.csproj)
+
+Full example with comments:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- SwiftlyS2 requires .NET 10 -->
+    <TargetFramework>net10.0</TargetFramework>
+    <!-- Enable modern C# features -->
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <!-- Required for schema access -->
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <!-- Use filename as namespace and assembly name -->
+    <RootNamespace>$(MSBuildThisFileName)</RootNamespace>
+    <AssemblyName>$(MSBuildThisFileName)</AssemblyName>
+    <!-- Disable auto-generated assembly info -->
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <!-- Performance optimization -->
+    <TieredCompilation>true</TieredCompilation>
+    <!-- Copy dependencies to output -->
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <!-- Output to build folder -->
+    <OutputPath>$(MSBuildThisFileDirectory)build/</OutputPath>
+    <PublishDir>$(OutputPath)publish/$(MSBuildThisFileName)</PublishDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- SwiftlyS2 package - use *-* for latest preview, * for stable -->
+    <PackageReference Include="SwiftlyS2.CS2" Version="*-*" ExcludeAssets="runtime" PrivateAssets="all" />
+    <!-- Copy resources folder to output (translations, configs, etc.) -->
+    <None Update="resources\**\*.*" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <!-- Optional: Create zip after publish -->
+  <Target Name="CreateZip" AfterTargets="Publish">
+    <ZipDirectory SourceDirectory="$(PublishDir)../" DestinationFile="$(OutputPath)../$(AssemblyName).zip" Overwrite="true" />
+  </Target>
+</Project>
+```
+
+## ConVars
+
+### Finding and Reading ConVars
+
+<Tabs>
+  <Tab label="CounterStrikeSharp">
+    ```csharp
+    var convar = ConVar.Find("mp_round_restart_delay");
+    var value = convar?.GetPrimitiveValue<float>();
+    ```
+  </Tab>
+  <Tab label="SwiftlyS2">
+    ```csharp
+    var convar = Core.ConVar.Find<float>("mp_round_restart_delay");
+    var value = convar?.Value;
+    ```
+  </Tab>
+</Tabs>
+
+### Setting ConVar Values
+
+<Tabs>
+  <Tab label="CounterStrikeSharp">
+    ```csharp
+    var convar = ConVar.Find("mp_warmup_time");
+    convar?.SetValue(30);
+    ```
+  </Tab>
+  <Tab label="SwiftlyS2">
+    ```csharp
+    var convar = Core.ConVar.Find<int>("mp_warmup_time");
+    if (convar != null)
+        convar.Value = 30;
+    ```
+  </Tab>
+</Tabs>
+
+### Creating Plugin ConVars
+
+CounterStrikeSharp exposes this through the `[ConVar]` attribute on a field. SwiftlyS2 creates (or reuses) one imperatively:
+
+<Tabs>
+  <Tab label="CounterStrikeSharp">
+    ```csharp
+    [ConVar("my_plugin_enabled", "Enables the plugin", ConVarFlags.FCVAR_NONE)]
+    public bool Enabled { get; set; } = true;
+    ```
+  </Tab>
+  <Tab label="SwiftlyS2">
+    ```csharp
+    var enabled = Core.ConVar.CreateOrFind("my_plugin_enabled", "Enables the plugin", true);
+    bool isEnabled = enabled.Value;
+    ```
+  </Tab>
+</Tabs>
+
+## Listeners
+
+SwiftlyS2 uses typed event handlers with strongly-typed event parameters.
+
+### Client Events
+
+<Tabs>
+  <Tab label="CounterStrikeSharp">
+    ```csharp
+    RegisterListener<Listeners.OnClientConnect>((slot, name, ip) => { });
+    RegisterListener<Listeners.OnClientDisconnect>((slot) => { });
+    RegisterListener<Listeners.OnClientAuthorized>((slot, steamId) => { });
+    ```
+  </Tab>
+  <Tab label="SwiftlyS2">
+    ```csharp
+    // Typed event handlers (recommended)
+    private void OnClientConnected(IOnClientConnectedEvent @event)
+    {
+        // @event.PlayerId, can set @event.Result = HookResult.Stop to prevent join
+    }
+
+    private void OnClientDisconnected(IOnClientDisconnectedEvent @event)
+    {
+        // @event.PlayerId, @event.Reason
+    }
+
+    private void OnClientSteamAuthorize(IOnClientSteamAuthorizeEvent @event)
+    {
+        // @event.PlayerId
+    }
+
+    private void OnClientPutInServer(IOnClientPutInServerEvent @event)
+    {
+        // Player fully connected and ready
+    }
+
+    // Register in Load():
+    Core.Event.OnClientConnected += OnClientConnected;
+    Core.Event.OnClientDisconnected += OnClientDisconnected;
+    Core.Event.OnClientSteamAuthorize += OnClientSteamAuthorize;
+    Core.Event.OnClientPutInServer += OnClientPutInServer;
+    ```
+
+  </Tab>
+</Tabs>
+
+### Map Events
+
+<Tabs>
+  <Tab label="CounterStrikeSharp">
+    ```csharp
+    RegisterListener<Listeners.OnMapStart>((mapName) => { });
+    RegisterListener<Listeners.OnMapEnd>(() => { });
+    ```
+  </Tab>
+  <Tab label="SwiftlyS2">
+    ```csharp
+    private void OnMapLoad(IOnMapLoadEvent @event)
+    {
+        var mapName = @event.MapName;
+    }
+
+    private void OnMapUnload(IOnMapUnloadEvent @event)
+    {
+        var mapName = @event.MapName;
+    }
+
+    // Register in Load():
+    Core.Event.OnMapLoad += OnMapLoad;
+    Core.Event.OnMapUnload += OnMapUnload;
+    ```
+
+  </Tab>
+</Tabs>
+
+### Entity Events
+
+<Tabs>
+  <Tab label="CounterStrikeSharp">
+    ```csharp
+    RegisterListener<Listeners.OnEntityCreated>((entity) => { });
+    RegisterListener<Listeners.OnEntitySpawned>((entity) => { });
+    RegisterListener<Listeners.OnEntityDeleted>((entity) => { });
+    ```
+  </Tab>
+  <Tab label="SwiftlyS2">
+    ```csharp
+    private void OnEntityCreated(IOnEntityCreatedEvent @event)
+    {
+        var entity = @event.Entity;
+    }
+
+    private void OnEntitySpawned(IOnEntitySpawnedEvent @event)
+    {
+        var entity = @event.Entity;
+    }
+
+    private void OnEntityDeleted(IOnEntityDeletedEvent @event)
+    {
+        var entity = @event.Entity;
+    }
+
+    // Register in Load():
+    Core.Event.OnEntityCreated += OnEntityCreated;
+    Core.Event.OnEntitySpawned += OnEntitySpawned;
+    Core.Event.OnEntityDeleted += OnEntityDeleted;
+    ```
+
+  </Tab>
+</Tabs>
+
+### Entity Take Damage
+
+<Callout type="warning">
+    `Core.Event.OnEntityTakeDamage` still exists but is deprecated. Use
+    `Core.GameHooks.Entities.TakeDamage` instead, which gives you separate
+    Pre/Post hooks and direct access to the native damage info.
+</Callout>
+
+```csharp
+private void OnTakeDamagePre(ref TakeDamageEntityPreContext ctx)
+{
+    var entity = ctx.Params.Entity;
+    ref var info = ref ctx.Params.Info;
+    // inspect/modify info, then optionally: ctx.SetHookResult(HookResult.Stop);
+}
+
+// Register in Load():
+Core.GameHooks.Entities.TakeDamage.Pre += OnTakeDamagePre;
+```
+
+### Other Useful Events
+
+```csharp
+// SwiftlyS2 additional events
+private void OnTick() { } // every server tick (hot path!)
+private void OnWorldUpdate() { } // every world update, even in hibernation
+private void OnPrecacheResource(IOnPrecacheResourceEvent @event) { @event.AddItem("path/to/resource.vmdl"); }
+
+// Register in Load():
+Core.Event.OnTick += OnTick;
+Core.Event.OnWorldUpdate += OnWorldUpdate;
+Core.Event.OnPrecacheResource += OnPrecacheResource;
+```
+
+## Player Movement
+
+### Teleportation
+
+<Tabs>
+    <Tab label="CounterStrikeSharp">
+        ```csharp player.PlayerPawn.Value?.Teleport(position, angles, velocity);
+        ```
+    </Tab>
+    <Tab label="SwiftlyS2">
+        ```csharp player.Teleport(position, angles, velocity); // or with
+        Vector.Zero for no velocity change player.Teleport(position, angles,
+        Vector.Zero); ```
+    </Tab>
+</Tabs>
+
+### Reading Velocity and Position
+
+<Tabs>
+    <Tab label="CounterStrikeSharp">
+        ```csharp var velocity = player.PlayerPawn.Value?.AbsVelocity; var
+        position = player.PlayerPawn.Value?.AbsOrigin; var angles =
+        player.PlayerPawn.Value?.EyeAngles; ```
+    </Tab>
+    <Tab label="SwiftlyS2">
+        ```csharp var pawn = player.PlayerPawn; var velocity =
+        pawn?.AbsVelocity; var position =
+        pawn?.CBodyComponent?.SceneNode?.AbsOrigin; var angles =
+        pawn?.EyeAngles; ```
+    </Tab>
+</Tabs>
+
+## GameData & Function Hooking
+
+SwiftlyS2 provides a powerful system for working with game signatures, offsets, and function hooking. GameData files are stored in each plugin's own `resources/gamedata/` folder, allowing each plugin to manage its own signatures and offsets independently - unlike CounterStrikeSharp, which relies on a single shared `gamedata.json`.
+
+<Callout type="info">
+    This is an advanced topic. Most plugins won't need to use function hooking
+    directly.
+</Callout>
+
+### Delegate Definition
+
+In SwiftlyS2, you need to define delegates that match the native function signatures:
+
+<Tabs>
+  <Tab label="CounterStrikeSharp">
+    ```csharp
+    // CSS - no explicit delegate needed, uses DynamicHook
+    // Hook handlers receive DynamicHook for parameter extraction
+    ```
+  </Tab>
+  <Tab label="SwiftlyS2">
+    ```csharp
+    // SwiftlyS2 - define delegate matching the native function signature
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    private delegate nint GiveNamedItemDelegate(nint pItemServices, nint weaponName);
+
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    private delegate void FindMatchingWeaponsDelegate(nint pPawn, nint weaponName, int team, byte searchInventory, nint outVector);
+    ```
+
+  </Tab>
+</Tabs>
+
+### Signature Lookup
+
+<Tabs>
+  <Tab label="CounterStrikeSharp">
+    ```csharp
+    var funcAddress = GameData.GetSignature("CCSPlayer_FindMatchingWeaponsForTeamLoadout");
+    var func = new MemoryFunctionVoid<IntPtr, string, int, bool, IntPtr>(funcAddress);
+    func.Invoke(player.PlayerPawn.Value.Handle, weaponName, (int)team, false, vectorPtr);
+    ```
+  </Tab>
+  <Tab label="SwiftlyS2">
+    ```csharp
+    if (Core.GameData.TryGetSignature("CCSPlayer_FindMatchingWeaponsForTeamLoadout", out var address))
+    {
+        var func = Core.Memory.GetUnmanagedFunctionByAddress<FindMatchingWeaponsDelegate>(address);
+        func.Invoke(pPawn, weaponName, team, searchInventory, outVector);
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### VTable Hooking
+
+<Tabs>
+  <Tab label="CounterStrikeSharp">
+    ```csharp
+    VirtualFunctions.GiveNamedItemFunc.Hook(OnGiveNamedItemPre, HookMode.Pre);
+    VirtualFunctions.GiveNamedItemFunc.Hook(OnGiveNamedItemPost, HookMode.Post);
+    ```
+  </Tab>
+  <Tab label="SwiftlyS2">
+    ```csharp
+    private IUnmanagedFunction<GiveNamedItemDelegate>? _giveNamedItem;
+    private Guid _giveNamedItemHookId;
+
+    // In Load() or initialization
+    if (Core.GameData.TryGetOffset("CCSPlayer_ItemServices::GiveNamedItem", out var offset))
+    {
+        var vtable = Core.Memory.GetVTableAddress("server", "CCSPlayer_ItemServices");
+        if (vtable.HasValue)
+        {
+            _giveNamedItem = Core.Memory.GetUnmanagedFunctionByVTable<GiveNamedItemDelegate>(vtable.Value, (int)offset);
+            _giveNamedItemHookId = _giveNamedItem.AddHook(OnGiveNamedItemHook);
+        }
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Hook Handler Implementation
+
+<Tabs>
+  <Tab label="CounterStrikeSharp">
+    ```csharp
+    // CSS - separate Pre and Post handlers
+    private HookResult OnGiveNamedItemPre(DynamicHook hook)
+    {
+        var itemServices = hook.GetParam<CCSPlayer_ItemServices>(0);
+        string classname = hook.GetParam<string>(1);
+        return HookResult.Continue;
+    }
+
+    private HookResult OnGiveNamedItemPost(DynamicHook hook)
+    {
+        // Post-execution logic
+        return HookResult.Continue;
+    }
+    ```
+
+  </Tab>
+  <Tab label="SwiftlyS2">
+    ```csharp
+    // SwiftlyS2 - single handler with callNext pattern
+    private GiveNamedItemDelegate OnGiveNamedItemHook(Func<GiveNamedItemDelegate> callNext)
+    {
+        return (pItemServices, weaponName) =>
+        {
+            // Pre-hook logic here
+            var classname = Marshal.PtrToStringUTF8(weaponName);
+
+            // Call original function
+            var result = callNext()(pItemServices, weaponName);
+
+            // Post-hook logic here
+
+            return result;
+        };
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Hook Cleanup
+
+<Tabs>
+    <Tab label="CounterStrikeSharp">
+        ```csharp 
+        VirtualFunctions.GiveNamedItemFunc.Unhook(OnGiveNamedItemPre, HookMode.Pre);
+        VirtualFunctions.GiveNamedItemFunc.Unhook(OnGiveNamedItemPost, HookMode.Post);
+        ```
+    </Tab>
+    <Tab label="SwiftlyS2">
+        ```csharp 
+        // SwiftlyS2 - in Unload() 
+        if (_giveNamedItem != null && _giveNamedItemHookId != Guid.Empty)
+            _giveNamedItem.RemoveHook(_giveNamedItemHookId); 
+        ```
+    </Tab>
+</Tabs>
+
+## Migration Tips & Best Practices
+
+### Start Small
+
+Begin by migrating basic functionality first:
+
+1. Plugin structure and metadata
+2. Basic commands and events
+3. Player operations and messaging
+4. Configuration and database connections
+5. Advanced features like menus and function hooking
+
+### Common Migration Patterns
+
+#### Pattern: Update Package References
+
+Always update your `.csproj` file first:
+
+```xml
+<!-- Remove CSS references -->
+<!-- <PackageReference Include="CounterStrikeSharp.API" Version="..." /> -->
+
+<!-- Add SwiftlyS2 reference -->
+<PackageReference Include="SwiftlyS2.CS2" Version="*-*" ExcludeAssets="runtime" PrivateAssets="all" />
+```
+
+#### Pattern: Core Access
+
+Replace global utility classes with Core services:
+
+```csharp
+// Old CSS pattern
+Utilities.GetPlayers().ForEach(player => { });
+
+// New SwiftlyS2 pattern
+Core.PlayerManager.GetAllPlayers().ForEach(player => { });
+```
+
+#### Pattern: Event Registration
+
+Use attributes for cleaner event handling:
+
+```csharp
+// Instead of manual registration in Load()
+// Core.GameEvent.HookPost<EventPlayerDeath>(OnPlayerDeath);
+
+// Use attributes (recommended)
+[GameEventHandler(HookMode.Post)]
+private HookResult OnPlayerDeath(EventPlayerDeath @event) { return HookResult.Continue; }
+```
+
+### Testing Your Migration
+
+1. **Compile First**: Ensure your plugin compiles without errors
+2. **Test Basic Functions**: Verify commands, events, and player operations work
+3. **Check Resources**: Ensure translations and config files are properly located
+4. **Test Hot Reload**: SwiftlyS2 has improved hot reload support
+
+### Getting Help
+
+- **Documentation**: Check the SwiftlyS2 API documentation for detailed reference
+- **Examples**: Look at the plugin template examples in the `examples/` folder
+- **Community**: Join the SwiftlyS2 Discord or forums for community support
+
+<Callout type="success">
+    Migration from CounterStrikeSharp to SwiftlyS2 typically results in cleaner,
+    more maintainable code with better performance and more features.
+</Callout>
+
+
+
+## https://swiftlys2.net/docs/resources/cli-options
+
+---
+title: CLI Options
+---
+
+SwiftlyS2 startup behavior can be configured with command-line options passed when launching the game server.
+
+## Startup Example
+
+```bash
+./game/bin/win64/cs2.exe -dedicated +map de_dust2 \
+	-sw_path addons/swiftlys2 \
+	-sw_logpath addons/swiftlys2/logs \
+	-sw_hide_logs_in_console 1 \
+	-sw_loglevel WARNING
+```
+
+## Options Reference
+
+| Option                     | Example                             | Details                                                                                                        |
+| -------------------------- | ----------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `-sw_path`                 | `-sw_path addons/swiftlys2`         | Relative path from `game/csgo` where SwiftlyS2 is located. Default: `addons/swiftlys2`.                        |
+| `-sw_logpath`              | `-sw_logpath addons/swiftlys2/logs` | Relative path from `game/csgo` where logs are stored. Default: `addons/swiftlys2/logs`.                        |
+| `-sw_hide_logs_in_console` | `-sw_hide_logs_in_console 1`        | Disables plugin logs in console. Accepted values: `1`, `TRUE`, `YES`.                                          |
+| `-sw_loglevel`             | `-sw_loglevel WARNING`              | Minimum log level shown in console. Default: all. Accepted values: `DEBUG`, `INFO`, `WARNING`, `ERROR`, `OFF`. |
+
+## Notes
+
+- `-sw_path` and `-sw_logpath` are relative to the `game/csgo` directory.
+- Use `-sw_hide_logs_in_console` when you want plugin logs to remain in files but not in console output.
+- Use `-sw_loglevel` to reduce console noise while preserving higher-severity logs.
+
+
+
+## https://swiftlys2.net/docs/resources/command-overrides
+
+---
+title: Command Overrides
+---
+
+Command overrides allow you to remap permission checks for existing commands without changing plugin code.
+
+## Config File
+
+Edit the following file:
+
+`addons/swiftlys2/configs/command_overrides.jsonc`
+
+```jsonc
+{
+    "CommandOverrides": {
+        "Permissions": {
+            "sw_abc": "test.permission"
+        }
+    }
+}
+```
+
+## How It Works
+
+- `sw_abc` is the command name.
+- `test.permission` is the new permission that command will require.
+- Add more command-to-permission pairs under `CommandOverrides.Permissions` as needed.
+
+## Notes
+
+- Use exact command names when defining overrides.
+- Overrides only change required permissions; command behavior remains unchanged.
+- Keep this file under source control to make permission policy changes easy to audit.
+
+
+
+## https://swiftlys2.net/docs/resources/console-filter
+
+---
+title: Console Filter
+---
+
+The console filter suppresses known noisy console lines so important logs remain visible.
+
+## Config File
+
+Edit the following file:
+
+`addone/swiftlys2/configs/confilter.jsonc`
+
+This file is a JSONC object where each entry defines one filter rule.
+
+- Key: rule name used to identify the filter.
+- Value: text or pattern to match in console output.
+- When output matches a configured rule, it is filtered out.
+
+## Command Management
+
+Use `sw confilter` with the following subcommands:
+
+| Subcommand | Description                            |
+| ---------- | -------------------------------------- |
+| `enable`   | Enable console filtering.              |
+| `disable`  | Disable console filtering.             |
+| `status`   | Show the status of the console filter. |
+| `reload`   | Reload console filter configuration.   |
+
+## Typical Workflow
+
+1. Update `confilter.jsonc` with the rules you want.
+2. Run `sw confilter reload` to apply configuration changes.
+3. Use `sw confilter status` to confirm filtering is active.
+
+
+
+## https://swiftlys2.net/docs/resources/core-config
+
+---
+title: Core Configuration
+---
+
+Core configuration controls framework-wide behavior such as command parsing, plugin loading, menu input, console filtering, console logging, unlocker toggles, and Steam auth mode.
+
+## Config File
+
+Edit the following file:
+
+`addons/swiftlys2/configs/core.jsonc`
+
+Missing keys are auto-registered with their default value and written back to this file on load.
+
+## Global Settings
+
+| Key                            | Type       | Default | Description                                                                                                |
+| ------------------------------ | ---------- | ------- | ---------------------------------------------------------------------------------------------------------- |
+| `CommandPrefixes`              | `string[]` | `["!"]` | Prefixes recognized for normal command execution.                                                          |
+| `CommandSilentPrefixes`        | `string[]` | `["/"]` | Prefixes recognized for silent command execution.                                                          |
+| `AutoHotReload`                | `boolean`  | `true`  | Enables automatic hot reload behavior.                                                                     |
+| `ProfilerLevel`                | `number`   | `0`     | Profiler verbosity level.                                                                                  |
+| `ConsoleFilter`                | `boolean`  | `true`  | Enables or disables console filtering globally.                                                            |
+| `PatchesToPerform`             | `string[]` | `[]`    | Patch identifiers to perform on startup.                                                                   |
+| `Follow<Game>ServerGuidelines` | `boolean`  | `true`  | Applies server guideline behavior. Key name depends on the current game, e.g. `FollowCS2ServerGuidelines`. |
+| `Language`                     | `string`   | `"en"`  | Default language code used by the server.                                                                  |
+| `UsePlayerLanguage`            | `boolean`  | `true`  | Uses player language when available.                                                                       |
+| `ManualLoadPlugins`            | `boolean`  | `false` | Toggles manual plugin loading mode.                                                                        |
+| `PluginLoadOrder`              | `string[]` | `[]`    | Plugin load order list used by the core loader.                                                            |
+| `DotnetCrashTracerLevel`       | `number`   | `0`     | Crash tracer level. Supported values: `0`, `1`.                                                            |
+| `WindowsFullDump`              | `boolean`  | `false` | Enables full memory dumps on crash (Windows only).                                                         |
+
+## Unlocker Settings
+
+`Unlocker` controls which restricted engine features are exposed.
+
+| Key           | Type      | Default | Description                          |
+| ------------- | --------- | ------- | ------------------------------------ |
+| `Convars`     | `boolean` | `false` | Unlocks restricted convars.          |
+| `ConCommands` | `boolean` | `false` | Unlocks restricted console commands. |
+
+## Console Logger Settings
+
+`ConsoleLogger` controls console output logging and log file rotation.
+
+| Key                             | Type       | Default                           | Description                                                                  |
+| ------------------------------- | ---------- | --------------------------------- | ---------------------------------------------------------------------------- |
+| `Enable`                        | `boolean`  | `true`                            | Enables console logging to file.                                             |
+| `ManagedEnable`                 | `boolean`  | `true`                            | Enables console logging for managed (.NET) output.                           |
+| `WriteIntervalMs`               | `number`   | `2000`                            | Interval, in milliseconds, between log file writes.                          |
+| `Rotation.Enable`               | `boolean`  | `true`                            | Enables log file rotation.                                                   |
+| `Rotation.Mode`                 | `string`   | `"file_count"`                    | Rotation mode. Available: `"file_count"`, `"time_interval"`.                 |
+| `Rotation.AvailableModes`       | `string[]` | `["file_count", "time_interval"]` | Rotation modes recognized by the logger.                                     |
+| `Rotation.MaximumFiles`         | `number`   | `60`                              | Maximum number of rotated log files to keep (`file_count` mode).             |
+| `Rotation.DeleteOlderThanHours` | `number`   | `168`                             | Deletes rotated log files older than this many hours (`time_interval` mode). |
+
+## Menu Settings
+
+`Menu` controls input mode, navigation behavior, and menu sounds.
+
+| Key                   | Type       | Default              | Description                                        |
+| --------------------- | ---------- | -------------------- | -------------------------------------------------- |
+| `AvailableInputModes` | `string[]` | `["button", "wasd"]` | Available menu input modes.                        |
+| `InputMode`           | `string`   | `"button"`           | Active menu input mode.                            |
+| `NavigationPrefix`    | `string`   | `"➤"`                | Prefix shown for the currently selected menu item. |
+| `ItemsPerPage`        | `number`   | `5`                  | Number of menu items shown per page.               |
+
+### Menu Buttons
+
+| Key          | Default   |
+| ------------ | --------- |
+| `Exit`       | `"tab"`   |
+| `Scroll`     | `"shift"` |
+| `ScrollBack` | `"f"`     |
+| `Use`        | `"e"`     |
+
+### Menu Sound
+
+`Menu.Sound` defines the sound played for menu actions.
+
+| Action   | Name                | Volume |
+| -------- | ------------------- | ------ |
+| `Exit`   | `"Vote.Failed"`     | `0.75` |
+| `Scroll` | `"UI.ContractType"` | `0.75` |
+| `Use`    | `"Vote.Cast.Yes"`   | `0.75` |
+
+## SteamAuth Settings
+
+`SteamAuth` controls Steam authentication mode.
+
+| Key              | Type       | Default                  | Description                 |
+| ---------------- | ---------- | ------------------------ | --------------------------- |
+| `AvailableModes` | `string[]` | `["flexible", "strict"]` | Available Steam auth modes. |
+| `Mode`           | `string`   | `"flexible"`             | Active Steam auth mode.     |
+

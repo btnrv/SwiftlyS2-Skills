@@ -1,0 +1,58 @@
+# SwiftlyS2
+
+> SwiftlyS2 is a C# plugin framework for Counter-Strike 2 (Source 2). This file points AI agents and LLMs at the site's docs, API reference, data viewers, and its MCP server for live lookups.
+
+## Docs
+- [Introduction](https://swiftlys2.net/docs)
+- [Installation](https://swiftlys2.net/docs/installation)
+- [Getting Started](https://swiftlys2.net/docs/development/getting-started)
+- [Swiftly Core](https://swiftlys2.net/docs/development/swiftly-core)
+- [Using Attributes](https://swiftlys2.net/docs/development/using-attributes)
+- [Thread Safety](https://swiftlys2.net/docs/development/thread-safety)
+- [Commands](https://swiftlys2.net/docs/development/commands)
+- [Configuration](https://swiftlys2.net/docs/development/configuration)
+- [Translations](https://swiftlys2.net/docs/development/translations)
+- [Entity](https://swiftlys2.net/docs/development/entity)
+- [Entity Key Values](https://swiftlys2.net/docs/development/entitykeyvalues)
+- [Game Events](https://swiftlys2.net/docs/development/game-events)
+- [Core Events](https://swiftlys2.net/docs/development/core-events)
+- [Network Messages](https://swiftlys2.net/docs/development/netmessages)
+- [Menus](https://swiftlys2.net/docs/development/menus)
+- [Convars](https://swiftlys2.net/docs/development/convars)
+- [Native Functions and Hooks](https://swiftlys2.net/docs/development/native-functions-and-hooks)
+- [Scheduler](https://swiftlys2.net/docs/development/scheduler)
+- [Shared API](https://swiftlys2.net/docs/development/shared-api)
+- [Permissions](https://swiftlys2.net/docs/development/permissions)
+- [Profiler](https://swiftlys2.net/docs/development/profiler)
+- [Database](https://swiftlys2.net/docs/development/database)
+- [Sound Events](https://swiftlys2.net/docs/development/soundevents)
+- [Custom HUD](https://swiftlys2.net/docs/development/custom-hud)
+- [Steamworks](https://swiftlys2.net/docs/development/steamworks)
+- [Dependency Injection](https://swiftlys2.net/docs/guides/dependency-injection)
+- [Terminologies](https://swiftlys2.net/docs/guides/terminologies)
+- [Chat & CenterHTML Styling](https://swiftlys2.net/docs/guides/chat-and-html-styling)
+- [Porting from CounterStrikeSharp](https://swiftlys2.net/docs/guides/porting-from-css)
+- [CLI Options](https://swiftlys2.net/docs/resources/cli-options)
+- [Command Overrides](https://swiftlys2.net/docs/resources/command-overrides)
+- [Console Filter](https://swiftlys2.net/docs/resources/console-filter)
+- [Core Configuration](https://swiftlys2.net/docs/resources/core-config)
+
+## API reference
+- [C# API docs](https://swiftlys2.net/api-docs/stable)
+
+## Data viewers
+- [Schema viewer](https://swiftlys2.net/schema-viewer)
+- [Entity viewer](https://swiftlys2.net/entity-viewer)
+- [Protobuf viewer](https://swiftlys2.net/protobuf-viewer)
+- [Game events viewer](https://swiftlys2.net/gameevents-viewer)
+- [ConVars & ConCommands viewer](https://swiftlys2.net/convars-viewer)
+- [Panorama property viewer](https://swiftlys2.net/panorama-viewer)
+
+## AI tools
+- [AI tools overview](https://swiftlys2.net/ai) - how to connect an MCP client
+- MCP server endpoint: `https://swiftlys2.net/api/mcp` (Streamable HTTP) - tools: site_search, schema_lookup, schema_list, schema_search, entity_lookup, entity_list, entity_search, protobuf_lookup, protobuf_list, protobuf_search, gameevent_lookup, gameevent_list, gameevent_search, convar_lookup, convar_list, convar_search, panorama_lookup, panorama_list, panorama_search, apidocs_lookup, apidocs_list, apidocs_search, docs_list, docs_search
+- [Full docs dump](https://swiftlys2.net/llms-full.txt)
+
+## Project
+- [GitHub](https://github.com/swiftly-solution/swiftlys2)
+- [Discord](https://swiftlys2.net/discord)

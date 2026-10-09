@@ -1,0 +1,13 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "swiftlys2-skills",
+  "version": "0.1.0",
+  "description": "Skills for building SwiftlyS2 plugins for Counter-Strike 2.",
+  "author": {
+    "name": "btnrv",
+    "url": "https://github.com/btnrv"
+  },
+  "repository": "https://github.com/btnrv/SwiftlyS2-Skills",
+  "license": "GPL-3.0-only",
+  "keywords": ["swiftlys2", "cs2", "csharp", "skills"]
+}

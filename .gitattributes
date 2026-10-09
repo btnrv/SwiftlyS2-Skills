@@ -1,0 +1,2 @@
+# Preserve upstream snapshots and their recorded SHA-256 checksums.
+skills/sws2-api-mcp/references/llms*.txt -text -whitespace
