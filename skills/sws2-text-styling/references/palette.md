@@ -55,4 +55,4 @@ player.SendChat(prefix + text["command.ready", displayName]);
 
 Use a sanitized `displayName` as described in [localization and escaping](localization.md). Translation interpolation uses numbered .NET format placeholders. Keep literal braces escaped according to that formatting syntax. CenterHTML uses its supported HTML subset; Panorama uses XML panels and Panorama CSS. Their styling syntax belongs in the matching resource.
 
-Sources: `managed/src/SwiftlyS2.Shared/Helper.cs`, `src/api/shared/string.cpp`, `src/server/players/{player,manager}.cpp`, and `managed/src/SwiftlyS2.Core/Modules/Translations/Localizer.cs` at [SwiftlyS2 revision 78b4c89](https://github.com/swiftly-solution/swiftlys2/tree/78b4c89a6e21de7b6a4d9485295b6448f58e26d9); MCP `Helper.ChatColors`, `ITranslationService`, `IPlayer`. These sources distinguish the actual parser from illustrative website color swatches.
+References: [managed chat colors](https://github.com/swiftly-solution/swiftlys2/blob/master/managed/src/SwiftlyS2.Shared/Helper.cs), [native color parsing](https://github.com/swiftly-solution/swiftlys2/blob/master/src/api/shared/string.cpp).

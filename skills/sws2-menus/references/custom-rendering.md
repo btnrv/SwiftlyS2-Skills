@@ -2,9 +2,9 @@
 
 ## Extension boundary
 
-The built-in `MenuAPI` renders center HTML. Its `OnRender`, `ProcessPlayerMenu`, and `BuildMenuHtml` are private, and the class is internal and sealed. The audited `IMenuBuilderAPI`/`IMenuManagerAPI` exposes construction and configuration, with no public renderer replacement callback. Option format events customize text inside that renderer.
+The built-in `MenuAPI` renders center HTML. Its `OnRender`, `ProcessPlayerMenu`, and `BuildMenuHtml` are private, and the class is internal and sealed. `IMenuBuilderAPI`/`IMenuManagerAPI` exposes construction and configuration, with no public renderer replacement callback. Option format events customize text inside that renderer.
 
-The manager accepts `IMenuAPI`, so a plugin can implement that interface with a different surface. A Panorama-backed implementation is structurally feasible: manager open/close calls `ShowForPlayer`/`HideForPlayer`, manager navigation calls selection methods, and manager state stores the interface. This is a source-supported integration design; runtime compatibility needs an end-to-end client check on the target versions.
+The manager accepts `IMenuAPI`, so a plugin can implement that interface with a different surface. For a Panorama implementation, the manager calls `ShowForPlayer`/`HideForPlayer` to open or close it, calls selection methods for navigation, and stores the interface in manager state. Test the adapter from opening through selection and closing with a client on the target versions.
 
 ## Minimal adapter responsibilities
 
@@ -33,6 +33,4 @@ For mouse clicks, subscribe to `Core.Event.OnCustomHudClicked`. Match the owned 
 
 Keep one selection model for mouse and keyboard. Implement only the controls and value types the requested menu needs first. Verify opening, one selection, closing, replacement by another menu, and client asset loading before adding richer interactions. Check whether the required keyboard button states still reach the server while Panorama capture is enabled; source inspection alone does not establish that client interaction.
 
-## Evidence
-
-Audited source at [swiftlys2 78b4c89](https://github.com/swiftly-solution/swiftlys2/tree/78b4c89a6e21de7b6a4d9485295b6448f58e26d9): `managed/src/SwiftlyS2.Core/Modules/Menus/MenuManagerAPI.cs` (`OnClientKeyStateChanged`, `OpenMenuForPlayer`, `CloseMenuForPlayerInternal`), `MenuAPI.cs` (rendering, show/hide, option ownership), `OptionsBase/{MenuOptionBase,SubmenuMenuOption}.cs`; contracts in `managed/src/SwiftlyS2.Shared/Modules/Menus/IMenuAPI.cs`. Stable and beta MCP type lookups confirmed the interface surface. [Custom HUD guide](https://swiftlys2.net/docs/development/custom-hud) documents the separate click event and capture API.
+References: [MenuManagerAPI](https://github.com/swiftly-solution/swiftlys2/blob/master/managed/src/SwiftlyS2.Core/Modules/Menus/MenuManagerAPI.cs), [custom HUD guide](https://swiftlys2.net/docs/development/custom-hud).

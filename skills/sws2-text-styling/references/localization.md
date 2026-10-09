@@ -16,6 +16,4 @@ For chat, HTML encoding does not neutralize bracket tokens. Apply a display-text
 
 For custom HUD dialog variables, pass plain text using the HUD API. Its XML and CSS presentation remain authored resources. Check the target client's parsing rules when adding a new text surface.
 
-## Evidence
-
-Source [SwiftlyS2 78b4c89](https://github.com/swiftly-solution/swiftlys2/tree/78b4c89a6e21de7b6a4d9485295b6448f58e26d9): `managed/src/SwiftlyS2.Core/Modules/Translations/{TranslationFactory,TranslationService,Localizer}.cs`, `managed/src/SwiftlyS2.Shared/Helper.cs`, `src/api/shared/string.cpp`, `src/server/players/{player,manager}.cpp`. These establish translation preprocessing, English fallback, language selection, and native token handling; the escaping policy keeps untrusted text out of those presentation parsers.
+References: [TranslationService](https://github.com/swiftly-solution/swiftlys2/blob/master/managed/src/SwiftlyS2.Core/Modules/Translations/TranslationService.cs), [Localizer](https://github.com/swiftly-solution/swiftlys2/blob/master/managed/src/SwiftlyS2.Core/Modules/Translations/Localizer.cs), [native color parsing](https://github.com/swiftly-solution/swiftlys2/blob/master/src/api/shared/string.cpp).

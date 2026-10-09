@@ -5,7 +5,7 @@ description: Structure SwiftlyS2 plugins with the official template, src/module/
 
 # Plugin architecture
 
-Start with the official `swplugin` template through [sws2-authoring](../sws2-authoring/SKILL.md). Use [sws2-api-mcp](../sws2-api-mcp/SKILL.md) to verify each framework boundary.
+For a new plugin, start with the official `swplugin` template through [sws2-authoring](../sws2-authoring/SKILL.md). Use [sws2-api-mcp](../sws2-api-mcp/SKILL.md) to verify each framework boundary.
 
 Keep the plugin entrypoint in `src/PluginName.cs`. It composes services and owns `Load(bool hotReload)` and `Unload()`. Put feature code in `src/<Module>/<Type>.cs`, with folders created when they gain a responsibility. Keep related state and behavior together; introduce another service when it has a separate owner or dependency.
 
@@ -16,3 +16,5 @@ Give timers, native hooks, subscriptions and asynchronous work an owner with a m
 Store operator settings in the plugin configuration service and package defaults in `resources/templates`. Keep player text in `resources/translations`. Database configuration selects a connection name from `Core.Database`; shared credentials belong to SwiftlyS2's global database configuration.
 
 Read [layout and packaging](references/layout.md) for the directory tree and template outputs. Read [dependency injection](references/dependency-injection.md) when composing services and [configuration, database and shared contracts](references/integration.md) when adding those dependencies.
+
+Read [convars](references/convars.md) when the feature exposes engine console settings, replicates a value to clients or queries a client convar. Keep plugin JSON configuration and engine convars distinct.

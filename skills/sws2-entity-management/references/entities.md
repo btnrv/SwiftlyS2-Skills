@@ -29,6 +29,4 @@ Legacy `SwiftlyS2.Shared.Natives.KeyValues` is a separate unsafe engine struct. 
 
 For schema mutation, inspect the generated setter or `ref` accessor and its change-notification implementation. Apply the field's matching network notification when required. Spawn keys and input/output names come from entity datamaps; schema fields describe memory.
 
-[Entity guide](https://swiftlys2.net/docs/development/entity), [spawn values](https://swiftlys2.net/docs/development/entitykeyvalues); beta API MCP `IEntitySystemService`, `CEntityKeyValues`; entity and schema MCP `CLogicRelay` verified designer name `logic_relay` and boolean spawn key `StartDisabled` mapping to `m_bDisabled`. Source: `managed/src/SwiftlyS2.Shared/Modules/EntitySystem/{IEntitySystem.cs,CEntityKeyValues.cs,CEntityKeyValuesSafeHandle.cs}` and `managed/src/SwiftlyS2.Shared/Natives/Structs/KeyValues.cs`.
-
-Sources checked 2026-10-09. SwiftlyS2 source commit `78b4c89a6e21de7b6a4d9485295b6448f58e26d9`; verify APIs and build-specific data against the deployed runtime before use.
+References: [Entity guide](https://swiftlys2.net/docs/development/entity), [spawn values](https://swiftlys2.net/docs/development/entitykeyvalues).

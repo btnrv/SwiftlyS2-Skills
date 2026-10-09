@@ -62,4 +62,4 @@ For a menu, inspect `IMenuAPI`, `IMenuManagerAPI` and the option type used. For 
 
 Panorama's index covers CSS properties. It does not establish XML panel types, JavaScript functions, asset delivery or a server-to-client bridge. Read the Panorama skill for those parts.
 
-Source: [SwiftlyS2 AI tools](https://swiftlys2.net/ai), with tool signatures checked against the connected server.
+Reference: [SwiftlyS2 AI tools](https://swiftlys2.net/ai).

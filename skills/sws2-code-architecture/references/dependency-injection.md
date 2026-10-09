@@ -41,4 +41,4 @@ Keep plugin-owned service lifetimes explicit. Container-created disposable servi
 
 `AddSwiftly` installs a custom options factory: a configured list or dictionary replaces its code defaults. Configuration registration also depends on `Core.Configuration.BasePathExists`, which initialization establishes. Apply those details when choosing between a packaged template and typed defaults.
 
-Sources: [dependency injection guide](https://swiftlys2.net/docs/guides/dependency-injection), configuration guide in the bundled docs, and `managed/src/SwiftlyS2.Shared/SwiftlyCoreInjection.cs` at [78b4c89](https://github.com/swiftly-solution/swiftlys2/blob/78b4c89a6e21de7b6a4d9485295b6448f58e26d9/managed/src/SwiftlyS2.Shared/SwiftlyCoreInjection.cs).
+References: [Dependency injection guide](https://swiftlys2.net/docs/guides/dependency-injection), [SwiftlyCoreInjection](https://github.com/swiftly-solution/swiftlys2/blob/master/managed/src/SwiftlyS2.Shared/SwiftlyCoreInjection.cs).
