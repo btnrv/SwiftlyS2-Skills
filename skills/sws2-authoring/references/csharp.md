@@ -20,4 +20,4 @@ Measure relevant code with [sws2-performance-profiler](../../sws2-performance-pr
 
 Copy native-backed values into owned data before leaving their valid scope. A `ref`, span or wrapper around engine memory does not become safe because the C# type is convenient. The thread-management skill defines the handoff boundary.
 
-Sources: SwiftlyS2 documentation sections `development/thread-safety`, `development/core-events`, `development/profiler`, `guides/dependency-injection`; C# naming and layout here are authoring conventions, not engine requirements.
+References: [Thread safety](https://swiftlys2.net/docs/development/thread-safety), [core events](https://swiftlys2.net/docs/development/core-events), [profiler](https://swiftlys2.net/docs/development/profiler), [dependency injection](https://swiftlys2.net/docs/guides/dependency-injection).

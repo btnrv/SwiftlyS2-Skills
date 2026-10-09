@@ -41,7 +41,7 @@ The `Menu` object in SwiftlyS2 `configs/core.jsonc` controls `InputMode`, `Butto
 
 Builder overrides are `SetSelectButton`, `SetMoveForwardButton`, `SetMoveBackwardButton`, and `SetExitButton`. `KeyBind` is a flags enum, so `KeyBind.E | KeyBind.Mouse1` accepts either key. `AddExtraButton(key, label, action)` adds an action and footer label. Keep bindings distinct: standard input uses an ordered branch chain, and extra actions are processed afterward.
 
-Recognized config button names at the audited revision: `mouse1`, `mouse2`, `space`, `ctrl`, `w`, `a`, `s`, `d`, `e`, `esc`, `r`, `alt`, `shift`, `weapon1`, `weapon2`, `grenade1`, `grenade2`, `tab`, `f`. These represent framework input flags; verify the player's actual game binds when testing.
+Recognized config button names: `mouse1`, `mouse2`, `space`, `ctrl`, `w`, `a`, `s`, `d`, `e`, `esc`, `r`, `alt`, `shift`, `weapon1`, `weapon2`, `grenade1`, `grenade2`, `tab`, `f`. These represent framework input flags; verify the player's actual game binds when testing.
 
 `MaxVisibleItems` accepts 1 through 5; unset/default `-1` uses core `ItemsPerPage`. The setter logs out-of-range assignments and stores `-1`. Current rendering can add a row for each hidden title/footer with `AutoIncreaseVisibleItems`, up to seven; check source when exact row count matters. `MenuOptionScrollStyle` provides `LinearScroll`, `CenterFixed`, and `WaitingCenter`.
 
@@ -58,8 +58,4 @@ In the built-in keyboard path, `OptionHovered`, `OptionSelected` and extra-butto
 
 The manager closes its menus on disconnect and map unload. Plugin cleanup should close its own menus and dispose owned menu instances; reserve `CloseAllMenus` for intentionally global operations.
 
-## Evidence
-
-Audited 2026-10-09: [menu guide](https://swiftlys2.net/docs/development/menus), MCP `apidocs_lookup` for stable and beta `IMenuAPI`, `IMenuManagerAPI`, `IMenuOption`. Member filters may require full method names; inspecting the whole type exposes signatures reliably.
-
-Source: [swiftlys2 commit 78b4c89](https://github.com/swiftly-solution/swiftlys2/tree/78b4c89a6e21de7b6a4d9485295b6448f58e26d9), `managed/src/SwiftlyS2.Shared/Modules/Menus/{IMenuAPI,IMenuOption,IMenuBuilderAPI,KeyBind}.cs`, `managed/src/SwiftlyS2.Core/Modules/Menus/{MenuAPI,MenuManagerAPI}.cs`, `plugin_files/configs/core.example.jsonc`, `src/server/configuration/configuration.cpp`. This master snapshot is an implementation audit, not a guarantee for every released package; compare the matching tag when implementing.
+Reference: [Menu guide](https://swiftlys2.net/docs/development/menus).

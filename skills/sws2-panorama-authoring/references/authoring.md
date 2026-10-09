@@ -40,7 +40,7 @@ The anonymous outer panel accommodates the loader's root identity. Put updateabl
 
 ## Validator subset
 
-Source2Toolkit and Wend4r report these accepted elements for recent CS2 builds:
+The custom HUD validator accepts these elements and attributes:
 
 | Category | Accepted |
 |---|---|
@@ -56,7 +56,7 @@ Check the client console when loading fails. `Failed to load layout` points to t
 
 ## Styling decisions
 
-Discover the CS2 property index through `panorama_list`, then look up exact names. A property name alone establishes its presence, not its syntax. The audited index contains 140 properties; several entries have empty or placeholder descriptions.
+Discover the CS2 property index through `panorama_list`, then look up exact names. A property name alone does not establish its syntax. Some entries have empty or placeholder descriptions; use the authoring references below for those values.
 
 | Need | Panorama choice |
 |---|---|
@@ -72,12 +72,8 @@ Use authored class variants for computed states and custom disabled/selected app
 
 ## Delivery and verification
 
-The client needs the compiled resources in a mounted addon. Publishing an addon and arranging its download are separate from server-side entity creation. Source2Toolkit reports Workshop addon loading since the 2026-08-24 CS2 update; an additional addon needs MultiAddonManager or equivalent delivery, while the engine handles the map's addon. Follow the deployment's existing addon mechanism and authorization.
+The client needs the compiled resources in a mounted addon. Publishing an addon and arranging its download are separate from server-side entity creation. An additional addon needs MultiAddonManager or equivalent delivery, while the engine handles the map's addon. Follow the deployment's existing addon mechanism and authorization.
 
 Verify with a client that has the addon mounted: layout appears for the intended player, dialog text changes, visibility classes work, and a captured button reaches the server. Restart the game when testing republished assets: layout caching lasts for the client session. Verify before capturing input: a missing client layout can leave a cursor without a usable interface.
 
-## Evidence
-
-Audited 2026-10-09: [Source2Toolkit authoring](https://www.source2toolkit.net/docs/panorama/authoring) (tested August/September 2026 CS2 behavior; its C++ helper calls belong to Source2Toolkit), [Wend4r custom HUD skill](https://github.com/Wend4r/s2r-skills/blob/c2895ab99202346fa312d1dea7ae9c0635e9dfa7/custom-hud-layout/SKILL.md) (layout and engine behavior; its server JavaScript examples belong to another API).
-
-SwiftlyS2 MCP: `panorama_list(game="cs2")`; exact `panorama_lookup` for `flow-children`, `visibility`, `horizontal-align`, `vertical-align`, `background-color`, `width`, `box-shadow`, `text-overflow`. Width, visibility, and shadow include concrete syntax. Flow/alignment/color entries have placeholder descriptions; the sample values above are supported by the authoring sources. Requery properties as they are used.
+References: [Source2Toolkit authoring](https://www.source2toolkit.net/docs/panorama/authoring), [Wend4r custom HUD layouts](https://github.com/Wend4r/s2r-skills/blob/main/custom-hud-layout/SKILL.md). Their helper APIs belong to those frameworks; use [SwiftlyS2 integration](integration.md) for server calls.

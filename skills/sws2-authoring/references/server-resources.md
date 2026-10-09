@@ -11,7 +11,7 @@ Paths below are relative to `game/csgo` with the default SwiftlyS2 root. Read th
 | `-sw_hide_logs_in_console 1` | Hides plugin console logs; accepts `1`, `TRUE`, `YES` case-insensitively. File logging remains available. |
 | `-sw_loglevel WARNING` | Console minimum: `DEBUG`, `INFO`, `WARNING`, `ERROR`, `OFF`. |
 
-These are server launch arguments. The resource page describes the default log level as all; the checked managed logger defaults to Information. Verify the deployed logger when debugging missing messages. Console visibility, filtering, and file logging have separate settings.
+These are server launch arguments. The managed logger defaults to Information. Console visibility, filtering, and file logging have separate settings.
 
 The launcher forwards `-sw_loglevel` and `-sw_hide_logs_in_console` through `SWIFTLY_LOG_LEVEL` and `SWIFTLY_HIDE_LOG_IN_CONSOLE`, which the managed logger reads.
 
@@ -32,7 +32,7 @@ The launcher forwards `-sw_loglevel` and `-sw_hide_logs_in_console` through `SWI
 
 Use lowercase keys for the invoked command name. For a normal `[Command("example")]`, chat `!example` or `/example` uses the key `example`, while the player's console command `sw_example` uses `sw_example`. Configure both forms to apply the same override to both routes, and include the corresponding forms of each alias. The dispatcher records `originalCommandName` before adding its automatic `sw_` prefix. Server-console invocation bypasses this player permission check.
 
-The file provider has `reloadOnChange: true` in the checked source. An empty permission value removes that managed permission requirement, so set it only when public access is intended. Overrides change the framework permission check; handler-specific checks and console-only guards still apply. Verify the intended player access through both chat and client-console routes after a policy edit.
+The file provider uses `reloadOnChange: true`. An empty permission value removes that managed permission requirement, so set it only when public access is intended. Overrides change the framework permission check; handler-specific checks and console-only guards still apply. Verify the intended player access through both chat and client-console routes after a policy edit.
 
 ## Console filter
 
@@ -48,21 +48,21 @@ Escape regex metacharacters when matching literal text, and account for JSON str
 
 ## Core configuration
 
-`addons/swiftlys2/configs/core.jsonc` stores the following keys at the JSON root; nested paths below represent nested objects. Missing keys are written with defaults when native configuration loads. Use a server restart for launch/core changes unless the specific subsystem exposes a verified reload route.
+`addons/swiftlys2/configs/core.jsonc` stores the following keys at the JSON root; nested paths below represent nested objects. Missing keys are written with defaults when native configuration loads. Use a server restart for launch/core changes unless the specific subsystem exposes a reload route.
 
 | Settings | Default and practical use |
 | --- | --- |
 | `CommandPrefixes`, `CommandSilentPrefixes` | `["!"]`, `["/"]`: recognized normal and silent chat prefixes. |
 | `AutoHotReload` | `true`: watches plugin DLL changes. |
-| `ManualLoadPlugins`, `PluginLoadOrder` | `false`, `[]`: the checked loader automatically enumerates plugins when manual mode is false. With manual mode true it initially lists plugins as unloaded, then loads the configured plugin IDs or folder names in order. |
+| `ManualLoadPlugins`, `PluginLoadOrder` | `false`, `[]`: the loader automatically enumerates plugins when manual mode is false. With manual mode true it initially lists plugins as unloaded, then loads the configured plugin IDs or folder names in order. |
 | `Language`, `UsePlayerLanguage` | `"en"`, `true`: server default language and use of available player language. |
-| `ProfilerLevel` | `0` disabled, `1` EventPipe in checked source. See the [profiler skill](../../sws2-performance-profiler/SKILL.md) for bounded capture and saving. |
+| `ProfilerLevel` | `0` disabled, `1` EventPipe. See the [profiler skill](../../sws2-performance-profiler/SKILL.md) for bounded capture and saving. |
 | `ConsoleFilter` | `true`: initial console-filter enable state. |
-| `PatchesToPerform` | `[]`: startup patch identifiers; choose verified patches for the target build. |
+| `PatchesToPerform` | `[]`: startup patch identifiers; choose supported patches for the target build. |
 | `FollowCS2ServerGuidelines` | `true`: CS2 server-guideline behavior; the game-specific key follows the current game name. |
 | `Unlocker.Convars`, `Unlocker.ConCommands` | `false`, `false`: expose restricted engine variables or commands when required. |
 | `DotnetCrashTracerLevel`, `WindowsFullDump` | `0`, `false`: crash tracer level (0/1) and Windows full memory dumps. |
-| `SteamAuth.Mode`, `SteamAuth.AvailableModes` | `"flexible"`, `["flexible", "strict"]`: auth policy. In checked player source, an unauthorized player may expose an unverified ID in flexible mode; strict mode returns 0 until authorized. Use authorization state when verified identity is required. |
+| `SteamAuth.Mode`, `SteamAuth.AvailableModes` | `"flexible"`, `["flexible", "strict"]`: auth policy. An unauthorized player may expose an unauthenticated ID in flexible mode; strict mode returns 0 until authorized. Use authorization state for account-backed features. |
 
 `AutoHotReload` controls the watcher independently of manual startup loading. For controlled plugin replacement, verify the current watcher behavior and use the explicit plugin commands.
 
@@ -72,7 +72,7 @@ Escape regex metacharacters when matching literal text, and account for JSON str
 
 ## Core operator commands
 
-These routes use the server console and are guarded against player execution in the checked source:
+These routes use the server console and reject player execution:
 
 | Command | Use |
 | --- | --- |
@@ -83,8 +83,6 @@ These routes use the server console and are guarded against player execution in 
 | `sw translations reload` | Regenerate/reload plugin translations. |
 | `sw cmds [page]` | Inspect registered command names and declared permissions. |
 
-Use the plugin assembly/folder name for `<dllName>`; the checked resolver accepts a trailing `.dll` case-insensitively. `PluginLoadOrder` accepts plugin metadata IDs or folder names. Confirm status afterward. `sw cmds` lists declared permissions; verify the effective permission override separately.
+Use the plugin assembly/folder name for `<dllName>`; the resolver accepts a trailing `.dll` case-insensitively. `PluginLoadOrder` accepts plugin metadata IDs or folder names. Confirm status afterward. `sw cmds` lists declared permissions; verify the effective permission override separately.
 
-## Evidence
-
-Checked 2026-10-09 against MCP docs discovery and the full content of [CLI options](https://swiftlys2.net/docs/resources/cli-options), [command overrides](https://swiftlys2.net/docs/resources/command-overrides), [console filter](https://swiftlys2.net/docs/resources/console-filter), and [core configuration](https://swiftlys2.net/docs/resources/core-config). Source commit `78b4c89a6e21de7b6a4d9485295b6448f58e26d9`: `src/core/entrypoint.cpp`, `src/server/configuration/configuration.cpp`, `src/server/players/player.cpp`, `src/engine/consoleoutput/consoleoutput.cpp`, and `managed/src/SwiftlyS2.Core/{Bootstrap.cs,Misc/SwiftlyLogger.cs,Services/CoreCommandService.cs,Modules/Commands/CommandCallback.cs,Modules/Plugins/PluginManager.cs}`. Source resolves the filter-path typo, log-level default, console guard, reload behavior, and plugin-loading semantics.
+References: [CLI options](https://swiftlys2.net/docs/resources/cli-options), [command overrides](https://swiftlys2.net/docs/resources/command-overrides), [console filter](https://swiftlys2.net/docs/resources/console-filter), [core configuration](https://swiftlys2.net/docs/resources/core-config).

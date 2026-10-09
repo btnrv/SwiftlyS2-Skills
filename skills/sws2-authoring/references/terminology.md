@@ -20,4 +20,4 @@ The guide illustrates controllers at indices 1 through 64 and other entities abo
 
 For aiming, distinguish the living pawn's eyes, an observer pawn's state, an observed target's eyes and the rendered client camera. Use [sws2-traceray](../../sws2-traceray/SKILL.md) to select the view that the feature promises.
 
-Sources: [terminologies guide](https://swiftlys2.net/docs/guides/terminologies); `managed/src/SwiftlyS2.Core/Modules/Players/Player.cs` (`PlayerID => Slot`) and `managed/src/SwiftlyS2.Shared/Natives/Structs/CHandle.cs` at [78b4c89](https://github.com/swiftly-solution/swiftlys2/tree/78b4c89a6e21de7b6a4d9485295b6448f58e26d9). The handle definition follows the implementation's index-and-serial representation.
+Reference: [Terminologies guide](https://swiftlys2.net/docs/guides/terminologies).

@@ -28,11 +28,11 @@ Plugin installs include the MCP configuration. Start a new session after install
 | Skill | Use |
 | --- | --- |
 | [sws2-api-mcp](skills/sws2-api-mcp/SKILL.md) | Verify documentation, APIs and game data |
-| [sws2-authoring](skills/sws2-authoring/SKILL.md) | Scaffold, build and deliver plugins |
-| [sws2-code-architecture](skills/sws2-code-architecture/SKILL.md) | Modules, configuration and shared contracts |
+| [sws2-authoring](skills/sws2-authoring/SKILL.md) | Scaffold, extend and port plugins; commands, events, player state, network messages and Steamworks |
+| [sws2-code-architecture](skills/sws2-code-architecture/SKILL.md) | Modules, configuration, convars and shared contracts |
 | [sws2-text-styling](skills/sws2-text-styling/SKILL.md) | Translations, chat colors and CenterHTML |
 | [sws2-entity-management](skills/sws2-entity-management/SKILL.md) | Entity creation and lifetime |
-| [sws2-game-assets](skills/sws2-game-assets/SKILL.md) | Compile, deliver and precache assets |
+| [sws2-game-assets](skills/sws2-game-assets/SKILL.md) | Compile, deliver and precache assets; emit sound events |
 | [sws2-thread-management](skills/sws2-thread-management/SKILL.md) | Game-thread work and async handoffs |
 | [sws2-performance-profiler](skills/sws2-performance-profiler/SKILL.md) | Capture and diagnose performance |
 | [sws2-menus](skills/sws2-menus/SKILL.md) | Player menus and custom renderers |
@@ -45,4 +45,4 @@ Start with `sws2-authoring` for a new plugin. Use live MCP declarations for the 
 
 ## License
 
-[GPL-3.0-only](LICENSE). Bundled SwiftlyS2 documentation is credited in [snapshot provenance](skills/sws2-api-mcp/references/snapshots.md).
+[GPL-3.0-only](LICENSE).

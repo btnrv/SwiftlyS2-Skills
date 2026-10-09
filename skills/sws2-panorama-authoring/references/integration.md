@@ -40,8 +40,4 @@ Track the HUD entity and subscriptions as plugin-owned resources. Create map-sco
 
 For menu manager coexistence, implement the `IMenuAPI` adapter described in [custom rendering](../../sws2-menus/references/custom-rendering.md). The manager can own open/close and selection; the adapter supplies Panorama state updates and bridges clicks. Scope compatibility to the controls implemented and verify the whole route in game.
 
-## Evidence
-
-Audited 2026-10-09: [SwiftlyS2 custom HUD guide](https://swiftlys2.net/docs/development/custom-hud); beta MCP `apidocs_lookup("IOnCustomHudClickedEvent")` confirmed the three event properties.
-
-Source at [swiftlys2 78b4c89](https://github.com/swiftly-solution/swiftlys2/tree/78b4c89a6e21de7b6a4d9485295b6448f58e26d9): `managed/src/SwiftlyS2.Core/Modules/Schemas/Extensions/{CCSCustomHudLayout,CCSCustomHudLayoutImpl}.cs` confirms signatures, enum class state and async scheduling; `managed/src/SwiftlyS2.Shared/Modules/Events/EventParams/IOnCustomHudClickedEvent.cs` confirms click fields. The snapshot is master; check the matching release before copying calls.
+Reference: [SwiftlyS2 custom HUD guide](https://swiftlys2.net/docs/development/custom-hud).
