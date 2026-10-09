@@ -1,8 +1,15 @@
 # SwiftlyS2 skills
 
-13 agent skills for SwiftlyS2 plugin development. Uses the [Agent Plugins](https://agent-plugins.org/specification) and [Agent Skills](https://agentskills.io/specification) formats, with Claude Code compatibility.
+13 agent skills for SwiftlyS2 plugin development. Uses the [Agent Plugins](https://agent-plugins.org/specification) and [Agent Skills](https://agentskills.io/specification) formats.
 
 ## Install
+
+Claude Code:
+
+```text
+/plugin marketplace add btnrv/SwiftlyS2-Skills
+/plugin install swiftlys2-skills@swiftlys2-skills
+```
 
 Codex:
 
@@ -11,13 +18,6 @@ codex plugin marketplace add btnrv/SwiftlyS2-Skills
 ```
 
 Open the Plugins Directory, select SwiftlyS2 skills, and install `swiftlys2-skills`.
-
-Claude Code:
-
-```text
-/plugin marketplace add btnrv/SwiftlyS2-Skills
-/plugin install swiftlys2-skills@swiftlys2-skills
-```
 
 Other agents: copy the folders inside `skills/` into your agent's skills directory. Keep all folders together so cross-skill links work. Add `https://swiftlys2.net/api/mcp` as a Streamable HTTP MCP server.
 
