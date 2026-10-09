@@ -1,8 +1,8 @@
 # Port an existing plugin
 
-Use the old plugin to establish required behavior: commands and access, settings and saved data, player-visible feedback, lifecycle and integration with other plugins. Preserve the operator's current file structure and working rules. Adopt the official template's required build and resource settings without reorganizing unrelated code.
+Use the old plugin to identify the behavior to preserve: commands and access, settings and saved data, player-visible feedback, lifecycle and integration with other plugins. Apply the official template's required build and resource settings.
 
-Choose one complete route, such as an authorized command changing a player's state and reporting the result. Capture its intended behavior in the available test setup or a reproducible server scenario, then port and validate that route. Repeat for the next feature. Keep compatibility required by active callers or persisted data in scope; add adapters only when that requirement is established.
+Port one feature at a time, such as an authorized command that changes a player's state and reports the result. Capture its behavior in a test or a reproducible server scenario, then port it and run the test or scenario. Add compatibility adapters where active callers or persisted data require them.
 
 ## Resolve each framework boundary
 
@@ -18,10 +18,10 @@ Choose one complete route, such as an authorized command changing a player's sta
 | User messages and raw protobuf access | [Network messages](netmessages.md); verify generated type, recipients and borrowed lifetime |
 | Timers and deferred callbacks | [Thread management](../../sws2-thread-management/SKILL.md); migrate dispatch and cancellation semantics |
 | Configuration, database and cross-plugin capabilities | [Integration](../../sws2-code-architecture/references/integration.md); preserve settings/data contracts and use the framework services |
-| Menus, translations and custom content | Existing [menu](../../sws2-menus/SKILL.md), [text](../../sws2-text-styling/SKILL.md) and [asset](../../sws2-game-assets/SKILL.md) owners |
+| Menus, translations and custom content | [Menu](../../sws2-menus/SKILL.md), [text](../../sws2-text-styling/SKILL.md) and [asset](../../sws2-game-assets/SKILL.md) skills |
 
-Search for the current declaration through [sws2-api-mcp](../../sws2-api-mcp/SKILL.md) before translating a call. Similar names do not prove matching cancellation, threading, ownership or identifier semantics. Port signatures and gamedata for the supported binaries; existing byte patterns are evidence only for their original build.
+Read the current declaration through [sws2-api-mcp](../../sws2-api-mcp/SKILL.md) before translating a call. Methods with similar names can differ in cancellation, threading, ownership or identifier semantics. When porting signatures and gamedata, check existing byte patterns against the supported binaries.
 
-Build and inspect the published archive, then compare the required behavior on the intended server. Exercise the lifecycle the feature uses, including hot reload when supported. Report any remaining behavior differences and checks that could not run. Remove superseded registrations and paths as each route is replaced so one action has one owner.
+Build and inspect the published archive, then compare behavior on the intended server. Test the lifecycle events the feature uses, including hot reload when supported. Report any remaining behavior differences and checks that could not run. Remove old registrations and code as each feature is ported so each action has one owner.
 
-Reference: [CounterStrikeSharp porting guide](https://swiftlys2.net/docs/guides/porting-from-css). Preserve this skillset's constructor injection convention when adapting the guide's static `Core` example.
+Reference: [CounterStrikeSharp porting guide](https://swiftlys2.net/docs/guides/porting-from-css). Use constructor injection when adapting the guide's static `Core` example.

@@ -1,8 +1,8 @@
 # Emit sound events
 
-Use `SwiftlyS2.Shared.Sounds.SoundEvent` for a named game sound event. Asset compilation, mounting, delivery and precaching stay in [resource formats and precache](assets.md). An event name such as `Weapon_AK47.Single` identifies a sound event, not a raw audio filename; verify names and custom parameters in the target game's resources.
+Use `SwiftlyS2.Shared.Sounds.SoundEvent` for a named game sound event. For asset compilation, mounting, delivery and precaching, see [resource formats and precache](assets.md). An event name such as `Weapon_AK47.Single` identifies a sound event, not a raw audio filename. Check names and custom parameters in the target game's resources.
 
-This fragment runs on the game thread and assumes `player` is the current intended recipient:
+Run this on the game thread, with `player` as the current intended recipient:
 
 ```csharp
 using SwiftlyS2.Shared.Sounds;
@@ -17,6 +17,6 @@ The default recipient filter is empty. Add individual slots for targeted feedbac
 
 `SoundEvent` owns a native message after emission and implements `IDisposable`. Keep it in a `using` scope. `Emit()` requires the game thread; `EmitAsync()` schedules emission and must be awaited before leaving that scope. Resolve any source entity and current recipients on the game thread according to [thread management](../../sws2-thread-management/SKILL.md). Disposal releases the message allocation; it does not imply that an already playing sound stops.
 
-Validate that the selected clients hear the event at the expected location and volume with the actual mounted content. A successful send or returned GUID does not prove the client has the sound assets.
+With the content mounted, check that the selected clients hear the event at the expected location and volume. A successful send or returned GUID does not prove the client has the sound assets.
 
 Reference: [Sound events guide](https://swiftlys2.net/docs/development/soundevents).

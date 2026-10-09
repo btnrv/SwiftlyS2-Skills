@@ -4,9 +4,9 @@ Use `Core.NetMessage` with the generated interfaces under `SwiftlyS2.Shared.Prot
 
 ## Sending and ownership
 
-`Send<T>(configureMessage)` constructs a message, configures it and sends using its recipient filter. Set recipients inside the callback, such as `message.Recipients.AddAllPlayers()` or `AddRecipient(playerId)`, and keep the callback's wrapper local.
+`Send<T>(configureMessage)` constructs and sends a message using the recipient filter set in the callback. Set recipients with `message.Recipients.AddAllPlayers()` or `AddRecipient(playerId)`, and keep the callback's wrapper local.
 
-`Create<T>()` returns an owned, disposable message. Use it when you need explicit lifetime control or several sends from one configured message. `Send()` uses its recipient filter; `SendToPlayer(playerId)` replaces that filter with one slot; `SendToAllPlayers()` selects all players. Keep allocation, mutation, send and disposal in one synchronous game-thread operation:
+`Create<T>()` returns an owned, disposable message for explicit lifetime control or repeated sends from one configuration. `Send()` uses its recipient filter; `SendToPlayer(playerId)` replaces that filter with one slot; `SendToAllPlayers()` selects all players. Keep allocation, mutation, send and disposal in one synchronous game-thread operation:
 
 ```csharp
 using SwiftlyS2.Shared;
@@ -26,7 +26,7 @@ public sealed class ShakeMessages(ISwiftlyCore core)
 }
 ```
 
-`Send()` queues work when called off-thread. Disposing an owned message immediately after such a queued send can precede its execution. Dispatch the whole operation above using [sws2-thread-management](../../sws2-thread-management/SKILL.md). Use `Create<T>()` with `using` when deterministic release is needed.
+`Send()` queues work when called off-thread. Disposing the message immediately afterward can release it before the send runs. Dispatch the whole operation using [sws2-thread-management](../../sws2-thread-management/SKILL.md). Use `Create<T>()` with `using` when deterministic release is needed.
 
 ## Hook direction and removal
 
@@ -36,7 +36,7 @@ public sealed class ShakeMessages(ISwiftlyCore core)
 | Server to clients | `HookServerMessage<T>` / `[ServerNetMessageHandler]` | `HookResult Handler(T message)` |
 | Internal server to one client | `HookServerMessageInternal<T>` / `[ServerNetMessageInternalHandler]` | `HookResult Handler(T message, int playerId)` |
 
-Only a subset of outbound messages uses the internal pipeline; choose it after verifying the message's actual route. Return `Continue` to allow delivery or `Stop` to block that pipeline. This controls message delivery, without reversing the gameplay that caused the message. A regular server hook exposes the recipient filter and writes its changes back to the outgoing recipient mask.
+Only some outbound messages use the internal pipeline. Check the message's route before choosing a hook. Return `Continue` to allow delivery or `Stop` to block that pipeline. Blocking delivery does not reverse the gameplay that caused the message. A regular server hook exposes the recipient filter and writes its changes back to the outgoing recipient mask.
 
 Each programmatic hook returns a `Guid`; keep it with the owning service and call `Core.NetMessage.Unhook(id)` when that registration ends. The type-wide unhook methods remove all matching hooks in that plugin's service. Attribute discovery and dynamic service lifetimes follow [events and registration ownership](events-hooks.md).
 

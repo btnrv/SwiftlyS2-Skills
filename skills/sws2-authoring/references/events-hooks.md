@@ -1,7 +1,5 @@
 # Events, hooks and registration ownership
 
-Choose the callback that represents the required behavior before writing its handler:
-
 | Required behavior | Entry point |
 | --- | --- |
 | Player connection, map, entity or engine-loop lifecycle | `Core.Event` and the matching `IEventSubscriber` event |
@@ -13,7 +11,7 @@ Some legacy game events no longer fire in current CS2 builds. Check for an equiv
 
 ## Fixed and dynamic handlers
 
-Keep handlers in the existing `src/<Module>/<Type>.cs` structure. The plugin entrypoint is registered for attribute discovery automatically. Register a DI-created service instance once with `Core.Registrator.Register(instance)` when that service contains fixed attribute handlers. Registering the same instance again duplicates callbacks. The public registrator exposes `Register`, without an object-level `Unregister` counterpart.
+Handlers belong in `src/<Module>/<Type>.cs`. The framework discovers attributes on the plugin entrypoint automatically. Register a service instance created through dependency injection once with `Core.Registrator.Register(instance)` when it contains fixed attribute handlers. Registering the same instance again duplicates callbacks. The public registrator exposes `Register` but has no object-level `Unregister` counterpart.
 
 | Surface | Fixed handler attribute | Registration owned by a service that can stop early |
 | --- | --- | --- |
@@ -21,15 +19,15 @@ Keep handlers in the existing `src/<Module>/<Type>.cs` structure. The plugin ent
 | Game event | `[GameEventHandler(HookMode.Pre)]` or `Post`; returns `HookResult` | `HookPre<T>(handler)` / `HookPost<T>(handler)` return a `Guid`; retain it and call `Core.GameEvent.Unhook(id)` |
 | Typed game hook | `[GameHookHandler(HookMode.Pre)]` or `Post`; signature follows the selected context | Subscribe to the hook's `Pre` or `Post` event with `+=`, then remove the same handler with `-=` |
 
-Choose either attribute discovery or programmatic registration for a given subscription. The framework clears plugin listeners on unload; a service that stops earlier owns its explicit removal. Preserve the delegate when using a lambda. Type-wide game-event unhook methods remove all matching registrations in that plugin service, so use the returned ID when removing just one owner's callback.
+Use either attribute discovery or programmatic registration for each subscription. The framework clears plugin listeners on unload; a service that stops earlier must remove its listeners itself. Preserve the delegate when using a lambda. Type-wide game-event unhook methods remove all matching registrations in that plugin service, so use the returned ID to remove one owner's callback.
 
 ## Phase and cancellation
 
-A game-event pre-hook runs before that **event is dispatched**. Returning `HookResult.Stop` blocks the event; it does not undo the gameplay operation that produced it. Use the relevant game hook when the requirement is to prevent damage, item acquisition or another engine operation. A post-hook observes the event after dispatch; return `Continue` for ordinary observation.
+A game-event pre-hook runs before the event is dispatched. Returning `HookResult.Stop` blocks the event; it does not undo the gameplay operation that produced it. Use the relevant game hook to prevent damage, item acquisition or another engine operation. A post-hook observes the event after dispatch; return `Continue` for ordinary observation.
 
 Typed game hooks use `void` handlers taking their context by `ref`, such as `void OnDamagePre(ref TakeDamageEntityPreContext ctx)`. Set the result through `ctx.SetHookResult(...)`. For the damage hook, `Stop` or `CancelOriginal` in `Pre` prevents the native damage call and its `Post` callback. Post runs after the original call and cannot cancel that completed operation. Inspect the selected hook before relying on parameter mutation, a replacement return value or later-listener suppression; these are operation-specific contracts.
 
-Core events have their own contracts: some expose a mutable `Result`, while ordinary lifecycle notifications do not. Match the event interface instead of assuming every callback accepts or returns `HookResult`.
+Some core events expose a mutable `Result`; ordinary lifecycle notifications do not. The event interface determines whether a callback accepts or returns `HookResult`.
 
 ## Payload lifetime and firing
 

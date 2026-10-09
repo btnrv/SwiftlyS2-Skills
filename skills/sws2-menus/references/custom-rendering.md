@@ -4,7 +4,7 @@
 
 The built-in `MenuAPI` renders center HTML. Its `OnRender`, `ProcessPlayerMenu`, and `BuildMenuHtml` are private, and the class is internal and sealed. `IMenuBuilderAPI`/`IMenuManagerAPI` exposes construction and configuration, with no public renderer replacement callback. Option format events customize text inside that renderer.
 
-The manager accepts `IMenuAPI`, so a plugin can implement that interface with a different surface. A Panorama-backed implementation is structurally feasible: manager open/close calls `ShowForPlayer`/`HideForPlayer`, manager navigation calls selection methods, and manager state stores the interface. Test the adapter from opening through selection and closing with a client on the target versions.
+The manager accepts `IMenuAPI`, so a plugin can implement that interface with a different surface. For a Panorama implementation, the manager calls `ShowForPlayer`/`HideForPlayer` to open or close it, calls selection methods for navigation, and stores the interface in manager state. Test the adapter from opening through selection and closing with a client on the target versions.
 
 ## Minimal adapter responsibilities
 

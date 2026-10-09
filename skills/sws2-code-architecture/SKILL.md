@@ -5,7 +5,7 @@ description: Structure SwiftlyS2 plugins with the official template, src/module/
 
 # Plugin architecture
 
-For a new plugin, start with the official `swplugin` template through [sws2-authoring](../sws2-authoring/SKILL.md). Preserve an existing project's layout and operator-defined boundaries when extending it. Use [sws2-api-mcp](../sws2-api-mcp/SKILL.md) to verify each framework boundary.
+For a new plugin, start with the official `swplugin` template through [sws2-authoring](../sws2-authoring/SKILL.md). Use [sws2-api-mcp](../sws2-api-mcp/SKILL.md) to verify each framework boundary.
 
 Keep the plugin entrypoint in `src/PluginName.cs`. It composes services and owns `Load(bool hotReload)` and `Unload()`. Put feature code in `src/<Module>/<Type>.cs`, with folders created when they gain a responsibility. Keep related state and behavior together; introduce another service when it has a separate owner or dependency.
 

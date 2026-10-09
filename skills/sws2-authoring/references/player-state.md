@@ -1,17 +1,17 @@
 # Player state and connection lifetime
 
-Store only the state the feature needs. A `Dictionary<int, PlayerState>` keyed by `PlayerID` is sufficient when handlers and state updates run on the game thread. Keep the connection's `SessionId` in that state when work crosses callbacks or an `await`. Group related fields in one small type under the feature's existing module; introduce another service only when it has a separate responsibility.
+A `Dictionary<int, PlayerState>` keyed by `PlayerID` can hold a feature's state when handlers and state updates run on the game thread. Include the connection's `SessionId` when work crosses callbacks or an `await`. Keep related fields in one type in the feature's module.
 
 ## Choose the identity
 
 | Identity | Use |
 | --- | --- |
 | `PlayerID` / `Slot` | Locate the current connection and its runtime state. Remove the entry on disconnect; another connection can reuse the slot. |
-| `SessionId` | Identify one connection across delayed work. `Core.PlayerManager.GetPlayerFromSessionId(id)` resolves it or returns null after removal. This is a runtime identity, not a database key. |
+| `SessionId` | Identify one connection across delayed work. `Core.PlayerManager.GetPlayerFromSessionId(id)` resolves it or returns null after removal. Use it for runtime state, not as a database key. |
 | Authorized `SteamID` | Key persistent account preferences or progress. A reconnect can have the same SteamID and a different session. |
 | `CHandle<T>` | Retain the identity of one entity across callbacks. Resolve it before use; pawn replacement creates a different entity even within the same session. |
 
-For account-backed features, wait for Steam authorization and exclude bots from account storage. `SteamID != 0` alone does not establish authorization: the core's flexible authentication mode can expose an unauthenticated ID. See [server authentication settings](server-resources.md) and [terminology](terminology.md).
+For features that store account data, wait for Steam authorization and exclude bots from account storage. `SteamID != 0` alone does not establish authorization: the core's flexible authentication mode can expose an unauthenticated ID. See [server authentication settings](server-resources.md) and [terminology](terminology.md).
 
 ## Initialize and release state
 
@@ -19,8 +19,8 @@ Choose the callback that supplies the feature's prerequisites:
 
 | Boundary | State work |
 | --- | --- |
-| `OnClientConnected` | Early connection work; the managed player object exists, but a usable pawn and authenticated account are not implied. |
-| `OnClientPutInServer` | Initialize gameplay session state. Use `Kind` or the current player to select humans/bots according to the feature. Pawn operations still need their own readiness check. |
+| `OnClientConnected` | Start early connection work. The managed player object exists, but the pawn may not be ready and the account may not be authenticated. |
+| `OnClientPutInServer` | Initialize gameplay session state. Use `Kind` or the current player to select humans or bots as the feature requires. Check pawn readiness before pawn operations. |
 | `OnClientSteamAuthorize` | Resolve the player from `PlayerId`, confirm account eligibility, and attach persistent data. Arrange initialization so either authorization or session setup can happen first. |
 | `OnClientDisconnected` | Remove slot state synchronously. Copy the stored account ID and values before any asynchronous persistence. The event exposes `PlayerId` and `Reason`; it has no `SteamID` property. |
 | Late load / hot reload | Run the same initialization for `Core.PlayerManager.GetAllPlayers()`, including currently authorized accounts. Existing connections do not replay their join/auth callbacks for the new plugin instance. |
@@ -54,7 +54,7 @@ await Core.Scheduler.NextTickAsync(() =>
 });
 ```
 
-The session lookup prevents a completed request from updating a replacement connection, including a reconnect by the same Steam account. `ApplyPreferences` updates owned state on the game thread and resolves any pawn it needs at that moment. A map-specific operation also needs its map lifetime preserved. Follow [thread management](../../sws2-thread-management/references/threads.md) for task ownership and scheduler lifetime; a concurrent collection does not make native player or entity access thread-safe.
+The session lookup prevents a completed request from updating a replacement connection, including a reconnect by the same Steam account. `ApplyPreferences` updates the plugin's state on the game thread and resolves any pawn it needs at that moment. Keep map-specific work within the lifetime of its map. Follow [thread management](../../sws2-thread-management/references/threads.md) for task ownership and scheduler lifetime; a concurrent collection does not make native player or entity access thread-safe.
 
 Validate the feature's first join, an already-connected player at load, and disconnect/reconnect while its I/O is pending. Include pawn replacement or map change when the feature retains state across those boundaries.
 
