@@ -5,6 +5,6 @@ description: Keep SwiftlyS2 game operations on the game thread while coordinatin
 
 Read [dispatch and lifetime](references/threads.md) when work crosses an `await`, background task, tick, or map boundary.
 
-Use `Core.IsGameThread` and API thread annotations to choose the execution context. Complete I/O outside the game thread, then schedule a synchronous callback or use a documented async game API. Resolve current players and entities inside the callback. Keep timers and deferred work within their plugin and map lifetime.
+Use `Core.IsGameThread` and API thread annotations to choose the execution context. Don't pass `async` lambdas to `void`-returning handlers; start I/O with `Task.Run` and never block the game thread on a task. Complete I/O outside the game thread, then schedule a synchronous callback or use a documented async game API. Resolve current players and entities inside the callback. Keep timers and deferred work within their plugin and map lifetime.
 
 Verify scheduler overloads through SwiftlyS2 MCP for the target runtime. Build and exercise the async route, including disconnect, map change, and hot reload when they affect the feature.

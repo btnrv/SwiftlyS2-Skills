@@ -1,6 +1,6 @@
 # Emit sound events
 
-Use `SwiftlyS2.Shared.Sounds.SoundEvent` for a named game sound event. For asset compilation, mounting, delivery and precaching, see [resource formats and precache](assets.md). An event name such as `Weapon_AK47.Single` identifies a sound event, not a raw audio filename. Check names and custom parameters in the target game's resources.
+Use `SwiftlyS2.Shared.Sounds.SoundEvent` for a named game sound event. For asset compilation, mounting, delivery and precaching, see [resource formats and precache](assets.md). An event name such as `Weapon_AK47.Single` identifies a sound event, not a raw audio filename. Check names and custom parameters in the target game's resources: decompile its `.vsndevts_c` files with [Source2Viewer-CLI](source2viewer.md#recipes-for-swiftlys2-work) and read the top-level keys.
 
 Run this on the game thread, with `player` as the current intended recipient:
 

@@ -38,6 +38,6 @@ Layout construction resets input capture. Enable it after spawning the layout an
 
 Track the HUD entity and subscriptions as plugin-owned resources. Create map-scoped entities when the map is ready, recreate them for a new map, and remove owned entities through the entity API during cleanup while still valid. Release player interaction state on disconnect and disable capture on close/unload.
 
-For menu manager coexistence, implement the `IMenuAPI` adapter described in [custom rendering](../../sws2-menus/references/custom-rendering.md). The manager can own open/close and selection; the adapter supplies Panorama state updates and bridges clicks. Scope compatibility to the controls implemented and verify the whole route in game.
+To show a menu on the HUD, register an `IMenuRenderer` with `Core.Menu` (beta), as described in [menu renderers](../../sws2-menus/references/renderers.md#panorama-hud-renderer). The menu system owns opening, closing, focus and key input. The renderer pushes Panorama state and the click handler routes buttons to the session. For classic `Core.MenusAPI`, use the `IMenuAPI` adapter in [legacy custom rendering](../../sws2-menus/references/legacy/custom-rendering.md). In both cases, support only the controls you implement and verify the whole route in game.
 
 Reference: [SwiftlyS2 custom HUD guide](https://swiftlys2.net/docs/development/custom-hud).

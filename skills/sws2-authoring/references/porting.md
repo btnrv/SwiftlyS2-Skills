@@ -8,8 +8,8 @@ Port one feature at a time, such as an authorized command that changes a player'
 
 | Existing concern | SwiftlyS2 owner and reference |
 | --- | --- |
-| Plugin metadata, SDK/package and resource output | Official template and [layout](../../sws2-code-architecture/references/layout.md); pin the deployed package |
-| Global API access or static plugin singleton | Constructor-injected `ISwiftlyCore` and the project's service composition |
+| Plugin metadata, SDK/package and resource output | Official template and [layout](architecture/layout.md); pin the deployed package |
+| Global API access or static plugin singleton | Constructor-injected `ISwiftlyCore`, shared by the plugin's partial files and passed to separately owned components |
 | Commands, command context, flags and permissions | [Commands and permissions](commands-permissions.md); verify `ICommandContext.Args`, player/console routes and permission semantics |
 | Lifecycle listeners versus game events | [Events and hooks](events-hooks.md); confirm payload, registration owner and phase |
 | CounterStrikeSharp `DynamicHook` or old hook-style core events | Prefer the matching typed `Core.GameHooks` contract; use [native interop](../../sws2-native-and-memory/SKILL.md) for uncovered operations |
@@ -17,7 +17,7 @@ Port one feature at a time, such as an authorized command that changes a player'
 | Schema writes and `SetStateChanged` | [Entity management](../../sws2-entity-management/SKILL.md); verify the field's generated notification mechanism |
 | User messages and raw protobuf access | [Network messages](netmessages.md); verify generated type, recipients and borrowed lifetime |
 | Timers and deferred callbacks | [Thread management](../../sws2-thread-management/SKILL.md); migrate dispatch and cancellation semantics |
-| Configuration, database and cross-plugin capabilities | [Integration](../../sws2-code-architecture/references/integration.md); preserve settings/data contracts and use the framework services |
+| Configuration, database and cross-plugin capabilities | [Integration](architecture/integration.md); preserve settings/data contracts and use the framework services |
 | Menus, translations and custom content | [Menu](../../sws2-menus/SKILL.md), [text](../../sws2-text-styling/SKILL.md) and [asset](../../sws2-game-assets/SKILL.md) skills |
 
 Read the current declaration through [sws2-api-mcp](../../sws2-api-mcp/SKILL.md) before translating a call. Methods with similar names can differ in cancellation, threading, ownership or identifier semantics. When porting signatures and gamedata, check existing byte patterns against the supported binaries.

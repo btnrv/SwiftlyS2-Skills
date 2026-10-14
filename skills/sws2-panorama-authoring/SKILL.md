@@ -11,6 +11,6 @@ Use the Panorama MCP `panorama_list` for CS2 to discover supported property name
 
 - For layout structure, styling, compiling, and client delivery, read [authoring](references/authoring.md).
 - For entity creation, per-player state, clicks, and cleanup, read [SwiftlyS2 integration](references/integration.md).
-- For sharing navigation and ownership with `Core.MenusAPI`, read [custom menu rendering](../sws2-menus/references/custom-rendering.md).
+- To drive a menu through a Panorama HUD, read the Panorama renderer recipe in [menu renderers](../sws2-menus/references/renderers.md#panorama-hud-renderer). That covers `Core.Menu` on beta. Classic `Core.MenusAPI` adapters are in [legacy custom rendering](../sws2-menus/references/legacy/custom-rendering.md).
 
 Confirm the target SwiftlyS2 version and CS2 build. Custom HUD behavior is experimental; use client console output and an in-game check to resolve loading or validation failures.

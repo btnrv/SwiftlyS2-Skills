@@ -68,7 +68,7 @@ Escape regex metacharacters when matching literal text, and account for JSON str
 
 `ConsoleLogger.Enable` and `ConsoleLogger.ManagedEnable` default to `true`; `WriteIntervalMs` is `2000`. Under `ConsoleLogger.Rotation`, `Enable` is `true`, `Mode` is `"file_count"`, `AvailableModes` is `["file_count", "time_interval"]`, `MaximumFiles` is `60`, and `DeleteOlderThanHours` is `168`. Choose the mode and retention for the deployment's log use.
 
-`Menu.InputMode` defaults to `"button"`, with available modes `"button"` and `"wasd"`. Menu input, paging, buttons, navigation prefix, and sound defaults are covered in [built-in menus](../../sws2-menus/references/built-in.md).
+`Menu.InputMode` defaults to `"button"`, with available modes `"button"` and `"wasd"`. This `Menu` section configures only the deprecated `Core.MenusAPI`, which is covered in [legacy built-in menus](../../sws2-menus/references/legacy/built-in.md). On beta, `Core.Menu` reads `configs/menus/menus.jsonc` instead, which is covered in [menu system](../../sws2-menus/references/menu-system.md#server-configuration).
 
 ## Core operator commands
 

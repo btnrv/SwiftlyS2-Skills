@@ -1,8 +1,8 @@
 # Resource formats and precache
 
-Common definition/output pairs are `.vmdl`/`.vmdl_c` (model), `.vmat`/`.vmat_c` (material), `.vtex`/`.vtex_c` (texture), `.vpcf`/`.vpcf_c` (particles), `.vsnd`/`.vsnd_c` (sound), and `.vsndevts`/`.vsndevts_c` (sound events). Raw meshes, images, and audio feed definitions. Build changed dependencies before the resources using them.
+Common definition/output pairs are `.vmdl`/`.vmdl_c` (model), `.vmat`/`.vmat_c` (material), `.vtex`/`.vtex_c` (texture), `.vpcf`/`.vpcf_c` (particles), `.vsnd`/`.vsnd_c` (sound), and `.vsndevts`/`.vsndevts_c` (sound events). Raw meshes, images, and audio feed definitions. Build changed dependencies before the resources using them. To see what a compiled resource references, print its `RERL` block with `Source2Viewer-CLI -i <file> -b RERL`.
 
-Use logical model paths such as `characters/example/player.vmdl` with `AddItem` and `SetModel`; mounted game assets are compiled. Precaching references available resources. Package custom content and dependencies through the deployment's supported server mount and client-delivery route.
+Use logical model paths such as `characters/example/player.vmdl` with `AddItem` and `SetModel`; mounted game assets are compiled. To find the path of a stock asset, list the game's VPK with [Source2Viewer-CLI](source2viewer.md#recipes-for-swiftlys2-work) and drop the `_c` suffix. Precaching references available resources. Package custom content and dependencies through the deployment's supported server mount and client-delivery route.
 
 Register a named handler in `Load` and remove it in `Unload`:
 

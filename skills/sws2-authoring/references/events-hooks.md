@@ -11,15 +11,15 @@ Some legacy game events no longer fire in current CS2 builds. Check for an equiv
 
 ## Fixed and dynamic handlers
 
-Handlers belong in `src/<Module>/<Type>.cs`. The framework discovers attributes on the plugin entrypoint automatically. Register a service instance created through dependency injection once with `Core.Registrator.Register(instance)` when it contains fixed attribute handlers. Registering the same instance again duplicates callbacks. The public registrator exposes `Register` but has no object-level `Unregister` counterpart.
+Handlers belong in their feature folder, normally `src/Features/<Feature>/`, alongside their state and cleanup. The framework discovers attributes on the plugin entrypoint, including its partial files, automatically. Register a separately composed instance once with `Core.Registrator.Register(instance)` when it contains fixed attribute handlers. Registering the same instance again duplicates callbacks. The public registrator exposes `Register` but has no object-level `Unregister` counterpart.
 
-| Surface | Fixed handler attribute | Registration owned by a service that can stop early |
+| Surface | Fixed handler attribute | Registration owned by a feature that can stop early |
 | --- | --- | --- |
 | Core event | `[EventListener<EventDelegates.OnClientConnected>]`, using the exact delegate signature | `Core.Event.OnClientConnected += handler`, then `-= handler` |
 | Game event | `[GameEventHandler(HookMode.Pre)]` or `Post`; returns `HookResult` | `HookPre<T>(handler)` / `HookPost<T>(handler)` return a `Guid`; retain it and call `Core.GameEvent.Unhook(id)` |
 | Typed game hook | `[GameHookHandler(HookMode.Pre)]` or `Post`; signature follows the selected context | Subscribe to the hook's `Pre` or `Post` event with `+=`, then remove the same handler with `-=` |
 
-Use either attribute discovery or programmatic registration for each subscription. The framework clears plugin listeners on unload; a service that stops earlier must remove its listeners itself. Preserve the delegate when using a lambda. Type-wide game-event unhook methods remove all matching registrations in that plugin service, so use the returned ID to remove one owner's callback.
+Use either attribute discovery or programmatic registration for each subscription. The framework clears plugin listeners on unload; a feature that stops earlier must remove its listeners itself. Preserve the delegate when using a lambda. Type-wide game-event unhook methods remove all matching registrations in that plugin service, so use the returned ID to remove one owner's callback.
 
 ## Phase and cancellation
 

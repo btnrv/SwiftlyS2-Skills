@@ -1,4 +1,6 @@
-# Built-in menus
+# Built-in menus (legacy)
+
+Deprecated: classic `Core.MenusAPI` behaviour notes from source. New menus use [`Core.Menu`](../menu-system.md). The compact API reference is in [menus API](menus-api.md).
 
 ## Build and open
 
@@ -22,7 +24,7 @@ Core.MenusAPI.OpenMenuForPlayer(player, menu);
 // Core.MenusAPI.CloseMenuForPlayer(player, menu);
 ```
 
-This instance uses the opening player's localizer; `prefix` comes from plugin configuration. Build per-player instances when their text or state differs. Store these translation keys and styling as described in [chat texts](../../sws2-text-styling/SKILL.md).
+This instance uses the opening player's localizer; `prefix` comes from plugin configuration. Build per-player instances when their text or state differs. Store these translation keys and styling as described in [chat texts](../../../sws2-text-styling/SKILL.md).
 
 Each `.Design.Set*` call returns the builder; repeat `.Design` for another design call. Use `OpenMenuForPlayer`, `CloseMenuForPlayer`, or `CloseActiveMenu` for manager state and events. `ShowForPlayer` and `HideForPlayer` only affect the rendering implementation.
 

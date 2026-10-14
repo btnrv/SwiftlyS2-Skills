@@ -1,4 +1,6 @@
-# Custom rendering and Panorama integration
+# Custom rendering and Panorama integration (legacy)
+
+Deprecated: `IMenuAPI` adapters for classic `Core.MenusAPI`. On beta, write an `IMenuRenderer` instead, as described in [renderers](../renderers.md).
 
 ## Extension boundary
 

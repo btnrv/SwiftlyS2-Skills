@@ -1,6 +1,6 @@
 # Commands and permissions
 
-Command handlers belong in their feature's `src/<Module>/<Type>.cs` and receive dependencies through constructors.
+Command handlers belong in their feature folder, normally `src/Features/<Feature>/`. A partial-class handler uses the entrypoint's inherited `Core`; a separately owned handler receives dependencies through its constructor. See [layout](architecture/layout.md) for a complete partial-class route.
 
 ## Fixed and runtime registration
 
@@ -26,7 +26,7 @@ public sealed class EchoCommands
 }
 ```
 
-For names selected by configuration or an independently enabled feature, use `Core.Command.RegisterCommand(name, handler, registerRaw: false, permission: permission, helpText: helpText)`. Save its `Guid` in the owning service and call `UnregisterCommand(guid)` when that service stops. The string overload unregisters all that service's listeners with the matching name; the `Guid` identifies one registration.
+For names selected by configuration or an independently enabled feature, use `Core.Command.RegisterCommand(name, handler, registerRaw: false, permission: permission, helpText: helpText)`. Save its `Guid` in the owning feature and call `UnregisterCommand(guid)` when that feature stops. The string overload unregisters all listeners in the plugin's command service with the matching name; the `Guid` identifies one registration.
 
 By default `echo` registers as console command `sw_echo`; `registerRaw: true` omits this prefix. Normal chat prefixes come from core configuration. `RegisterCommandAlias(commandName, alias, registerRaw: false)` adds an alternate name; aliases need not be abbreviations. Register the target command first. An alias has its own raw-prefix choice.
 
@@ -34,7 +34,7 @@ Plugin unload cleans up its registered commands, aliases and client hooks. There
 
 ## Context and access
 
-`Args` is a `string[]` containing arguments, so use `Length` and index from zero. `CommandName` holds the command name. Parse and validate the arguments before passing them to the feature service.
+`Args` is a `string[]` containing arguments, so use `Length` and index from zero. `CommandName` holds the command name. Parse and validate the arguments before applying the feature's behavior.
 
 Use `context.Reply(...)` to respond to the caller. Server console has `IsSentByPlayer == false` and `Sender == null`. A player-only action checks `IsSentByPlayer` before using `Sender`; a command intended for both routes handles each explicitly. The API spelling is `IsSlient`. Keep the registered handler `void`; coordinate any asynchronous work through the owner and [thread-management guidance](../../sws2-thread-management/SKILL.md).
 
