@@ -1,6 +1,6 @@
 ---
 name: sws2-thread-management
-description: Keep SwiftlyS2 game operations on the game thread while coordinating asynchronous I/O, scheduled work, and timer lifetimes.
+description: Keep SwiftlyS2 game operations on the game thread while coordinating async/await, Task.Run, background I/O such as HTTP and database calls, Core.Scheduler NextTick and NextWorldUpdate callbacks, delays, repeating timers and their cancellation across disconnects, map changes and hot reloads. Use whenever plugin code awaits, starts a task, schedules or delays work, uses a timer, or hits a crash or exception from calling game APIs off the game thread.
 ---
 
 Read [dispatch and lifetime](references/threads.md) when work crosses an `await`, background task, tick, or map boundary.

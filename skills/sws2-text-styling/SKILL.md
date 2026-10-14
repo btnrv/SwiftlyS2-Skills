@@ -1,6 +1,6 @@
 ---
 name: sws2-text-styling
-description: Style localized SwiftlyS2 chat, prefixes and CenterHTML messages with the actual CS2 palette, supported markup and typography, and editable presentation resources.
+description: Style and localize SwiftlyS2 player-facing text, including chat messages and prefixes with bracket color tokens such as [green], the actual CS2 chat palette, translations in resources/translations/*.jsonc with Core.Translation and Core.Localizer, CenterHTML markup, fonts and sizes, and escaping player-controlled text. Use whenever a plugin sends chat, center, alert or HTML messages, adds a prefix, colors or formats text, supports multiple languages, or when the user mentions SendChat, SendCenterHTML, translations or chat colors.
 ---
 
 # Text styling

@@ -1,6 +1,6 @@
 ---
 name: sws2-authoring
-description: Create, extend, port or structure SwiftlyS2 plugins using existing framework APIs, feature-based partial classes, C# conventions, configuration, shared contracts and template packaging. Use for plugin implementation, architecture and dependency changes.
+description: Create, extend, port or structure SwiftlyS2 C# plugins for Counter-Strike 2 (CS2). Covers the swplugin template, reusing existing framework methods and object properties, feature folders and partial classes, commands and permissions, events and game hooks, per-player state, network messages, convars, JSONC configuration, databases, shared plugin APIs, dependency injection, Steamworks, tests, build and publish. Use for any SwiftlyS2 or CS2 server plugin work, including porting from CounterStrikeSharp, even if the user only says "make a plugin", "add a command" or describes a gameplay feature.
 ---
 
 # Author a SwiftlyS2 plugin
@@ -31,6 +31,8 @@ For repeatable scaffolding, pin the template with `SwiftlyS2.CS2.PluginTemplate@
 The plugin entrypoint receives `ISwiftlyCore` and coordinates configuration, feature registration, `Load(bool hotReload)` and `Unload()`. Prefer focused partial-class files for gameplay, with each feature's state, handlers and cleanup together. Use separate types for models, records, integrations and components with their own ownership. Pass their dependencies through constructors. A feature does not need a service layer just because it has its own folder.
 
 Follow the framework's registration and cleanup contracts. Start resources when their dependencies are ready and stop plugin-owned work when its owner stops. When loading into an existing match, reconstruct any required state for connected players.
+
+Know the full member list of every SwiftlyS2 object the plugin handles, not just its methods. Properties, fields and events on `IPlayer`, event and hook arguments, schema entities and services often already hold the value a feature needs. Look up the complete type, keep its members in mind for the rest of the task and read state from the object that has it instead of deriving or duplicating it. See [object members](references/architecture/framework-reuse.md#know-every-member-of-the-objects-you-hold).
 
 Use existing API and schema types and their named members for game states, flags and identifiers. Read [game values and domain types](references/architecture/game-values.md) before using those values. Call an existing framework operation when it covers the behavior; do not recreate it from raw fields.
 

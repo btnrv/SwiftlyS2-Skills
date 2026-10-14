@@ -1,6 +1,6 @@
 ---
 name: sws2-api-mcp
-description: Ground SwiftlyS2 plugin development in live documentation, C# API declarations and CS2 data. Use whenever creating, changing, reviewing or debugging a SwiftlyS2 plugin, before choosing framework calls or game identifiers.
+description: Look up SwiftlyS2 documentation, C# API declarations (methods, properties, events, enums, overloads, namespaces) and CS2 game data (schema fields, entity inputs and outputs, protobuf net messages, game event payloads, convars, Panorama CSS) through the SwiftlyS2 MCP. Use whenever creating, changing, reviewing or debugging a SwiftlyS2 plugin, before choosing any framework call, property, enum or game identifier, when an API name or signature is unknown or a build fails on one, and when the user asks whether SwiftlyS2 has something or mentions swiftlys2.net, apidocs, the schema viewer or the SwiftlyS2 MCP.
 ---
 
 # SwiftlyS2 API and documentation

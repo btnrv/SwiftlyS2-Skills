@@ -1,6 +1,6 @@
 ---
 name: sws2-menus
-description: Build SwiftlyS2 player menus with the component-based Core.Menu system (beta), including centre-HTML and chat menus, custom renderers, component renderers, custom components, key binds and menus.jsonc; also covers the deprecated Core.MenusAPI for existing code and migration. Use whenever a SwiftlyS2 plugin needs a menu, settings screen, shop, vote, picker, submenu or any interactive per-player selection, even if the user does not say "menu".
+description: Build SwiftlyS2 player menus with the component-based Core.Menu system (beta), including centre-HTML and chat menus, custom renderers, component renderers, custom components, key binds and menus.jsonc; also covers the deprecated Core.MenusAPI for existing code and migration. Use whenever a SwiftlyS2 plugin needs a menu, settings screen, shop, vote, picker, admin panel, submenu, WASD or key-driven navigation, or any interactive per-player selection, even if the user does not say "menu".
 ---
 
 # SwiftlyS2 menus

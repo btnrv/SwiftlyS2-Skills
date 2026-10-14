@@ -1,6 +1,6 @@
 ---
 name: sws2-game-assets
-description: Compile, package, precache, and apply CS2 models, materials, textures, particles, sounds, and UI resources used by SwiftlyS2 plugins, and inspect them with Source 2 Viewer and Source2Viewer-CLI (ValveResourceFormat). Use whenever a plugin needs an asset path, a sound event name, a custom model or VPK, or when the user mentions VPKs, `_c` files, decompiling, extracting CS2 files, Source 2 Viewer, S2V, VRF or Source2Viewer-CLI.
+description: Compile, package, precache and apply CS2 models, materials, textures, particles, sounds and UI resources used by SwiftlyS2 plugins, and inspect them with Source 2 Viewer and Source2Viewer-CLI (ValveResourceFormat). Use whenever a plugin needs an asset path, a sound event name, Core.Event.OnPrecacheResource, a custom player model, a Workshop addon or VPK, or emits a sound, or when the user mentions VPKs, vmdl, vmat, vpcf, vsndevts or other `_c` files, missing textures or ERROR models, decompiling or extracting CS2 files, Source 2 Viewer, S2V, VRF or Source2Viewer-CLI.
 ---
 
 Read [resource formats and precache](references/assets.md) for logical paths, compiled dependencies, player models, and manifest lifetime.

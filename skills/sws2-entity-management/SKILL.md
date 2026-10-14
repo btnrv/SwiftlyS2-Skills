@@ -1,6 +1,6 @@
 ---
 name: sws2-entity-management
-description: Create, query, spawn, track, and remove CS2 entities with SwiftlyS2, including typed spawn values and entity inputs or outputs.
+description: Create, find, spawn, modify, track and remove CS2 entities in SwiftlyS2 plugins with Core.EntitySystem, including designer names, CreateEntityByDesignerName, CEntityKeyValues spawn values, DispatchSpawn, CHandle references, schema field changes, Despawn, and entity inputs and outputs. Use whenever a plugin spawns props, triggers, lights, beams, particles, weapons or other entities, iterates entities by class, keeps entity references across ticks or callbacks, fires an entity input, or cleans entities up on round or map end.
 ---
 
 Use `Core.EntitySystem` when the map entity system is ready. Verify designer names, schema types, and input/output contracts with SwiftlyS2 MCP for the target runtime.

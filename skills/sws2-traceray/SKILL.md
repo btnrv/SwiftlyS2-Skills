@@ -1,6 +1,6 @@
 ---
 name: sws2-traceray
-description: Implement SwiftlyS2 collision traces and aim queries using the appropriate player or observer origin, shape, masks, and result checks.
+description: Implement SwiftlyS2 collision traces and aim queries with Core.Trace, including line and hull traces, eye position and view angles for living players, dead players' observer pawns and spectator cameras, collision masks, ignored entities and hit results. Use whenever a plugin needs a raycast, line of sight, what a player is aiming or looking at, wall or ground checks, teleport-to-aim, hit position or surface normal, or distance to a surface.
 ---
 
 Establish which view the feature traces from: living player, dead player's observer pawn, or spectator camera. Verify the schema fields and trace APIs through SwiftlyS2 MCP for the installed runtime.

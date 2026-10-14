@@ -1,6 +1,6 @@
 ---
 name: sws2-panorama-authoring
-description: Author and troubleshoot CS2 custom HUD layouts using Panorama XML and CSS, SwiftlyS2 HUD state APIs, and server-side button clicks.
+description: Author and troubleshoot CS2 custom HUDs with Panorama XML layouts and CSS styles, SwiftlyS2 per-player HUD state APIs and server-side button clicks through Core.Event.OnCustomHudClicked. Use whenever a SwiftlyS2 plugin needs an on-screen panel, overlay, scoreboard, timer, progress bar or clickable button beyond chat and CenterHTML, or when the user mentions Panorama, a custom HUD, vcss_c or layout files, Panorama CSS properties, or a HUD that does not show or update.
 ---
 
 # SwiftlyS2 Panorama authoring

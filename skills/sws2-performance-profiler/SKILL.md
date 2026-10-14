@@ -1,6 +1,6 @@
 ---
 name: sws2-performance-profiler
-description: Diagnose SwiftlyS2 plugin performance with the built-in sw profiler, EventPipe captures, timing scopes, and measured comparison of CPU, allocation, and callback cost.
+description: Diagnose SwiftlyS2 plugin performance with the built-in sw profiler, Core.Profiler recordings, EventPipe .nettrace captures, timing scopes, and before-and-after comparison of CPU, allocation and callback cost. Use when a plugin or server is slow, lags, drops ticks, spikes in frame time, uses high CPU or memory, triggers frequent garbage collection, or when the user asks to profile, benchmark or optimize SwiftlyS2 code.
 ---
 
 Identify the slow action, player/entity load, and capture interval. Verify the deployed SwiftlyS2 version and the server-console `sw profiler` help before choosing commands.
