@@ -28,7 +28,7 @@ Plugin installs include the MCP configuration. Start a new session after install
 | Skill | Use |
 | --- | --- |
 | [sws2-api-mcp](skills/sws2-api-mcp/SKILL.md) | Verify documentation, APIs and game data |
-| [sws2-authoring](skills/sws2-authoring/SKILL.md) | Build, structure and port plugins; framework reuse, C# syntax, partial classes, configuration, convars, shared contracts and gameplay APIs |
+| [sws2-authoring](skills/sws2-authoring/SKILL.md) | Build, structure and port plugins; framework reuse and guarantees, C# syntax, partial classes, configuration, convars, shared contracts and gameplay APIs |
 | [sws2-text-styling](skills/sws2-text-styling/SKILL.md) | Translations, chat colors and CenterHTML |
 | [sws2-entity-management](skills/sws2-entity-management/SKILL.md) | Entity creation and lifetime |
 | [sws2-game-assets](skills/sws2-game-assets/SKILL.md) | Compile, deliver and precache assets; emit sound events; inspect files with Source2Viewer-CLI |

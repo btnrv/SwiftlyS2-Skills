@@ -22,7 +22,7 @@ private static bool TryGetTraceView(
     if (player.IsAlive)
     {
         var pawn = player.PlayerPawn;
-        if (pawn is null || !pawn.IsValid || pawn.EyePosition is not { } eye)
+        if (pawn is null || pawn.EyePosition is not { } eye)
             return false;
         position = eye;
         angles = pawn.EyeAngles;
@@ -30,8 +30,7 @@ private static bool TryGetTraceView(
         return true;
     }
     var observer = player.Controller.ObserverPawn.Value;
-    if (observer is null || !observer.IsValid ||
-        observer.CBodyComponent?.SceneNode?.AbsOrigin is not { } origin)
+    if (observer is null || observer.CBodyComponent?.SceneNode?.AbsOrigin is not { } origin)
         return false;
     position = origin;
     angles = observer.V_angle;

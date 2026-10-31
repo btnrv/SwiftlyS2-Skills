@@ -12,7 +12,7 @@ Use these terms precisely in code names, API searches and explanations. Keep ide
 | SteamID | Account identity used for persistent player data. It is distinct from a slot or entity index. |
 | Player object | SwiftlyS2's `IPlayer` facade over the connected player, controller, pawn and convenience operations. Its `PlayerID` is not a persistent account identifier. |
 | Entity index | A position in the engine's entity system. An index can be reused after removal; derive current entities through the entity API. |
-| Entity handle | `CHandle<T>`, a packed entity index and serial number. `Value` resolves the current matching entity, and `IsValid` checks that identity. It does not own the entity or keep it alive. |
+| Entity handle | `CHandle<T>`, a packed entity index and serial number. `Value` resolves the current matching entity or returns null, so a non-null `Value` already passed the identity check `IsValid` makes. It does not own the entity or keep it alive. |
 | Temporary entity | An entity whose intended lifetime follows a round or shorter feature operation. Clean it up at that boundary. |
 | Permanent entity | In this terminology, an entity intended to survive round resets within the map. Map change still ends its lifetime. Verify the entity's persistence rules when creating it. |
 

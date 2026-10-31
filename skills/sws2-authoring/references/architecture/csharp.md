@@ -14,7 +14,7 @@ Follow repository instructions, preserving the existing style when extending cod
 
 Use nullable annotations where values can be absent, and narrow them before dereferencing. Use `var` when the initializer makes the type clear; write the type explicitly when it conveys a domain distinction. Follow [game values](game-values.md) when using existing enums and named values. Preserve those distinctions in casts and avoid replacement enums.
 
-Keep handlers short so their event contract is easy to see. Use guard clauses for required input, permission or state checks. Extract a method when it names a plugin behavior or manages a separate lifetime, and call existing framework helpers directly. Avoid generic helper layers, empty exception handlers and retries for failures that have not been demonstrated.
+Keep handlers short so their event contract is easy to see. Use guard clauses for required input, permission or state checks, one question per `if`, and keep calls that change state out of conditions. Skip checks the framework already answered; see [framework guarantees](guarantees.md). Extract a method when it names a plugin behavior or manages a separate lifetime, and call existing framework helpers directly. Avoid generic helper layers, empty exception handlers and retries for failures that have not been demonstrated.
 
 This partial file uses the entrypoint from [layout](layout.md) and requires a `welcome.message` translation key:
 

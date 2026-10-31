@@ -16,7 +16,7 @@ relay.DispatchSpawn(values);
 var handle = Core.EntitySystem.GetRefEHandle(relay);
 Core.Scheduler.NextTick(() =>
 {
-    if (handle.IsValid && handle.Value is { } current)
+    if (handle.Value is { } current)
     {
         current.Despawn();
     }

@@ -65,6 +65,6 @@ foreach (var player in core.PlayerManager.GetAlive())
 
 ## Review custom code
 
-Before delivery, review new helpers, direct engine-field access and native operations. Replace duplicated framework operations, properties, enums, permission lookups, command parsers and lifecycle mechanisms with the verified APIs. Keep custom gameplay rules and required ownership checks. Add no infrastructure for hypothetical future failures.
+Before delivery, review new helpers, direct engine-field access and native operations. Replace duplicated framework operations, properties, enums, permission lookups, command parsers and lifecycle mechanisms with the verified APIs. Remove validity, alive and team checks that the producing API already guarantees; see [framework guarantees](guarantees.md). Keep custom gameplay rules and required ownership checks. Add no infrastructure for hypothetical future failures.
 
 Public references: [Swiftly core](https://swiftlys2.net/docs/development/swiftly-core), [player API](https://swiftlys2.net/api-docs/stable/players/iplayer), [player manager](https://swiftlys2.net/api-docs/stable/players/iplayermanagerservice).
